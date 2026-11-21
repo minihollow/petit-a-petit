@@ -67,9 +67,12 @@ export default function Today() {
         </section>
       )}
 
-      <section className="block soon">
-        <h2><Bi k="coming" /></h2>
-        <p className="small"><Bi k="coming_list" /></p>
+      <section className="block">
+        <div className="row">
+          <button type="button" className="btn ghost small" onClick={() => go('sounds')}><Bi k="snd_link" inline /></button>
+          <button type="button" className="btn ghost small" onClick={() => go('rules')}><Bi k="gender_rules" inline /></button>
+          <button type="button" className="btn ghost small" onClick={() => go('grammar')}><Bi k="nav_grammar" inline /></button>
+        </div>
       </section>
 
       <SyncLine />

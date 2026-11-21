@@ -9,6 +9,7 @@ export default function Mots() {
     <div className="page mots">
       <div className="row">
         <button type="button" className="btn ghost small" onClick={() => go('rules')}><Bi k="gender_rules" inline /></button>
+        <button type="button" className="btn ghost small" onClick={() => go('sounds')}><Bi k="snd_link" inline /></button>
       </div>
       <h2><Bi k="themes" /></h2>
       <ul className="theme-grid">

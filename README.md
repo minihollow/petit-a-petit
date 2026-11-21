@@ -24,13 +24,15 @@ Application web gratuite, sans compte, qui fonctionne hors ligne. Interface en f
 - **Grammaire** : 13 chapitres A1-A2 en cartes de règles façon Bescherelle (ce qu'il faut savoir, règles numérotées,
   exemples annotés sujet / verbe / COD…, exceptions, comparaison avec le turc, méthode pour reconnaître) et 77 exercices
   (QCM, phrases à compléter, exercice « détective »). Un chapitre étudié revient dans la série du jour.
+- **Prononciation et dictée** : lettres françaises écrites en lettres turques (u = ü, ch = ş…), règles (lettres muettes,
+  liaison, -ent), mots turcs venus du français (kuaför ← coiffeur), écoute fine (tu / tout, vent / vont / vin,
+  le / les, je / j'ai) et dictées de mots ou de phrases avec correction mot par mot.
 - **Coco, tuteur IA (ordinateur uniquement)** : explique en turc les erreurs d'un tableau ou d'une carte, répond aux
   questions sur le français. Il tourne avec [Ollama](https://ollama.com) sur l'ordinateur : rien ne part sur Internet.
   À activer dans Réglages, qui expliquent comment autoriser le site (`setx OLLAMA_ORIGINS "https://minihollow.github.io"`).
 - **Synchronisation** facultative entre téléphone et ordinateur par un petit serveur à la maison (voir [`server/`](server/)).
 - Sauvegarde et import d'un fichier de progression.
 
-À venir : prononciation et dictées.
 
 ## Utiliser
 

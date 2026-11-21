@@ -1,0 +1,53 @@
+{
+  "source": "Prononciation : tableaux et exercices rédigés pour Petit à petit, CC BY-SA 4.0.",
+  "letters": [
+    { "fr": "ou", "tk": "u", "ex": ["vous", "rouge", "jour"], "loan": ["turne", "tournée"] },
+    { "fr": "u", "tk": "ü", "ex": ["tu", "rue", "musique"], "loan": ["jüri", "jury"] },
+    { "fr": "eu · œu", "tk": "ö", "ex": ["deux", "sœur", "fleur"], "loan": ["kuaför", "coiffeur"] },
+    { "fr": "oi", "tk": "ua", "ex": ["moi", "soir", "voiture"], "loan": ["tuvalet", "toilette"] },
+    { "fr": "ch", "tk": "ş", "ex": ["chat", "chaise", "marché"], "loan": ["şoför", "chauffeur"] },
+    { "fr": "j · ge · gi", "tk": "j", "ex": ["je", "garage", "girafe"], "loan": ["garaj", "garage"] },
+    { "fr": "gn", "tk": "ny", "ex": ["montagne", "champignon", "signer"], "loan": ["şampanya", "champagne"] },
+    { "fr": "au · eau", "tk": "o", "ex": ["chaud", "bateau", "beau"], "loan": ["manto", "manteau"] },
+    { "fr": "ai · è · ê", "tk": "e (açık)", "ex": ["lait", "mère", "fête"], "loan": ["kabare", "cabaret"] },
+    { "fr": "é · er · ez", "tk": "e (kapalı)", "ex": ["café", "parler", "nez"], "loan": ["kafe", "café"] },
+    { "fr": "e (court)", "tk": "ö", "ex": ["le", "petit", "demain"], "loan": ["mösyö", "monsieur"] },
+    { "fr": "an · en · am · em", "tk": "aⁿ", "ex": ["enfant", "chambre", "temps"], "loan": ["kruvasan", "croissant"] },
+    { "fr": "on · om", "tk": "oⁿ", "ex": ["bonjour", "maison", "nom"], "loan": ["balkon", "balcon"] },
+    { "fr": "in · ain · ein · un", "tk": "eⁿ", "ex": ["vin", "pain", "lundi"], "loan": ["", ""] },
+    { "fr": "ç · c + e, i", "tk": "s", "ex": ["garçon", "merci", "ici"], "loan": ["garson", "garçon"] },
+    { "fr": "c + a, o, u · qu", "tk": "k", "ex": ["café", "qui", "quatre"], "loan": ["kalite", "qualité"] },
+    { "fr": "s entre deux voyelles", "tk": "z", "ex": ["maison", "rose", "cousin"], "loan": ["kuzen", "cousin"] },
+    { "fr": "ill · il (après voyelle)", "tk": "y", "ex": ["fille", "travail", "soleil"], "loan": ["", ""] },
+    { "fr": "h", "tk": "(okunmaz)", "ex": ["hôtel", "homme", "heure"], "loan": ["otel", "hôtel"] },
+    { "fr": "r", "tk": "gırtlaktan r", "ex": ["rue", "Paris", "rouge"], "loan": ["", ""] }
+  ],
+  "rules": [
+    { "fr": "La consonne finale est souvent muette : petit, grand, trop, deux.", "tr": "Sondaki ünsüz çoğu zaman okunmaz: petit [pöti], grand [graⁿ], trop [tro], deux [dö].",
+      "ex": "petit · grand · trop · deux · beaucoup" },
+    { "fr": "Mais c, r, f, l en finale se prononcent souvent (pense au mot anglais « careful »).", "tr": "Ama sondaki c, r, f, l çoğu zaman okunur (İngilizce «careful» kelimesini düşün).",
+      "ex": "avec · bonjour · neuf · sel" },
+    { "fr": "Le -e final ne se prononce pas, mais il fait entendre la consonne d'avant : petit / petite.", "tr": "Sondaki -e okunmaz ama önceki ünsüzü duyurur: petit [pöti] / petite [pötit].",
+      "ex": "petit · petite · grand · grande · vert · verte" },
+    { "fr": "-ent à la fin d'un verbe (ils parlent) est muet ; à la fin d'un autre mot (souvent, le vent), on dit [ɑ̃].", "tr": "Fiil sonundaki -ent okunmaz (ils parlent); başka kelimelerde (souvent, le vent) aⁿ okunur.",
+      "ex": "ils parlent · souvent · le vent · ils mangent" },
+    { "fr": "La liaison : une consonne muette se prononce devant une voyelle (les amis = [lezami]).", "tr": "Bağlama (liaison): okunmayan bir ünsüz, ünlüden önce okunur (les amis = lezami).",
+      "ex": "les amis · nous avons · un enfant · c'est un hôtel" },
+    { "fr": "Le h est toujours muet. Avec le h « muet », on fait l'élision et la liaison : l'hôtel, les hôtels.", "tr": "h hiç okunmaz. «Okunmayan h» ile kaynaştırma ve bağlama yapılır: l'hôtel, les hôtels [lezotel].",
+      "ex": "l'hôtel · les hôtels · l'homme · les hommes" }
+  ],
+  "loans": [
+    ["kuaför", "coiffeur"], ["şoför", "chauffeur"], ["garson", "garçon"], ["asansör", "ascenseur"], ["kuzen", "cousin"], ["pantolon", "pantalon"],
+    ["bulvar", "boulevard"], ["şömine", "cheminée"], ["randevu", "rendez-vous"], ["mösyö", "monsieur"], ["plaj", "plage"], ["kruvasan", "croissant"],
+    ["otel", "hôtel"], ["manto", "manteau"], ["bagaj", "bagage"], ["sürpriz", "surprise"], ["jile", "gilet"], ["tuvalet", "toilette"], ["gişe", "guichet"],
+    ["kuşet", "couchette"], ["vitrin", "vitrine"], ["etiket", "étiquette"], ["şarj", "charge"], ["jandarma", "gendarmerie"], ["kostüm", "costume"],
+    ["apartman", "appartement", "⚠ Sahte arkadaş: Fransızcada «daire» demek. Bina: immeuble."]
+  ],
+  "pairs": [
+    { "fr": "u / ou", "tr": "ü / u", "items": [["tu", "tout"], ["vu", "vous"], ["rue", "roue"], ["dessus", "dessous"], ["su", "sous"]] },
+    { "fr": "an / on / in", "tr": "aⁿ / oⁿ / eⁿ", "items": [["vent", "vont", "vin"], ["banc", "bon", "bain"], ["lent", "long", "lin"], ["temps", "ton", "teint"]] },
+    { "fr": "eu / ou", "tr": "ö / u", "items": [["deux", "doux"], ["peu", "pou"], ["jeu", "joue"], ["feu", "fou"]] },
+    { "fr": "le / les : singulier ou pluriel ?", "tr": "le / les: tekil mi çoğul mu?", "items": [["le livre", "les livres"], ["le garçon", "les garçons"], ["ce chat", "ces chats"], ["la fleur", "les fleurs"]] },
+    { "fr": "je / j'ai : présent ou passé ?", "tr": "je / j'ai: şimdiki mi geçmiş mi?", "items": [["je mange", "j'ai mangé"], ["je parle", "j'ai parlé"], ["je regarde", "j'ai regardé"], ["je travaille", "j'ai travaillé"]] }
+  ]
+}
