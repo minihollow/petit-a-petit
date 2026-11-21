@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { exportAll, importAll } from '../lib/db.js';
-import { getSync, setSync, testSync } from '../lib/sync.js';
+import { getSync, parsePairLink, setSync, testSync } from '../lib/sync.js';
 import { installVoice, PIPER_VOICE, refreshInstalled, removeVoice, speak } from '../lib/tts.js';
 import { useApp } from '../store.js';
 import { Bi, tx } from '../components/ui.jsx';
@@ -181,7 +181,9 @@ export default function Settings() {
         {!paired && <p className="muted small"><Bi k="sync_off" /></p>}
         <label className="row-l" htmlFor="s-url"><Bi k="sync_url" /></label>
         <input id="s-url" className="field" type="url" inputMode="url" placeholder="https://raspberrypi.xxxx.ts.net" value={cfg.url} disabled={paired}
-          onChange={(e) => setCfg((c) => ({ ...c, url: e.target.value }))} autoCapitalize="off" autoCorrect="off" spellCheck={false} />
+          onChange={(e) => { const p = parsePairLink(e.target.value); setCfg((c) => p || { ...c, url: e.target.value }); }}
+          autoCapitalize="off" autoCorrect="off" spellCheck={false} />
+        {!paired && <p className="muted small"><Bi k="sync_paste" /></p>}
         <label className="row-l" htmlFor="s-token"><Bi k="sync_token" /></label>
         <input id="s-token" className="field" type="password" value={cfg.token} disabled={paired}
           onChange={(e) => setCfg((c) => ({ ...c, token: e.target.value }))} autoCapitalize="off" autoCorrect="off" spellCheck={false} />

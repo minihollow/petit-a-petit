@@ -9,18 +9,24 @@ export async function setSync(cfg) {
   await setKV('syncCursor', 0);
 }
 
+// A pairing link (or its #pair=… part) -> { url, token }, or null.
+export function parsePairLink(text) {
+  const m = /[#&]pair=([A-Za-z0-9_-]+)/.exec(text || '');
+  if (!m) return null;
+  try {
+    const { u, t } = JSON.parse(atob(m[1].replace(/-/g, '+').replace(/_/g, '/')));
+    return /^https:\/\//.test(u) && t ? { url: u, token: t } : null;
+  } catch { return null; }
+}
+
 // Reads #pair=… from the address, stores it, and removes it from the address.
 export async function pairFromHash() {
-  const m = /[#&]pair=([A-Za-z0-9_-]+)/.exec(location.hash);
-  if (!m) return false;
+  if (!/[#&]pair=/.test(location.hash)) return false;
+  const p = parsePairLink(location.hash);
   history.replaceState(null, '', location.pathname + location.search);
-  try {
-    const json = atob(m[1].replace(/-/g, '+').replace(/_/g, '/'));
-    const { u, t } = JSON.parse(json);
-    if (!/^https:\/\//.test(u) || !t) return false;
-    await setSync({ url: u, token: t });
-    return true;
-  } catch { return false; }
+  if (!p) return false;
+  await setSync(p);
+  return true;
 }
 
 async function call(cfg, path, opts = {}) {

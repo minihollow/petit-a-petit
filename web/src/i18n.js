@@ -207,6 +207,7 @@ export const UI = {
   import: ['Importer', 'İçe aktar'],
   imported: ['{n} réponses importées', '{n} cevap içe aktarıldı'],
   import_bad: ['Fichier non reconnu', 'Dosya tanınmadı'],
+  sync_paste: ["Tu peux aussi coller ici le lien d'association : l'adresse et le jeton se remplissent seuls.", 'Eşleştirme bağlantısını da buraya yapıştırabilirsin: adres ve anahtar kendiliğinden dolar.'],
   s_about: ['À propos', 'Hakkında'],
   saved: ['Enregistré', 'Kaydedildi'],
   // shell
