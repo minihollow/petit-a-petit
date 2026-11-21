@@ -302,4 +302,31 @@ h1 .tr-t, h2 .tr-t { font-family: var(--f-body); font-stretch: 100%; margin-top:
 .sheet-meta { display: flex; flex-wrap: wrap; gap: .3rem .8rem; align-items: center; font-size: .88rem; color: var(--muted); }
 .tr-i-plain { color: var(--teal); }
 
+/* Coco */
+.coco-btn { background: #fff; border: 0; border-radius: 50%; padding: 1px; display: grid; place-items: center; }
+.coco { position: fixed; z-index: 25; top: 0; right: 0; bottom: 0; width: min(420px, 100%); background: var(--card); border-left: 1px solid var(--line);
+  box-shadow: -12px 0 30px -18px rgba(0, 0, 0, .4); display: grid; grid-template-rows: auto minmax(0, 1fr) auto;
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) 0; }
+.coco-head { display: flex; align-items: center; gap: .6rem; padding: .7rem .9rem; border-bottom: 1px solid var(--line); }
+.coco-title { display: grid; line-height: 1.15; margin-right: auto; min-width: 0; }
+.coco-msgs { overflow-y: auto; padding: .8rem .9rem; display: grid; gap: .7rem; align-content: start; }
+.msg { border-radius: 12px; padding: .6rem .75rem; max-width: 92%; line-height: 1.5; }
+.msg p, .msg ul { margin: 0 0 .45rem; }
+.msg p:last-child, .msg ul:last-child { margin-bottom: 0; }
+.msg ul { padding-left: 1.1rem; }
+.msg.user { justify-self: end; background: var(--red-solid); color: #fff; }
+.msg.assistant { justify-self: start; background: var(--tint); }
+.fr-q { color: var(--red-ink); font-weight: 500; }
+.coco-input { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem; padding: .7rem .9rem; border-top: 1px solid var(--line); align-items: end; }
+.coco-input textarea { resize: none; font-size: 1rem; }
+.ask-coco { display: inline-flex; align-items: center; gap: .35rem; }
+.model { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .6rem; align-items: center; border: 1.5px solid var(--line); border-radius: 10px; padding: .55rem .7rem; }
+.model.on { border-color: var(--red); }
+.model-main { display: grid; gap: .2rem; min-width: 0; }
+.model-main .chip { justify-self: start; }
+.coco-models { display: grid; gap: .45rem; }
+.coco-help ol { margin: .3rem 0; padding-left: 1.2rem; display: grid; gap: .35rem; }
+.cmd { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin-top: .25rem; }
+.cmd code { background: var(--tint); padding: .25rem .45rem; border-radius: 6px; font-size: .85rem; overflow-wrap: anywhere; }
+
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

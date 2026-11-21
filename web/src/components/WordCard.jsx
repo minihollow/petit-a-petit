@@ -3,6 +3,9 @@ import { answerOf, genderOf, gradeWord, isNoun, label, posLabel, ruleFor } from 
 import { speak } from '../lib/tts.js';
 import { useApp } from '../store.js';
 import { AccentBar, Bi, Pron, SpeakBtn } from './ui.jsx';
+import { AskCoco } from './Coco.jsx';
+import { wordContext } from '../lib/coco.js';
+import { UI } from '../i18n.js';
 
 // "le chien" with the article coloured by gender.
 export function WordLabel({ w, big = false }) {
@@ -80,6 +83,7 @@ export function WordDrill({ w, onDone }) {
           <div className="wcard-main"><WordLabel w={w} big /><SpeakBtn text={sayText(w)} /></div>
           {answerOf(w) !== label(w) && <p className="small muted" lang="fr">{answerOf(w)}</p>}
           <Details w={w} />
+          {res.k !== 'ok' && <AskCoco build={() => wordContext({ w, answer: val, grade: res, expected: answerOf(w) })} ask={UI.coco_q_word[1]} />}
         </div>
       )}
       <div className="drill-actions">

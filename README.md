@@ -21,10 +21,13 @@ Application web gratuite, sans compte, qui fonctionne hors ligne. Interface en f
   (‑tion : 99,8 % féminin sur 426 noms…).
 - **Mot cliquable** : un mot touché est lu, traduit en turc quand le sens est connu, avec sa nature, son genre,
   sa prononciation et le lien vers sa conjugaison (lexique de 21 000 formes tiré de Lexique).
+- **Coco, tuteur IA (ordinateur uniquement)** : explique en turc les erreurs d'un tableau ou d'une carte, répond aux
+  questions sur le français. Il tourne avec [Ollama](https://ollama.com) sur l'ordinateur : rien ne part sur Internet.
+  À activer dans Réglages, qui expliquent comment autoriser le site (`setx OLLAMA_ORIGINS "https://minihollow.github.io"`).
 - **Synchronisation** facultative entre téléphone et ordinateur par un petit serveur à la maison (voir [`server/`](server/)).
 - Sauvegarde et import d'un fichier de progression.
 
-À venir : cartes de règles de grammaire, prononciation et dictées, tuteur IA sur l'ordinateur.
+À venir : cartes de règles de grammaire, prononciation et dictées.
 
 ## Utiliser
 

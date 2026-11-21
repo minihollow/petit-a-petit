@@ -3,12 +3,15 @@ import { grade } from '../lib/conj.js';
 import { speak } from '../lib/tts.js';
 import { useApp } from '../store.js';
 import { AccentBar, Bi, Parts, Pron, SpeakBtn } from './ui.jsx';
+import { AskCoco } from './Coco.jsx';
+import { UI } from '../i18n.js';
 
 const FB = { ok: 'fb_ok', accent: 'fb_accent', agree: 'fb_agree', ending: 'fb_ending', aux: 'fb_aux', pp: 'fb_pp', bad: 'fb_bad', empty: 'fb_empty' };
 const fbKey = (g) => FB[g.k === 'ok' ? 'ok' : g.why || g.k] || 'fb_bad';
 
 // Fill in a whole table from memory. onDone({ ok, near, n, ms }) when the learner moves on.
-export default function Drill({ rows, onDone, doneLabel = 'next' }) {
+// cocoCtx(answers, grades): the exercise described for Coco (computer only).
+export default function Drill({ rows, onDone, doneLabel = 'next', cocoCtx }) {
   const { settings } = useApp();
   const [vals, setVals] = useState({});
   const [res, setRes] = useState(null);
@@ -75,6 +78,7 @@ export default function Drill({ rows, onDone, doneLabel = 'next' }) {
         {res && (
           <>
             <span className="score-big">{revealed ? '—' : `${score} / ${rows.length}`} <Bi k="score" inline /></span>
+            {cocoCtx && <AskCoco build={() => cocoCtx(vals, res)} ask={UI[score === rows.length && !revealed ? 'coco_q_table_ok' : 'coco_q_table'][1]} />}
             <button type="button" className="btn ghost" onClick={() => speak(rows.map((x) => x.say), { rate: settings.rate })}><Bi k="listen_all" /></button>
             <button type="button" ref={nextBtn} className="btn" onClick={finish}><Bi k={doneLabel} /></button>
           </>

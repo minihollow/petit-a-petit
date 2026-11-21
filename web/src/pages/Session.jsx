@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { tableRows } from '../lib/conj.js';
+import { tableRows, TENSES } from '../lib/conj.js';
+import { tableContext } from '../lib/coco.js';
 import { parseCard } from '../lib/plan.js';
 import { nextInDays, Rating, ratingFor } from '../lib/srs.js';
 import { parseWordCard } from '../lib/vocab.js';
@@ -57,7 +58,8 @@ export default function Session({ items: asked, onEnd }) {
             <ConjTable rows={rows} />
             <button type="button" className="btn big" onClick={() => setStep('drill')}><Bi k="to_drill" /></button>
           </div>
-        ) : <Drill key={`drill-${id}`} rows={rows} onDone={done} doneLabel="next" />}
+        ) : <Drill key={`drill-${id}`} rows={rows} onDone={done} doneLabel="next"
+          cocoCtx={(answers, grades) => tableContext({ verb, tenseName: TENSES[tense].fr, rows, answers, grades })} />}
       </>
     );
   }

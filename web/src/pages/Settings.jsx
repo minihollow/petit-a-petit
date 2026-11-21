@@ -5,6 +5,7 @@ import { installVoice, PIPER_VOICE, refreshInstalled, removeVoice, speak } from 
 import { useApp } from '../store.js';
 import { Bi, tx } from '../components/ui.jsx';
 import { UI } from '../i18n.js';
+import { hasModel, MODELS, pullModel, recommendedModel } from '../lib/coco.js';
 import SyncLine from '../components/SyncLine.jsx';
 
 function Choice({ value, options, onChange, label }) {
@@ -16,6 +17,69 @@ function Choice({ value, options, onChange, label }) {
         </button>
       ))}
     </div>
+  );
+}
+
+// Coco: turn it on, check Ollama, choose or download a model.
+function CocoSettings() {
+  const { settings, update, coco, refreshCoco } = useApp();
+  const [checking, setChecking] = useState(false);
+  const [pull, setPull] = useState(null); // { name, pct }
+  const [err, setErr] = useState('');
+  const origin = location.origin;
+  const cmd = `setx OLLAMA_ORIGINS "${origin}"`;
+  const advised = recommendedModel();
+  const check = async () => { setChecking(true); await refreshCoco(); setChecking(false); };
+  const download = async (name) => {
+    setErr(''); setPull({ name, pct: 0 });
+    try {
+      await pullModel(name, (ev) => { if (ev.total) setPull({ name, pct: ev.completed / ev.total }); });
+      await refreshCoco(); update({ cocoModel: name });
+    } catch (e) { setErr(String(e.message || e)); }
+    setPull(null);
+  };
+  return (
+    <section className="block">
+      <h2><Bi k="s_coco" /></h2>
+      <p className="small"><Bi k="coco_desc" /></p>
+      <Choice label="coco" value={settings.coco} onChange={(v) => { update({ coco: v }); if (v === 'on') setTimeout(check, 50); }} options={[['off', 'coco_off'], ['on', 'coco_on']]} />
+      {settings.coco === 'on' && (
+        coco.status.running ? (
+          <div className="coco-models">
+            <p className="small c-ok"><Bi k="coco_found" inline /> · Ollama {coco.status.version}</p>
+            <div className="row-l"><Bi k="coco_models" /></div>
+            {MODELS.map((m) => {
+              const have = hasModel(coco.status, m.name);
+              return (
+                <div key={m.name} className={`model${coco.model === m.name ? ' on' : ''}`}>
+                  <div className="model-main">
+                    <b>{m.name}</b> <span className="muted small">{m.size}</span>
+                    {m.name === advised && <span className="chip c-ok"><Bi k="coco_advised" inline /></span>}
+                    <div className="small"><Bi pair={m.desc} inline /></div>
+                    {pull?.name === m.name && <div className="dl"><span style={{ width: `${Math.round(pull.pct * 100)}%` }} /><b><Bi k="coco_downloading" inline /> {Math.round(pull.pct * 100)} %</b></div>}
+                  </div>
+                  {have ? <button type="button" className="btn small" disabled={coco.model === m.name} onClick={() => update({ cocoModel: m.name })}>{coco.model === m.name ? '✓' : <Bi k="coco_use" inline />}</button>
+                    : <button type="button" className="btn ghost small" disabled={!!pull} onClick={() => download(m.name)}><Bi k="coco_download" inline /></button>}
+                </div>
+              );
+            })}
+            {err && <p className="small c-bad">{err}</p>}
+          </div>
+        ) : (
+          <div className="coco-help">
+            <p className="small c-bad"><Bi k="coco_not_found" inline /></p>
+            <ol className="small">
+              <li><Bi k="coco_step1" inline /> <a href="https://ollama.com/download" target="_blank" rel="noreferrer">ollama.com/download</a></li>
+              <li><Bi k="coco_step2" inline />
+                <div className="cmd"><code>{cmd}</code><button type="button" className="btn ghost small" onClick={() => navigator.clipboard?.writeText(cmd).catch(() => {})}><Bi k="copy" inline /></button></div></li>
+              <li><Bi k="coco_step3" inline /></li>
+              <li><Bi k="coco_step4" inline /></li>
+            </ol>
+            <button type="button" className="btn small" disabled={checking} onClick={check}><Bi k="coco_retry" inline /></button>
+          </div>
+        )
+      )}
+    </section>
   );
 }
 
@@ -107,6 +171,8 @@ export default function Settings() {
         <Choice label="rate" value={settings.rate} onChange={set('rate')} options={[[0.7, '0.7'], [0.8, '0.8'], [0.9, '0.9'], [1, '1']]} />
         <button type="button" className="btn ghost small" onClick={() => speak('Bonjour ! Je parle français petit à petit.', { rate: settings.rate })}><Bi k="test_voice" inline /></button>
       </section>
+
+      <CocoSettings />
 
       <section className="block">
         <h2><Bi k="s_sync" /></h2>

@@ -16,6 +16,8 @@ import Mots from './pages/Mots.jsx';
 import Theme from './pages/Theme.jsx';
 import GenderRules from './pages/GenderRules.jsx';
 import { wordCourse } from './lib/vocab.js';
+import { getStatus, hasModel, MODELS, recommendedModel } from './lib/coco.js';
+import CocoPanel, { CocoAvatar } from './components/Coco.jsx';
 
 const VERBS = DATA.verbs;
 const BY_INF = new Map(VERBS.map((v) => [v.inf, v]));
@@ -31,6 +33,8 @@ export default function App() {
   const [sync, setSyncState] = useState({ status: 'off' });
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
+  const [cocoStatus, setCocoStatus] = useState({ running: false, models: [] });
+  const [cocoOpen, setCocoOpen] = useState(null); // { ctx, ask, key }
 
   const notify = useCallback((pair) => {
     setToast(pair);
@@ -111,13 +115,30 @@ export default function App() {
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
+  // Coco: only when turned on in Settings (this computer runs Ollama). Checked at start and every minute.
+  const refreshCoco = useCallback(async () => { const s = await getStatus(); setCocoStatus(s); return s; }, []);
+  useEffect(() => {
+    if (settings.coco !== 'on') { setCocoStatus({ running: false, models: [] }); return undefined; }
+    refreshCoco();
+    const t = setInterval(() => { if (document.visibilityState === 'visible') refreshCoco(); }, 60000);
+    return () => clearInterval(t);
+  }, [settings.coco, refreshCoco]);
+  const coco = useMemo(() => {
+    const st = cocoStatus;
+    const model = hasModel(st, settings.cocoModel) ? settings.cocoModel
+      : [recommendedModel(), ...MODELS.map((m) => m.name)].find((m) => hasModel(st, m)) || st.models?.[0]?.name || '';
+    return { on: settings.coco === 'on', status: st, model, ready: settings.coco === 'on' && st.running && !!model };
+  }, [cocoStatus, settings.coco, settings.cocoModel]);
+  const openCoco = useCallback(({ ctx = null, ask = null } = {}) => setCocoOpen({ ctx, ask, key: Date.now() }), []);
+
   const course = useMemo(() => curriculum(VERBS), []);
   const cards = useMemo(() => (events ? buildCards(events) : new Map()), [events]);
   const days = useMemo(() => (events ? dayStats(events) : {}), [events]);
 
   const store = useMemo(() => ({
     verbs: VERBS, byInf: BY_INF, lookup, events, cards, days, course, wordCourse: WORD_COURSE, settings, update, record, logGame, go, notify, reload, sync, doSync,
-  }), [events, cards, days, course, settings, update, record, logGame, go, notify, reload, sync, doSync]);
+    coco, openCoco, refreshCoco,
+  }), [events, cards, days, course, settings, update, record, logGame, go, notify, reload, sync, doSync, coco, openCoco, refreshCoco]);
 
   if (!events) return <div className="splash" aria-busy="true"><span className="brand-mark">Petit <i>à</i> petit</span></div>;
 
@@ -143,6 +164,7 @@ export default function App() {
         <header className="top">
           <button type="button" className="brand-mark" onClick={() => go('today')}>Petit <i>à</i> petit</button>
           <span className="top-stats" title="minutes · jours">
+            {coco.ready && <button type="button" className="coco-btn" onClick={() => openCoco()} aria-label="Coco"><CocoAvatar size={26} /></button>}
             <span>{minutes}/{settings.goal} min</span>
             <span className="streak"><Icon name="flame" size={16} />{st}</span>
           </span>
@@ -155,6 +177,7 @@ export default function App() {
           ))}
         </nav>
         <main className="content">{page}</main>
+        {cocoOpen && coco.ready && <CocoPanel key={cocoOpen.key} ctx={cocoOpen.ctx} ask={cocoOpen.ask} onClose={() => setCocoOpen(null)} />}
         {toast && <div className="toast" role="status"><Bi pair={toast} /></div>}
       </div>
     </AppCtx.Provider>
