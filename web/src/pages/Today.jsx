@@ -33,6 +33,13 @@ export default function Today() {
     <div className="page today">
       <h1 className="hello"><Bi pair={[`Bonjour${settings.name ? `, ${settings.name}` : ''} !`, `Merhaba${settings.name ? ` ${settings.name}` : ''}!`]} /></h1>
 
+      {cards.size === 0 && (
+        <section className="welcome">
+          <h2><Bi k="welcome_title" /></h2>
+          <ul>{['welcome_1', 'welcome_2', 'welcome_3', 'welcome_4'].map((k) => <li key={k}><Bi k={k} /></li>)}</ul>
+        </section>
+      )}
+
       <section className="day-card">
         <Ring value={minutes} max={settings.goal} size={78}><b>{minutes}</b><small>/{settings.goal}</small></Ring>
         <div className="day-stats">

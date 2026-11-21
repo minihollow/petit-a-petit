@@ -108,6 +108,17 @@ export const UI = {
   practice_ch: ['S\'entraîner', 'Alıştırma yap'],
   exercises_n: ['exercices', 'alıştırma'],
   choose_role: ['Choisis le rôle de chaque groupe', 'Her grubun görevini seç'],
+  // welcome + conjugation games
+  welcome_title: ['Bienvenue !', 'Hoş geldin!'],
+  welcome_1: ['Chaque jour, une série : des tableaux de conjugaison et des mots, à découvrir puis à refaire de mémoire.', 'Her gün bir seri: fiil tabloları ve kelimeler; önce keşfet, sonra ezberden yap.'],
+  welcome_2: ['Touche un mot français pour l\'entendre et voir sa traduction.', 'Bir Fransızca kelimeye dokun: okunur ve çevirisi çıkar.'],
+  welcome_3: ['Sur le téléphone : menu du navigateur, puis « Ajouter à l\'écran d\'accueil ».', 'Telefonda: tarayıcı menüsü, sonra «Ana ekrana ekle».'],
+  welcome_4: ['Dans Réglages : ton prénom, ton objectif, la voix naturelle, Coco (sur l\'ordinateur) et la synchronisation.', 'Ayarlar\'da: adın, hedefin, doğal ses, Coco (bilgisayarda) ve eşitleme.'],
+  sprint: ['Sprint 60 s', '60 sn yarış'],
+  sprint_desc: ['Le plus de formes possible en 60 secondes, avec les verbes que tu as déjà commencés.', '60 saniyede olabildiğince çok form yaz; başladığın fiillerle.'],
+  sprint_start: ['Partez !', 'Başla!'],
+  sprint_tries: ['essais', 'deneme'],
+  which_tense: ['Quel temps ?', 'Hangi zaman?'],
   // pronunciation
   snd_title: ['Prononciation et dictée', 'Telaffuz ve dikte'],
   snd_link: ['Prononciation et dictée', 'Telaffuz ve dikte'],

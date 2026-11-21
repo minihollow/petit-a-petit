@@ -352,6 +352,17 @@ h1 .tr-t, h2 .tr-t { font-family: var(--f-body); font-stretch: 100%; margin-top:
 .det-seg button.good .tr-i, .det-seg button.bad .tr-i, .det-seg button.good .tr-i::before, .det-seg button.bad .tr-i::before { color: #fff; opacity: .9; }
 .field.r-ok { border-color: var(--ok); } .field.r-near { border-color: var(--warn); } .field.r-bad { border-color: var(--ko); }
 
+/* welcome + conjugation games */
+.welcome { border: 2px solid var(--red); border-radius: 12px; padding: .8rem 1rem; }
+.welcome ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .45rem; }
+.welcome li::marker { color: var(--red); }
+.sprint-q { font-size: 1.15rem; margin: 0; }
+.timer { font-weight: 700; color: var(--red-ink); font-size: 1rem; }
+.sprint.f-ok { box-shadow: inset 0 0 0 3px var(--ok); }
+.sprint.f-bad { box-shadow: inset 0 0 0 3px var(--ko); }
+.miss { margin: 0; padding-left: 1.1rem; display: grid; gap: .3rem; font-size: .95rem; }
+.miss s { color: var(--ko); }
+
 /* pronunciation */
 .sndt { border-collapse: collapse; width: 100%; table-layout: fixed; }
 .sndt td { padding: .5rem .4rem; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }

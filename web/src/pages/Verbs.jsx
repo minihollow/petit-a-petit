@@ -4,10 +4,12 @@ import { cardId } from '../lib/plan.js';
 import { level } from '../lib/srs.js';
 import { useApp } from '../store.js';
 import { Bi, tx } from '../components/ui.jsx';
+import { Sprint, WhichTense } from '../components/ConjGames.jsx';
 
 export default function Verbs() {
   const { verbs, cards, go, settings } = useApp();
   const [q, setQ] = useState('');
+  const [game, setGame] = useState(null);
   const list = useMemo(() => {
     const k = strip(q.trim().toLowerCase());
     if (!k) return verbs;
@@ -15,6 +17,12 @@ export default function Verbs() {
   }, [q, verbs]);
   return (
     <div className="page verbs">
+      <div className="seg games-seg" role="group" aria-label="Jeux / Oyunlar">
+        <button type="button" aria-pressed={game === 'sprint'} onClick={() => setGame(game === 'sprint' ? null : 'sprint')}><Bi k="sprint" inline /></button>
+        <button type="button" aria-pressed={game === 'which'} onClick={() => setGame(game === 'which' ? null : 'which')}><Bi k="which_tense" inline /></button>
+      </div>
+      {game === 'sprint' && <Sprint />}
+      {game === 'which' && <WhichTense />}
       <input className="field search" type="search" value={q} onChange={(e) => setQ(e.target.value)}
         placeholder={settings.help ? tx('search').join(' · ') : tx('search')[0]} aria-label="Chercher / Ara" />
       <p className="muted small">{verbs.length} <Bi k="verbs_count" inline /></p>
