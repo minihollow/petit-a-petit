@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr" translate="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Petit à petit</title>
+    <meta name="description" content="Apprendre le français petit à petit, avec l'aide du turc : conjugaison avec prononciation, répétition espacée." />
+    <meta name="theme-color" content="#c8102e" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <script>
+      // Theme before the first paint (no light flash in dark mode).
+      (function () {
+        var t = 'auto';
+        try { t = localStorage.getItem('pap-theme') || 'auto'; } catch (e) {}
+        if (t === 'auto') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Petit à petit : activez JavaScript. / JavaScript'i etkinleştirin.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
