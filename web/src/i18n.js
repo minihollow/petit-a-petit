@@ -19,7 +19,7 @@ export const UI = {
   known_tables: ['tableaux connus', 'öğrenilen tablo'],
   started_tables: ['commencés', 'başlanan'],
   coming: ['Bientôt dans l\'application', 'Yakında uygulamada'],
-  coming_list: ['Grammaire (cartes de règles), prononciation et dictée, Coco (professeur IA, sur l\'ordinateur)', 'Gramer kartları, telaffuz ve dikte, Coco (yapay zekâ öğretmen, bilgisayarda)'],
+  coming_list: ['Prononciation (lettres françaises et turques) et dictées', 'Telaffuz (Fransız ve Türk harfleri) ve dikte'],
   learn: ['Découvre', 'Keşfet'],
   learn_hint: ['Lis et écoute le tableau, puis remplis-le de mémoire.', 'Tabloyu oku ve dinle, sonra ezberden doldur.'],
   to_drill: ['Je remplis le tableau', 'Tabloyu dolduruyorum'],
@@ -100,6 +100,14 @@ export const UI = {
   new_tables: ['nouveaux tableaux', 'yeni tablo'],
   done_all_new: ['Tous les mots de ce thème sont commencés.', 'Bu konudaki bütün kelimelere başladın.'],
   well_done: ['Bravo !', 'Bravo!'],
+  // grammar
+  nav_grammar: ['Grammaire', 'Gramer'],
+  grammar_intro: ['Chaque chapitre est une carte de règles : à lire, puis à pratiquer. Un chapitre étudié revient dans la série du jour.', 'Her bölüm bir kural kartı: önce oku, sonra alıştırma yap. Çalıştığın bölüm günlük seride tekrar gelir.'],
+  know_title: ['Ce qu\'il faut savoir', 'Bilmen gerekenler'],
+  how_to: ['Comment reconnaître ?', 'Nasıl bulunur?'],
+  practice_ch: ['S\'entraîner', 'Alıştırma yap'],
+  exercises_n: ['exercices', 'alıştırma'],
+  choose_role: ['Choisis le rôle de chaque groupe', 'Her grubun görevini seç'],
   // Coco
   coco_new: ['Nouvelle conversation', 'Yeni sohbet'],
   coco_hello: ['Pose-moi une question sur le français : un mot, une règle, une erreur. Je réponds en turc.', 'Fransızcayla ilgili bir soru sor: bir kelime, bir kural, bir hata. Türkçe cevap veririm.'],

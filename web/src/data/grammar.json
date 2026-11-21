@@ -1,0 +1,385 @@
+{
+  "source": "Cartes de grammaire rédigées pour Petit à petit (méthode inspirée des grammaires de référence), CC BY-SA 4.0.",
+  "labels": {
+    "S": ["sujet", "özne"], "V": ["verbe", "yüklem"], "COD": ["COD", "nesne"], "COI": ["COI", "dolaylı tümleç"],
+    "CC": ["complément circonstanciel", "zarf tümleci"], "CCT": ["CC de temps", "zaman"], "CCL": ["CC de lieu", "yer"],
+    "ATT": ["attribut", "yüklemin parçası"], "NEG": ["négation", "olumsuzluk"], "ART": ["article", "tanımlık"], "ADJ": ["adjectif", "sıfat"],
+    "N": ["nom", "isim"], "PRO": ["pronom", "zamir"], "AUX": ["auxiliaire", "yardımcı fiil"], "PP": ["participe passé", "ortaç"], "DET": ["déterminant", "belirleyici"], "PREP": ["préposition", "edat"]
+  },
+  "chapters": [
+    {
+      "id": "phrase", "level": "A1", "fr": "La phrase : sujet, verbe, compléments", "tr": "Cümlenin öğeleri",
+      "know": [
+        ["La phrase française suit l'ordre sujet + verbe + complément.", "Fransızca cümle sırası: özne + fiil + tümleç. Türkçede fiil sondadır."],
+        ["Le verbe est le seul mot qui se conjugue. Il se place entre « ne » et « pas ».", "Fiil, çekimlenen tek kelimedir. «ne» ile «pas» arasına girer."],
+        ["Le sujet répond à la question « Qui est-ce qui ? » ou « Qu'est-ce qui ? » posée devant le verbe.", "Özne, fiile sorulan «Kim?» ya da «Ne?» sorusunun cevabıdır."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Ordre de base : sujet, verbe, complément.", "tr": "Temel sıra: özne, fiil, tümleç.",
+          "formula": ["Sujet + Verbe + Complément", "Özne + Fiil + Tümleç (Türkçe: Özne + Tümleç + Fiil)"],
+          "ex": [{ "g": [["Ayşe", "S"], ["mange", "V"], ["une pomme", "COD"]], "tr": "Ayşe bir elma yiyor." }] },
+        { "id": "A2", "fr": "Le COD suit le verbe, sans préposition.", "tr": "Nesne (COD) fiilden sonra gelir, edatsız.",
+          "ex": [{ "g": [["Je", "S"], ["regarde", "V"], ["la télé", "COD"]], "tr": "Televizyon izliyorum." }],
+          "warn": ["« regarder » n'a pas de préposition, même si le turc dit « bir şeye bakmak ».", "«regarder» edatsızdır: Türkçede «-e bakmak» deriz ama Fransızcada «à» yok."] },
+        { "id": "A3", "fr": "Le COI est introduit par « à » ou « de ».", "tr": "Dolaylı tümleç (COI) «à» ya da «de» ile gelir.",
+          "ex": [{ "g": [["Je", "S"], ["téléphone", "V"], ["à ma mère", "COI"]], "tr": "Anneme telefon ediyorum." }],
+          "tip": ["« à » ressemble souvent au datif turc (-e) : à ma mère = anneme.", "«à» çoğu zaman Türkçedeki -e hâline benzer: à ma mère = anneme."] },
+        { "id": "A4", "fr": "Le complément circonstanciel dit quand, où, comment. On peut le déplacer ou le supprimer.", "tr": "Zarf tümleci ne zaman, nerede, nasıl olduğunu söyler. Yeri değişebilir, silinebilir.",
+          "ex": [{ "g": [["Le samedi", "CCT"], ["nous", "S"], ["allons", "V"], ["au marché", "CCL"]], "tr": "Cumartesileri pazara gideriz." }] }
+      ],
+      "algo": [
+        ["Trouve le verbe : le mot qu'on peut mettre entre « ne … pas ».", "Fiili bul: «ne … pas» arasına girebilen kelime."],
+        ["Trouve le sujet : « Qui est-ce qui » + verbe ?", "Özneyi bul: fiile «Kim?» diye sor."],
+        ["Après le verbe : « quoi ? » sans préposition = COD ; avec « à / de » = COI.", "Fiilden sonra: edatsız «ne?» = nesne (COD); «à / de» ile = COI."],
+        ["Ce qui reste et se déplace (quand ? où ?) = complément circonstanciel.", "Kalan ve yeri değişebilen (ne zaman? nerede?) = zarf tümleci."]
+      ],
+      "ex": [
+        { "t": "detect", "g": [["Mon voisin", "S"], ["achète", "V"], ["une voiture", "COD"]], "tr": "Komşum bir araba alıyor.", "opts": ["S", "V", "COD", "COI", "CC"] },
+        { "t": "detect", "g": [["Chaque matin", "CC"], ["Ayşe", "S"], ["écrit", "V"], ["à sa sœur", "COI"]], "tr": "Ayşe her sabah kız kardeşine yazıyor.", "opts": ["S", "V", "COD", "COI", "CC"] },
+        { "t": "detect", "g": [["Les enfants", "S"], ["regardent", "V"], ["un film", "COD"], ["ce soir", "CC"]], "tr": "Çocuklar bu akşam bir film izliyor.", "opts": ["S", "V", "COD", "COI", "CC"] },
+        { "t": "detect", "g": [["Nous", "S"], ["parlons", "V"], ["à nos voisins", "COI"]], "tr": "Komşularımızla konuşuyoruz.", "opts": ["S", "V", "COD", "COI", "CC"] },
+        { "t": "choice", "q": "Dans « Je bois un café », « un café » est…", "o": ["le COD", "le COI", "le sujet"], "a": 0, "tr": "Bir kahve içiyorum.",
+          "why": ["Pas de préposition après le verbe : COD.", "Fiilden sonra edat yok: nesne (COD)."] },
+        { "t": "choice", "q": "Dans « Elle pense à son travail », « à son travail » est…", "o": ["le COI", "le COD", "le verbe"], "a": 0, "tr": "İşini düşünüyor.",
+          "why": ["Introduit par « à » : COI.", "«à» ile geliyor: COI."] }
+      ]
+    },
+    {
+      "id": "articles", "level": "A1", "fr": "Les articles", "tr": "Tanımlıklar (artikeller)",
+      "know": [
+        ["Un nom français a presque toujours un article.", "Fransızcada isim neredeyse her zaman tanımlıkla kullanılır. Türkçede tanımlık yoktur."],
+        ["Défini (le, la, l', les) : une chose connue, ou en général.", "Belirli (le, la, l', les): bilinen bir şey ya da genel anlam."],
+        ["Indéfini (un, une, des) : une chose nouvelle, qu'on peut compter.", "Belirsiz (un, une, des): yeni anılan, sayılabilen bir şey («bir»)."],
+        ["Partitif (du, de la, de l') : une quantité qu'on ne compte pas.", "Bölümleyici (du, de la, de l'): sayılmayan bir miktar («biraz»)."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Le défini : le (masculin), la (féminin), l' (devant une voyelle), les (pluriel).", "tr": "Belirli tanımlık: le (eril), la (dişil), l' (ünlüden önce), les (çoğul).",
+          "ex": [{ "s": "Le livre de Paul est sur la table.", "tr": "Paul'ün kitabı masanın üstünde." }] },
+        { "id": "A2", "fr": "Avec aimer, adorer, détester, préférer : article défini (sens général).", "tr": "aimer, adorer, détester, préférer ile belirli tanımlık (genel anlam).",
+          "ex": [{ "s": "J'aime le café et je déteste le thé.", "tr": "Kahveyi severim, çaydan nefret ederim." }] },
+        { "id": "A3", "fr": "L'indéfini : un, une, des.", "tr": "Belirsiz tanımlık: un, une, des.",
+          "ex": [{ "s": "J'ai un frère et une sœur.", "tr": "Bir erkek kardeşim ve bir kız kardeşim var." }] },
+        { "id": "A4", "fr": "Le partitif : une partie d'une chose qu'on ne compte pas.", "tr": "Bölümleyici: sayılmayan bir şeyin bir kısmı.",
+          "formula": ["du = de + le ; de la ; de l' (voyelle)", "du = de + le; de la; ünlüden önce de l'"],
+          "ex": [{ "s": "Je bois du café. Je mange de la soupe.", "tr": "Kahve içiyorum. Çorba içiyorum." }] },
+        { "id": "A5", "fr": "Contractions : à + le = au, à + les = aux, de + le = du, de + les = des.", "tr": "Kaynaşma: à + le = au, à + les = aux, de + le = du, de + les = des.",
+          "ex": [{ "s": "Je vais au marché. C'est le livre du professeur.", "tr": "Pazara gidiyorum. Bu, öğretmenin kitabı." }],
+          "warn": ["« à la » et « à l' » ne changent pas : à la gare, à l'école.", "«à la» ve «à l'» değişmez: à la gare, à l'école."] },
+        { "id": "A6", "fr": "Après une négation, un, une, des, du, de la deviennent « de ».", "tr": "Olumsuzluktan sonra un, une, des, du, de la → «de» olur.",
+          "ex": [{ "s": "J'ai un chien. Je n'ai pas de chien.", "tr": "Bir köpeğim var. Köpeğim yok." }],
+          "warn": ["Sauf avec « être » : ce n'est pas un chat.", "«être» ile değişmez: ce n'est pas un chat."] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "J'aime ___ musique.", "o": ["la", "de la", "une"], "a": 0, "tr": "Müziği severim.", "why": ["Avec « aimer » : sens général, article défini.", "«aimer» ile genel anlam: belirli tanımlık."] },
+        { "t": "choice", "q": "Je bois ___ eau.", "o": ["de l'", "l'", "une"], "a": 0, "tr": "Su içiyorum.", "why": ["Une quantité d'eau qu'on ne compte pas : partitif.", "Sayılmayan bir miktar su: bölümleyici."] },
+        { "t": "choice", "q": "J'ai ___ sœur.", "o": ["une", "la", "de la"], "a": 0, "tr": "Bir kız kardeşim var.", "why": ["Une personne qu'on compte, nouvelle : indéfini.", "Sayılabilen, yeni anılan kişi: belirsiz tanımlık."] },
+        { "t": "choice", "q": "Je vais ___ cinéma.", "o": ["au", "à le", "à la"], "a": 0, "tr": "Sinemaya gidiyorum.", "why": ["à + le = au (cinéma est masculin).", "à + le = au (cinéma eril)."] },
+        { "t": "choice", "q": "Je n'ai pas ___ voiture.", "o": ["de", "une", "la"], "a": 0, "tr": "Arabam yok.", "why": ["Après « ne … pas », une → de.", "«ne … pas»tan sonra une → de."] },
+        { "t": "choice", "q": "C'est le livre ___ professeur.", "o": ["du", "de le", "des"], "a": 0, "tr": "Bu, öğretmenin kitabı.", "why": ["de + le = du.", "de + le = du."] },
+        { "t": "choice", "q": "Elle déteste ___ fromage.", "o": ["le", "du", "un"], "a": 0, "tr": "Peynirden nefret ediyor.", "why": ["Avec « détester » : article défini.", "«détester» ile belirli tanımlık."] },
+        { "t": "choice", "q": "Le matin, je mange ___ pain.", "o": ["du", "le", "des"], "a": 0, "tr": "Sabahları ekmek yerim.", "why": ["Une quantité de pain : partitif.", "Bir miktar ekmek: bölümleyici."] }
+      ]
+    },
+    {
+      "id": "nombre", "level": "A1", "fr": "Le pluriel des noms", "tr": "İsimlerde çoğul",
+      "know": [
+        ["On forme le pluriel avec un -s… qui ne se prononce pas.", "Çoğul -s ile yapılır… ama bu s okunmaz."],
+        ["À l'oral, on entend le pluriel dans l'article : le chat [lə ʃa] / les chats [le ʃa].", "Konuşmada çoğul tanımlıktan anlaşılır: le chat [lö şa] / les chats [le şa]."],
+        ["Le genre se voit dans l'article : apprends toujours le nom avec son article.", "Cinsiyet tanımlıktan görünür: ismi hep tanımlığıyla öğren."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Règle générale : nom + s.", "tr": "Genel kural: isim + s.", "formula": ["nom + s (muet)", "isim + s (okunmaz)"],
+          "ex": [{ "s": "un livre, des livres", "tr": "bir kitap, kitaplar" }] },
+        { "id": "A2", "fr": "Les noms en -s, -x, -z ne changent pas.", "tr": "-s, -x, -z ile biten isimler değişmez.",
+          "ex": [{ "s": "un bras, des bras ; un prix, des prix ; un nez, des nez", "tr": "kol, kollar; fiyat, fiyatlar; burun, burunlar" }] },
+        { "id": "A3", "fr": "Les noms en -eau, -eu, -au prennent un -x.", "tr": "-eau, -eu, -au ile bitenler -x alır.",
+          "ex": [{ "s": "un gâteau, des gâteaux ; un jeu, des jeux", "tr": "pasta, pastalar; oyun, oyunlar" }],
+          "warn": ["Exceptions : un pneu, des pneus ; un bleu, des bleus.", "İstisnalar: un pneu, des pneus; un bleu, des bleus."] },
+        { "id": "A4", "fr": "Les noms en -al font -aux.", "tr": "-al ile bitenler -aux olur.",
+          "ex": [{ "s": "un cheval, des chevaux ; un journal, des journaux", "tr": "at, atlar; gazete, gazeteler" }],
+          "warn": ["Exceptions : un festival, des festivals ; un carnaval, des carnavals.", "İstisnalar: un festival, des festivals; un carnaval, des carnavals."] },
+        { "id": "A5", "fr": "Quelques pluriels irréguliers à connaître.", "tr": "Ezberlenecek birkaç düzensiz çoğul.",
+          "ex": [{ "s": "un œil, des yeux ; un travail, des travaux ; monsieur, messieurs", "tr": "göz, gözler; iş, işler; bey, beyler" }] }
+      ],
+      "ex": [
+        { "t": "type", "q": "un oiseau → des ___", "a": ["oiseaux"], "tr": "kuş → kuşlar", "why": ["-eau → -eaux.", "-eau → -eaux."] },
+        { "t": "type", "q": "un animal → des ___", "a": ["animaux"], "tr": "hayvan → hayvanlar", "why": ["-al → -aux.", "-al → -aux."] },
+        { "t": "type", "q": "un fils → des ___", "a": ["fils"], "tr": "oğul → oğullar", "why": ["Déjà un -s à la fin : pas de changement.", "Zaten -s ile bitiyor: değişmez."] },
+        { "t": "type", "q": "une maison → des ___", "a": ["maisons"], "tr": "ev → evler", "why": ["Règle générale : + s.", "Genel kural: + s."] },
+        { "t": "type", "q": "un œil → des ___", "a": ["yeux"], "tr": "göz → gözler", "why": ["Pluriel irrégulier.", "Düzensiz çoğul."] },
+        { "t": "choice", "q": "Le pluriel de « un jeu » est…", "o": ["des jeux", "des jeus", "des jeu"], "a": 0, "tr": "oyun → oyunlar", "why": ["-eu → -eux.", "-eu → -eux."] }
+      ]
+    },
+    {
+      "id": "adjectif", "level": "A1", "fr": "L'adjectif : accord et place", "tr": "Sıfat: uyum ve yeri",
+      "know": [
+        ["L'adjectif s'accorde avec le nom : masculin ou féminin, singulier ou pluriel.", "Sıfat isme uyar: eril ya da dişil, tekil ya da çoğul. Türkçede sıfat hiç değişmez."],
+        ["La plupart des adjectifs se placent après le nom.", "Sıfatların çoğu isimden sonra gelir. Türkçede önce gelir."],
+        ["Quelques adjectifs courts se placent avant : beau, joli, jeune, vieux, nouveau, bon, mauvais, grand, petit, gros.", "Bazı kısa sıfatlar önce gelir: beau, joli, jeune, vieux, nouveau, bon, mauvais, grand, petit, gros."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Féminin : masculin + e.", "tr": "Dişil: eril + e.", "formula": ["masculin + e = féminin", "eril + e = dişil"],
+          "ex": [{ "s": "un ami content, une amie contente", "tr": "memnun bir (erkek) arkadaş, memnun bir (kız) arkadaş" }],
+          "tip": ["Souvent, la consonne finale s'entend au féminin : petit [pəti] → petite [pətit].", "Çoğu zaman dişilde son ünsüz duyulur: petit [pöti] → petite [pötit]."] },
+        { "id": "A2", "fr": "Déjà un -e au masculin : pas de changement.", "tr": "Erilde zaten -e varsa değişmez.",
+          "ex": [{ "s": "un garçon jeune, une fille jeune ; rouge, facile, triste", "tr": "genç bir oğlan, genç bir kız; kırmızı, kolay, üzgün" }] },
+        { "id": "A3", "fr": "Pluriel : + s (muet).", "tr": "Çoğul: + s (okunmaz).",
+          "ex": [{ "s": "des enfants contents, des filles contentes", "tr": "memnun çocuklar, memnun kızlar" }] },
+        { "id": "A4", "fr": "Fins spéciales au féminin.", "tr": "Dişilde özel sonlar.",
+          "formula": ["-eux → -euse, -if → -ive, -er → -ère, -en → -enne, -on → -onne, -el → -elle", "-eux → -euse, -if → -ive, -er → -ère, -en → -enne, -on → -onne, -el → -elle"],
+          "ex": [{ "s": "heureux, heureuse ; sportif, sportive ; cher, chère ; italien, italienne ; bon, bonne", "tr": "mutlu; sportif; pahalı; İtalyan; iyi" }] },
+        { "id": "A5", "fr": "Féminins irréguliers.", "tr": "Düzensiz dişiller.",
+          "ex": [{ "s": "beau, belle ; nouveau, nouvelle ; vieux, vieille ; blanc, blanche ; long, longue ; gentil, gentille", "tr": "güzel; yeni; yaşlı; beyaz; uzun; nazik" }],
+          "warn": ["Devant une voyelle : un bel homme, un nouvel ami, un vieil arbre.", "Ünlüden önce: un bel homme, un nouvel ami, un vieil arbre."] },
+        { "id": "A6", "fr": "Place : après le nom, sauf les petits adjectifs courants.", "tr": "Yeri: isimden sonra; sık kullanılan kısa sıfatlar hariç.",
+          "ex": [{ "s": "une voiture rouge, une petite maison", "tr": "kırmızı bir araba, küçük bir ev" }] }
+      ],
+      "ex": [
+        { "t": "type", "q": "une robe (blanc) → une robe ___", "a": ["blanche"], "tr": "beyaz bir elbise", "why": ["blanc → blanche (irrégulier).", "blanc → blanche (düzensiz)."] },
+        { "t": "type", "q": "une fille (heureux) → une fille ___", "a": ["heureuse"], "tr": "mutlu bir kız", "why": ["-eux → -euse.", "-eux → -euse."] },
+        { "t": "type", "q": "des garçons (gentil) → des garçons ___", "a": ["gentils"], "tr": "nazik oğlanlar", "why": ["Masculin pluriel : + s.", "Eril çoğul: + s."] },
+        { "t": "type", "q": "une maison (grand) → une ___ maison", "a": ["grande"], "tr": "büyük bir ev", "why": ["Féminin : + e. « grand » se place avant le nom.", "Dişil: + e. «grand» isimden önce gelir."] },
+        { "t": "choice", "q": "Comment dit-on « kırmızı bir araba » ?", "o": ["une voiture rouge", "une rouge voiture", "un voiture rouge"], "a": 0, "tr": "kırmızı bir araba", "why": ["Les couleurs se placent après le nom.", "Renkler isimden sonra gelir."] },
+        { "t": "choice", "q": "Comment dit-on « yeni bir arkadaş (erkek) » ?", "o": ["un nouvel ami", "un nouveau ami", "un ami nouvel"], "a": 0, "tr": "yeni bir arkadaş", "why": ["nouveau → nouvel devant une voyelle.", "Ünlüden önce nouveau → nouvel."] }
+      ]
+    },
+    {
+      "id": "negation", "level": "A1", "fr": "La négation", "tr": "Olumsuzluk",
+      "know": [
+        ["La négation a deux morceaux autour du verbe : ne … pas.", "Olumsuzluk fiilin iki yanındaki iki parçadır: ne … pas. Türkçede fiile -me/-ma eklenir."],
+        ["« ne » devient « n' » devant une voyelle.", "Ünlüden önce «ne» → «n'» olur."],
+        ["À l'oral, on oublie souvent « ne » : je sais pas.", "Konuşmada «ne» çoğu zaman düşer: je sais pas."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "ne + verbe + pas.", "tr": "ne + fiil + pas.", "formula": ["sujet + ne + verbe + pas", "özne + ne + fiil + pas"],
+          "ex": [{ "g": [["Je", "S"], ["ne", "NEG"], ["parle", "V"], ["pas", "NEG"], ["anglais", "COD"]], "tr": "İngilizce konuşmuyorum." }] },
+        { "id": "A2", "fr": "Autres négations : ne … jamais, ne … plus, ne … rien, ne … personne.", "tr": "Diğer olumsuzluklar: ne … jamais (asla), ne … plus (artık değil), ne … rien (hiçbir şey), ne … personne (hiç kimse).",
+          "ex": [{ "s": "Je ne fume jamais. Il ne travaille plus. Je ne vois rien. Je ne connais personne.", "tr": "Asla sigara içmem. Artık çalışmıyor. Hiçbir şey görmüyorum. Kimseyi tanımıyorum." }] },
+        { "id": "A3", "fr": "Au passé composé : ne + auxiliaire + pas + participe.", "tr": "Passé composé'de: ne + yardımcı fiil + pas + ortaç.",
+          "ex": [{ "g": [["Je", "S"], ["n'", "NEG"], ["ai", "AUX"], ["pas", "NEG"], ["mangé", "PP"]], "tr": "Yemek yemedim." }] },
+        { "id": "A4", "fr": "Après la négation : un, une, des, du, de la → de.", "tr": "Olumsuzluktan sonra: un, une, des, du, de la → de.",
+          "ex": [{ "s": "Je bois du café. Je ne bois pas de café.", "tr": "Kahve içiyorum. Kahve içmiyorum." }] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "Je ___ aime ___ le froid.", "o": ["n' … pas", "ne … pas", "pas … ne"], "a": 0, "tr": "Soğuğu sevmiyorum.", "why": ["« aime » commence par une voyelle : n'.", "«aime» ünlüyle başlıyor: n'."] },
+        { "t": "choice", "q": "Choisis la bonne phrase :", "o": ["Je n'ai pas de voiture.", "Je n'ai pas une voiture.", "Je ai pas de voiture."], "a": 0, "tr": "Arabam yok.", "why": ["n' devant « ai », et une → de après la négation.", "«ai»dan önce n', olumsuzluktan sonra une → de."] },
+        { "t": "choice", "q": "« Artık sigara içmiyorum » se dit…", "o": ["Je ne fume plus.", "Je ne fume jamais.", "Je ne fume rien."], "a": 0, "tr": "Artık sigara içmiyorum.", "why": ["« ne … plus » = artık … değil.", "«ne … plus» = artık … değil."] },
+        { "t": "choice", "q": "Choisis la bonne phrase au passé composé :", "o": ["Elle n'est pas venue.", "Elle n'est venue pas.", "Elle est ne pas venue."], "a": 0, "tr": "Gelmedi.", "why": ["La négation entoure l'auxiliaire.", "Olumsuzluk yardımcı fiili çevreler."] },
+        { "t": "choice", "q": "« Hiç kimseyi tanımıyorum » se dit…", "o": ["Je ne connais personne.", "Je ne connais rien.", "Je ne connais pas."], "a": 0, "tr": "Hiç kimseyi tanımıyorum.", "why": ["personne = hiç kimse.", "personne = hiç kimse."] }
+      ]
+    },
+    {
+      "id": "questions", "level": "A1", "fr": "Poser une question", "tr": "Soru sormak",
+      "know": [
+        ["Trois façons de poser une question : l'intonation, « est-ce que », l'inversion.", "Soru sormanın üç yolu: ses tonu, «est-ce que», devrik yapı."],
+        ["« Est-ce que » joue le rôle du « mi » turc.", "«Est-ce que», Türkçedeki «mi» gibidir."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Intonation : la voix monte à la fin (langue parlée).", "tr": "Ses tonu: ses sonda yükselir (konuşma dili).",
+          "ex": [{ "s": "Tu viens ce soir ?", "tr": "Bu akşam geliyor musun?" }] },
+        { "id": "A2", "fr": "Est-ce que + phrase normale.", "tr": "Est-ce que + normal cümle.", "formula": ["Est-ce que + sujet + verbe ?", "Est-ce que + özne + fiil? (≈ mi)"],
+          "ex": [{ "s": "Est-ce que tu aimes le thé ?", "tr": "Çay sever misin?" }] },
+        { "id": "A3", "fr": "Mot interrogatif + est-ce que.", "tr": "Soru kelimesi + est-ce que.",
+          "ex": [{ "s": "Où est-ce que tu habites ? Quand est-ce qu'il part ?", "tr": "Nerede oturuyorsun? Ne zaman gidiyor?" }] },
+        { "id": "A4", "fr": "Inversion (plus soutenu) : verbe-sujet.", "tr": "Devrik yapı (daha resmî): fiil-özne.",
+          "ex": [{ "s": "Parlez-vous turc ? A-t-il un frère ?", "tr": "Türkçe konuşuyor musunuz? Erkek kardeşi var mı?" }],
+          "warn": ["Entre deux voyelles, on ajoute -t- : a-t-il, va-t-elle.", "İki ünlü arasına -t- eklenir: a-t-il, va-t-elle."] },
+        { "id": "A5", "fr": "« Quel » s'accorde : quel, quelle, quels, quelles.", "tr": "«Quel» uyum yapar: quel, quelle, quels, quelles.",
+          "ex": [{ "s": "Quel âge as-tu ? Quelle heure est-il ?", "tr": "Kaç yaşındasın? Saat kaç?" }] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "___ habites-tu ? — À Lyon.", "o": ["Où", "Quand", "Comment"], "a": 0, "tr": "Nerede oturuyorsun? — Lyon'da.", "why": ["Une réponse de lieu : où.", "Yer cevabı: où (nerede)."] },
+        { "t": "choice", "q": "___ âge as-tu ?", "o": ["Quel", "Quelle", "Quoi"], "a": 0, "tr": "Kaç yaşındasın?", "why": ["âge est masculin : quel.", "âge eril: quel."] },
+        { "t": "choice", "q": "___ est-ce que tu pars ? — Demain.", "o": ["Quand", "Où", "Pourquoi"], "a": 0, "tr": "Ne zaman gidiyorsun? — Yarın.", "why": ["Une réponse de temps : quand.", "Zaman cevabı: quand (ne zaman)."] },
+        { "t": "choice", "q": "___ coûte ce pain ? — Un euro.", "o": ["Combien", "Comment", "Quel"], "a": 0, "tr": "Bu ekmek ne kadar? — Bir avro.", "why": ["Un prix : combien.", "Fiyat: combien (ne kadar)."] },
+        { "t": "choice", "q": "___ ville préfères-tu ?", "o": ["Quelle", "Quel", "Qui"], "a": 0, "tr": "Hangi şehri tercih ediyorsun?", "why": ["ville est féminin : quelle.", "ville dişil: quelle."] },
+        { "t": "choice", "q": "« Kahve ister misin? » se dit…", "o": ["Est-ce que tu veux un café ?", "Est-ce tu veux un café ?", "Tu est-ce que veux un café ?"], "a": 0, "tr": "Kahve ister misin?", "why": ["Est-ce que + sujet + verbe.", "Est-ce que + özne + fiil."] }
+      ]
+    },
+    {
+      "id": "lieux", "level": "A1", "fr": "Aller et habiter : à, en, au, chez", "tr": "Yer bildiren edatlar: à, en, au, chez",
+      "know": [
+        ["Le turc dit -de (Paris'te) et -e (Paris'e) ; le français utilise la même préposition pour les deux.", "Türkçe -de (Paris'te) ve -e (Paris'e) der; Fransızca ikisi için de aynı edatı kullanır."],
+        ["La préposition dépend du nom : une ville, un pays féminin, un pays masculin, une personne.", "Edat isme göre değişir: şehir, dişil ülke, eril ülke, kişi."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "à + ville.", "tr": "à + şehir.", "formula": ["à Paris = Paris'te / Paris'e", "à Paris = Paris'te / Paris'e"],
+          "ex": [{ "s": "J'habite à Lyon. Je vais à Istanbul.", "tr": "Lyon'da oturuyorum. İstanbul'a gidiyorum." }] },
+        { "id": "A2", "fr": "en + pays féminin (souvent terminé par -e).", "tr": "en + dişil ülke (çoğu -e ile biter).",
+          "ex": [{ "s": "Je vis en France. Elle va en Turquie.", "tr": "Fransa'da yaşıyorum. Türkiye'ye gidiyor." }] },
+        { "id": "A3", "fr": "au + pays masculin, aux + pays pluriel.", "tr": "au + eril ülke, aux + çoğul ülke.",
+          "ex": [{ "s": "Il travaille au Maroc. Nous allons aux États-Unis.", "tr": "Fas'ta çalışıyor. Amerika'ya gidiyoruz." }] },
+        { "id": "A4", "fr": "chez + personne.", "tr": "chez + kişi.",
+          "ex": [{ "s": "Je suis chez moi. Je vais chez le médecin.", "tr": "Evdeyim. Doktora gidiyorum." }] },
+        { "id": "A5", "fr": "Position : dans, sur, sous, devant, derrière, entre.", "tr": "Konum: dans (içinde), sur (üstünde), sous (altında), devant (önünde), derrière (arkasında), entre (arasında).",
+          "ex": [{ "s": "Le chat dort sous la table. Les clés sont dans le sac.", "tr": "Kedi masanın altında uyuyor. Anahtarlar çantanın içinde." }],
+          "tip": ["Le turc met un suffixe après le nom (masanın altında), le français met une préposition avant (sous la table).", "Türkçe isimden sonra ek kullanır (masanın altında), Fransızca önce edat (sous la table)."] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "J'habite ___ Paris.", "o": ["à", "en", "au"], "a": 0, "tr": "Paris'te oturuyorum.", "why": ["Une ville : à.", "Şehir: à."] },
+        { "t": "choice", "q": "Elle va ___ Turquie.", "o": ["en", "à", "au"], "a": 0, "tr": "Türkiye'ye gidiyor.", "why": ["la Turquie, pays féminin : en.", "la Turquie dişil ülke: en."] },
+        { "t": "choice", "q": "Ils vivent ___ Maroc.", "o": ["au", "en", "à"], "a": 0, "tr": "Fas'ta yaşıyorlar.", "why": ["le Maroc, pays masculin : au.", "le Maroc eril ülke: au."] },
+        { "t": "choice", "q": "Nous partons ___ États-Unis.", "o": ["aux", "au", "en"], "a": 0, "tr": "Amerika'ya gidiyoruz.", "why": ["les États-Unis, pluriel : aux.", "les États-Unis çoğul: aux."] },
+        { "t": "choice", "q": "Ce soir, je dîne ___ mes parents.", "o": ["chez", "à", "en"], "a": 0, "tr": "Bu akşam annemlerde yemek yiyorum.", "why": ["Une personne : chez.", "Kişi: chez."] },
+        { "t": "choice", "q": "Le chat dort ___ la table. (masanın altında)", "o": ["sous", "sur", "dans"], "a": 0, "tr": "Kedi masanın altında uyuyor.", "why": ["altında = sous.", "altında = sous."] }
+      ]
+    },
+    {
+      "id": "possessifs", "level": "A1", "fr": "Possessifs et démonstratifs", "tr": "İyelik ve işaret belirleyicileri",
+      "know": [
+        ["Le possessif s'accorde avec la chose possédée, pas avec le propriétaire.", "İyelik belirleyicisi sahibine değil, sahip olunan şeye uyar."],
+        ["En turc, le possesseur est dans un suffixe (annem, annesi) ; en français, dans un petit mot avant le nom.", "Türkçede sahip ekte (annem, annesi); Fransızcada isimden önceki küçük kelimede."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "mon, ma, mes · ton, ta, tes · son, sa, ses · notre, nos · votre, vos · leur, leurs.", "tr": "benim: mon, ma, mes · senin: ton, ta, tes · onun: son, sa, ses · bizim: notre, nos · sizin: votre, vos · onların: leur, leurs.",
+          "ex": [{ "s": "mon père, ma mère, mes parents", "tr": "babam, annem, ailem" }] },
+        { "id": "A2", "fr": "son / sa : le genre de la chose, pas de la personne.", "tr": "son / sa: kişinin değil, şeyin cinsiyeti.",
+          "ex": [{ "s": "Paul aime sa mère. Marie aime son père.", "tr": "Paul annesini seviyor. Marie babasını seviyor." }] },
+        { "id": "A3", "fr": "Devant une voyelle, ma, ta, sa → mon, ton, son.", "tr": "Ünlüden önce ma, ta, sa → mon, ton, son.",
+          "ex": [{ "s": "mon amie, ton école, son adresse", "tr": "(kız) arkadaşım, okulun, adresi" }] },
+        { "id": "A4", "fr": "Démonstratifs : ce, cet (masculin + voyelle), cette, ces.", "tr": "İşaret: ce, cet (eril + ünlü), cette, ces (bu, şu).",
+          "ex": [{ "s": "ce livre, cet homme, cette maison, ces enfants", "tr": "bu kitap, bu adam, bu ev, bu çocuklar" }] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "C'est ___ amie Julie.", "o": ["mon", "ma", "mes"], "a": 0, "tr": "Bu, arkadaşım Julie.", "why": ["amie commence par une voyelle : mon.", "amie ünlüyle başlıyor: mon."] },
+        { "t": "choice", "q": "Paul et ___ sœur.", "o": ["sa", "son", "ses"], "a": 0, "tr": "Paul ve kız kardeşi.", "why": ["sœur est féminin : sa (même si Paul est un homme).", "sœur dişil: sa (Paul erkek olsa da)."] },
+        { "t": "choice", "q": "Marie et ___ frère.", "o": ["son", "sa", "ses"], "a": 0, "tr": "Marie ve erkek kardeşi.", "why": ["frère est masculin : son.", "frère eril: son."] },
+        { "t": "choice", "q": "___ homme est très grand.", "o": ["Cet", "Ce", "Cette"], "a": 0, "tr": "Bu adam çok uzun.", "why": ["Masculin + voyelle (h muet) : cet.", "Eril + ünlü (okunmayan h): cet."] },
+        { "t": "choice", "q": "Nous aimons ___ maison.", "o": ["notre", "nos", "nôtre"], "a": 0, "tr": "Evimizi seviyoruz.", "why": ["Une seule maison : notre.", "Tek ev: notre."] },
+        { "t": "choice", "q": "Ils parlent avec ___ enfants.", "o": ["leurs", "leur", "ses"], "a": 0, "tr": "Çocuklarıyla konuşuyorlar.", "why": ["Plusieurs propriétaires et plusieurs enfants : leurs.", "Birden çok sahip, birden çok çocuk: leurs."] }
+      ]
+    },
+    {
+      "id": "cest", "level": "A1", "fr": "C'est, il est, il y a", "tr": "C'est, il est, il y a",
+      "know": [
+        ["« Il y a » = var. « Il n'y a pas de » = yok.", "«Il y a» = var. «Il n'y a pas de» = yok."],
+        ["« C'est » + nom avec déterminant. « Il est / elle est » + adjectif ou métier sans article.", "«C'est» + belirleyicili isim. «Il est / elle est» + sıfat ya da tanımlıksız meslek."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Il y a = var ; il y a + durée = … önce.", "tr": "Il y a = var; il y a + süre = … önce.",
+          "ex": [{ "s": "Il y a un chat dans le jardin. Je suis arrivée il y a deux ans.", "tr": "Bahçede bir kedi var. İki yıl önce geldim." }] },
+        { "id": "A2", "fr": "C'est + article / possessif + nom.", "tr": "C'est + tanımlık / iyelik + isim.",
+          "ex": [{ "s": "C'est un médecin. C'est ma sœur.", "tr": "O bir doktor. Bu benim kız kardeşim." }] },
+        { "id": "A3", "fr": "Il est / elle est + adjectif, ou métier sans article.", "tr": "Il est / elle est + sıfat ya da tanımlıksız meslek.",
+          "ex": [{ "s": "Il est médecin. Elle est très gentille.", "tr": "O doktor. O çok nazik." }],
+          "warn": ["Avec un adjectif, on dit « c'est un bon médecin » mais « il est médecin ».", "Sıfatla: «c'est un bon médecin», ama «il est médecin»."] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "___ un problème avec ma carte.", "o": ["Il y a", "Il est", "C'est"], "a": 0, "tr": "Kartımla ilgili bir sorun var.", "why": ["« var » = il y a.", "«var» = il y a."] },
+        { "t": "choice", "q": "Mon mari ? ___ ingénieur.", "o": ["Il est", "C'est", "Il y a"], "a": 0, "tr": "Kocam mı? Mühendis.", "why": ["Métier sans article : il est.", "Tanımlıksız meslek: il est."] },
+        { "t": "choice", "q": "___ un très bon ingénieur.", "o": ["C'est", "Il est", "Il y a"], "a": 0, "tr": "O çok iyi bir mühendis.", "why": ["Article + adjectif + nom : c'est.", "Tanımlık + sıfat + isim: c'est."] },
+        { "t": "choice", "q": "___ ma voisine, Ayşe.", "o": ["C'est", "Elle est", "Il y a"], "a": 0, "tr": "Bu komşum Ayşe.", "why": ["Possessif + nom : c'est.", "İyelik + isim: c'est."] },
+        { "t": "choice", "q": "J'ai commencé le français ___ six mois.", "o": ["il y a", "il est", "c'est"], "a": 0, "tr": "Fransızcaya altı ay önce başladım.", "why": ["il y a + durée = … önce.", "il y a + süre = … önce."] }
+      ]
+    },
+    {
+      "id": "pronoms", "level": "A2", "fr": "Les pronoms COD et COI", "tr": "Nesne zamirleri (le, la, lui, leur)",
+      "know": [
+        ["Le pronom remplace un nom déjà connu, pour ne pas le répéter.", "Zamir, bilinen bir ismin yerini alır; tekrar etmemek için."],
+        ["Il se place devant le verbe conjugué : comme en turc, l'objet vient avant le verbe (onu görüyorum).", "Çekimli fiilden önce gelir: Türkçedeki gibi nesne fiilden önce (onu görüyorum)."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "COD : le, la, les (me, te, nous, vous).", "tr": "Nesne (COD): le, la, les (me, te, nous, vous).",
+          "ex": [{ "g": [["Je", "S"], ["vois", "V"], ["Marie", "COD"]], "tr": "Marie'yi görüyorum." }, { "g": [["Je", "S"], ["la", "COD"], ["vois", "V"]], "tr": "Onu görüyorum." }] },
+        { "id": "A2", "fr": "COI (à + personne) : lui, leur (me, te, nous, vous).", "tr": "COI (à + kişi): lui, leur (me, te, nous, vous).",
+          "ex": [{ "s": "Je parle à Paul. Je lui parle. Je téléphone à mes parents. Je leur téléphone.", "tr": "Paul'le konuşuyorum. Onunla konuşuyorum. Aileme telefon ediyorum. Onlara telefon ediyorum." }] },
+        { "id": "A3", "fr": "Place : devant le verbe conjugué ; devant l'infinitif s'il y en a un.", "tr": "Yeri: çekimli fiilden önce; mastar varsa mastardan önce.",
+          "ex": [{ "s": "Je ne le vois pas. Je vais le voir. Je l'ai vu.", "tr": "Onu görmüyorum. Onu göreceğim. Onu gördüm." }] },
+        { "id": "A4", "fr": "y = à + lieu ; en = de + chose (une quantité).", "tr": "y = à + yer (oraya, orada); en = de + şey (ondan, biraz).",
+          "ex": [{ "s": "Tu vas à Paris ? Oui, j'y vais. Tu veux du café ? Oui, j'en veux.", "tr": "Paris'e mi gidiyorsun? Evet, oraya gidiyorum. Kahve ister misin? Evet, isterim." }] }
+      ],
+      "algo": [
+        ["Le nom est-il après le verbe sans préposition ? → le, la, les.", "İsim fiilden sonra edatsız mı? → le, la, les."],
+        ["Après « à » + une personne ? → lui, leur.", "«à» + kişi mi? → lui, leur."],
+        ["Après « à » + un lieu ? → y. Après « de » ou une quantité ? → en.", "«à» + yer mi? → y. «de» ya da miktar mı? → en."]
+      ],
+      "ex": [
+        { "t": "choice", "q": "Tu connais Marc ? — Oui, je ___ connais.", "o": ["le", "lui", "la"], "a": 0, "tr": "Marc'ı tanıyor musun? — Evet, tanıyorum.", "why": ["connaître + COD masculin : le.", "connaître + eril nesne: le."] },
+        { "t": "choice", "q": "Tu parles à ta mère ? — Oui, je ___ parle.", "o": ["lui", "la", "leur"], "a": 0, "tr": "Annenle konuşuyor musun? — Evet, onunla konuşuyorum.", "why": ["à + une personne : lui.", "à + bir kişi: lui."] },
+        { "t": "choice", "q": "Tu as les clés ? — Oui, je ___ ai.", "o": ["les", "leur", "lui"], "a": 0, "tr": "Anahtarlar sende mi? — Evet, bende.", "why": ["COD pluriel : les.", "Çoğul nesne: les."] },
+        { "t": "choice", "q": "Vous écrivez à vos amis ? — Oui, nous ___ écrivons.", "o": ["leur", "les", "lui"], "a": 0, "tr": "Arkadaşlarınıza yazıyor musunuz? — Evet, onlara yazıyoruz.", "why": ["à + plusieurs personnes : leur.", "à + birden çok kişi: leur."] },
+        { "t": "choice", "q": "Tu vas au marché ? — Oui, j'___ vais.", "o": ["y", "en", "le"], "a": 0, "tr": "Pazara mı gidiyorsun? — Evet, oraya gidiyorum.", "why": ["à + lieu : y.", "à + yer: y."] },
+        { "t": "choice", "q": "Tu veux de la soupe ? — Oui, j'___ veux.", "o": ["en", "y", "la"], "a": 0, "tr": "Çorba ister misin? — Evet, isterim.", "why": ["Une quantité (de la) : en.", "Miktar (de la): en."] }
+      ]
+    },
+    {
+      "id": "pc_aux", "level": "A2", "fr": "Passé composé : avoir ou être ?", "tr": "Passé composé: avoir mı, être mi?",
+      "know": [
+        ["Passé composé = auxiliaire avoir ou être au présent + participe passé.", "Passé composé = avoir ya da être (présent) + geçmiş zaman ortacı. Türkçedeki -di gibi."],
+        ["La plupart des verbes prennent avoir.", "Fiillerin çoğu avoir alır."],
+        ["Être : verbes de déplacement ou de changement d'état, et tous les verbes pronominaux.", "Être: yer ya da durum değiştiren fiiller ve bütün dönüşlü fiiller."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Avec avoir : le participe ne s'accorde pas avec le sujet.", "tr": "avoir ile: ortaç özneye uymaz.", "formula": ["avoir + participe passé", "avoir + ortaç"],
+          "ex": [{ "g": [["Elle", "S"], ["a", "AUX"], ["mangé", "PP"], ["une pomme", "COD"]], "tr": "Bir elma yedi." }] },
+        { "id": "A2", "fr": "Les verbes avec être (par paires) : aller / venir, arriver / partir, entrer / sortir, monter / descendre, naître / mourir, rester, tomber, devenir, revenir, rentrer, retourner.", "tr": "être alan fiiller (çiftler halinde): aller / venir (gitmek / gelmek), arriver / partir (varmak / ayrılmak), entrer / sortir (girmek / çıkmak), monter / descendre (çıkmak / inmek), naître / mourir (doğmak / ölmek), rester (kalmak), tomber (düşmek), devenir (olmak), revenir, rentrer, retourner (dönmek).",
+          "ex": [{ "s": "Je suis allé au marché. Elle est née en 1995.", "tr": "Pazara gittim. 1995'te doğdu." }] },
+        { "id": "A3", "fr": "Avec être, le participe s'accorde avec le sujet (e, s, es).", "tr": "être ile ortaç özneye uyar (e, s, es).",
+          "formula": ["être + participe + accord", "être + ortaç + uyum"],
+          "ex": [{ "s": "Il est parti. Elle est partie. Ils sont partis. Elles sont parties.", "tr": "Gitti (erkek). Gitti (kadın). Gittiler. Gittiler (kadınlar)." }] },
+        { "id": "A4", "fr": "Verbes pronominaux : toujours être.", "tr": "Dönüşlü fiiller: her zaman être.",
+          "ex": [{ "s": "Je me suis levée à sept heures.", "tr": "Saat yedide kalktım." }] },
+        { "id": "A5", "fr": "Participes : -er → é, -ir → i ; irréguliers à apprendre.", "tr": "Ortaçlar: -er → é, -ir → i; düzensizler ezberlenir.",
+          "ex": [{ "s": "fait, pris, mis, dit, écrit, vu, eu, été, bu, lu, su, pu, voulu, venu", "tr": "yaptı, aldı, koydu, dedi, yazdı, gördü, sahip oldu, oldu, içti, okudu, bildi, -ebildi, istedi, geldi" }] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "Hier, je ___ allée au cinéma.", "o": ["suis", "ai"], "a": 0, "tr": "Dün sinemaya gittim.", "why": ["aller prend être.", "aller, être alır."] },
+        { "t": "choice", "q": "Nous ___ mangé une pizza.", "o": ["avons", "sommes"], "a": 0, "tr": "Pizza yedik.", "why": ["manger prend avoir.", "manger, avoir alır."] },
+        { "t": "choice", "q": "Elle ___ née en Turquie.", "o": ["est", "a"], "a": 0, "tr": "Türkiye'de doğdu.", "why": ["naître prend être.", "naître, être alır."] },
+        { "t": "choice", "q": "Ils ___ pris le train.", "o": ["ont", "sont"], "a": 0, "tr": "Trene bindiler.", "why": ["prendre prend avoir.", "prendre, avoir alır."] },
+        { "t": "type", "q": "Elle est (partir) ___ ce matin.", "a": ["partie"], "tr": "Bu sabah gitti.", "why": ["être + accord féminin : partie.", "être + dişil uyum: partie."] },
+        { "t": "type", "q": "Mes amies sont (arriver) ___ hier.", "a": ["arrivées"], "tr": "Kız arkadaşlarım dün geldi.", "why": ["être + féminin pluriel : arrivées.", "être + dişil çoğul: arrivées."] }
+      ]
+    },
+    {
+      "id": "pc_imp", "level": "A2", "fr": "Passé composé ou imparfait ?", "tr": "Passé composé mu, imparfait mi?",
+      "know": [
+        ["Passé composé : une action terminée, un événement (≈ -di).", "Passé composé: bitmiş bir eylem, bir olay (≈ -di)."],
+        ["Imparfait : une description, une habitude, une action en cours (≈ -iyordu, -rdı).", "Imparfait: betimleme, alışkanlık, süren bir eylem (≈ -iyordu, -rdı)."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Passé composé : ce qui s'est passé, une fois.", "tr": "Passé composé: olan şey, bir kez.",
+          "ex": [{ "s": "Hier, j'ai visité le musée.", "tr": "Dün müzeyi gezdim." }] },
+        { "id": "A2", "fr": "Imparfait : le décor et la description.", "tr": "Imparfait: ortam ve betimleme.",
+          "ex": [{ "s": "Il faisait beau et la mer était calme.", "tr": "Hava güzeldi ve deniz sakindi." }] },
+        { "id": "A3", "fr": "Imparfait : l'habitude dans le passé.", "tr": "Imparfait: geçmişteki alışkanlık.",
+          "ex": [{ "s": "Quand j'étais petite, j'allais à la mer chaque été.", "tr": "Küçükken her yaz denize giderdim." }] },
+        { "id": "A4", "fr": "Une action en cours (imparfait) est coupée par un événement (passé composé).", "tr": "Süren bir eylem (imparfait) bir olayla (passé composé) kesilir.",
+          "ex": [{ "s": "Je regardais la télé quand tu as appelé.", "tr": "Sen aradığında televizyon izliyordum." }] },
+        { "id": "A5", "fr": "Mots repères.", "tr": "İpucu kelimeler.",
+          "formula": ["hier, soudain, un jour, une fois → passé composé ; tous les jours, souvent, d'habitude, avant → imparfait", "hier (dün), soudain (aniden), un jour, une fois → passé composé; tous les jours, souvent, d'habitude, avant (eskiden) → imparfait"] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "Quand j'étais petite, je ___ à la mer chaque été.", "o": ["allais", "suis allée"], "a": 0, "tr": "Küçükken her yaz denize giderdim.", "why": ["Une habitude : imparfait.", "Alışkanlık: imparfait."] },
+        { "t": "choice", "q": "Hier, nous ___ un film.", "o": ["avons regardé", "regardions"], "a": 0, "tr": "Dün bir film izledik.", "why": ["Un événement terminé : passé composé.", "Bitmiş bir olay: passé composé."] },
+        { "t": "choice", "q": "Il ___ beau quand nous sommes sortis.", "o": ["faisait", "a fait"], "a": 0, "tr": "Dışarı çıktığımızda hava güzeldi.", "why": ["Le décor : imparfait.", "Ortam: imparfait."] },
+        { "t": "choice", "q": "Je dormais quand le téléphone ___.", "o": ["a sonné", "sonnait"], "a": 0, "tr": "Telefon çaldığında uyuyordum.", "why": ["L'événement qui coupe l'action : passé composé.", "Eylemi kesen olay: passé composé."] },
+        { "t": "choice", "q": "D'habitude, elle ___ le bus.", "o": ["prenait", "a pris"], "a": 0, "tr": "Genellikle otobüse binerdi.", "why": ["d'habitude : imparfait.", "d'habitude (genellikle): imparfait."] },
+        { "t": "choice", "q": "Soudain, il ___.", "o": ["est tombé", "tombait"], "a": 0, "tr": "Aniden düştü.", "why": ["soudain : passé composé.", "soudain (aniden): passé composé."] }
+      ]
+    },
+    {
+      "id": "futur", "level": "A2", "fr": "Futur proche et futur simple", "tr": "Yakın gelecek ve gelecek zaman",
+      "know": [
+        ["Futur proche = aller + infinitif : un projet, quelque chose de proche ou de sûr.", "Futur proche = aller + mastar: bir plan, yakın ya da kesin bir şey."],
+        ["Futur simple = infinitif + ai, as, a, ons, ez, ont : plus loin, plus formel.", "Futur simple = mastar + ai, as, a, ons, ez, ont: daha uzak, daha resmî."],
+        ["Les deux se traduisent souvent par -ecek.", "İkisi de çoğu zaman -ecek ile çevrilir."]
+      ],
+      "rules": [
+        { "id": "A1", "fr": "Futur proche : aller au présent + infinitif.", "tr": "Futur proche: aller (présent) + mastar.",
+          "ex": [{ "s": "Ce soir, je vais cuisiner.", "tr": "Bu akşam yemek yapacağım." }] },
+        { "id": "A2", "fr": "Futur simple : infinitif + terminaisons (verbes en -re : sans le e).", "tr": "Futur simple: mastar + ekler (-re fiillerinde e düşer).",
+          "ex": [{ "s": "L'année prochaine, nous habiterons à Lyon. Je prendrai le train.", "tr": "Seneye Lyon'da oturacağız. Trene bineceğim." }] },
+        { "id": "A3", "fr": "Radicaux irréguliers du futur.", "tr": "Gelecek zamanın düzensiz kökleri.",
+          "ex": [{ "s": "être → ser-, avoir → aur-, aller → ir-, faire → fer-, pouvoir → pourr-, venir → viendr-, voir → verr-", "tr": "olmak, sahip olmak, gitmek, yapmak, -ebilmek, gelmek, görmek" }] }
+      ],
+      "ex": [
+        { "t": "choice", "q": "Ce soir, je ___ mes parents.", "o": ["vais appeler", "allais appeler"], "a": 0, "tr": "Bu akşam ailemi arayacağım.", "why": ["Futur proche : aller au présent + infinitif.", "Futur proche: aller (présent) + mastar."] },
+        { "t": "choice", "q": "Demain, nous ___ au marché.", "o": ["irons", "allerons"], "a": 0, "tr": "Yarın pazara gideceğiz.", "why": ["aller → radical ir- au futur.", "aller'in gelecek kökü: ir-."] },
+        { "t": "choice", "q": "Plus tard, tu ___ médecin.", "o": ["seras", "es"], "a": 0, "tr": "İleride doktor olacaksın.", "why": ["être → ser- au futur.", "être'nin gelecek kökü: ser-."] },
+        { "t": "type", "q": "L'année prochaine, j'(avoir) ___ trente ans.", "a": ["aurai"], "tr": "Seneye otuz yaşında olacağım.", "why": ["avoir → aur- + ai.", "avoir → aur- + ai."] },
+        { "t": "type", "q": "Ils (faire) ___ les courses samedi.", "a": ["feront"], "tr": "Cumartesi alışveriş yapacaklar.", "why": ["faire → fer- + ont.", "faire → fer- + ont."] }
+      ]
+    }
+  ]
+}

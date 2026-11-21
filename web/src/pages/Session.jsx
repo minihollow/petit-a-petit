@@ -4,6 +4,8 @@ import { tableContext } from '../lib/coco.js';
 import { parseCard } from '../lib/plan.js';
 import { nextInDays, Rating, ratingFor } from '../lib/srs.js';
 import { parseWordCard } from '../lib/vocab.js';
+import { parseGramCard } from '../lib/grammar.js';
+import GramSession from '../components/Gram.jsx';
 import { useApp } from '../store.js';
 import ConjTable from '../components/ConjTable.jsx';
 import Drill from '../components/Drill.jsx';
@@ -16,6 +18,7 @@ export default function Session({ items: asked, onEnd }) {
   const { byInf, lookup, cards, record } = useApp();
   const valid = (id) => {
     if (id.startsWith('word:')) return !!parseWordCard(id);
+    if (id.startsWith('gram:')) return !!parseGramCard(id);
     const p = parseCard(id); const v = p && byInf.get(p.inf);
     return !!v && tableRows(v, p.tense, lookup).length > 0;
   };
@@ -41,7 +44,11 @@ export default function Session({ items: asked, onEnd }) {
 
   let body;
   const word = parseWordCard(id);
-  if (word) {
+  const chapter = parseGramCard(id);
+  if (chapter) {
+    // First time: every exercise of the chapter; a review: five of them.
+    body = <GramSession key={`gs-${id}`} chapter={chapter} count={isNew.has(id) ? 0 : 5} onDone={done} />;
+  } else if (word) {
     body = step === 'learn'
       ? <WordLearn key={`wl-${id}`} w={word} onNext={() => setStep('drill')} />
       : <WordDrill key={`wd-${id}`} w={word} onDone={done} />;

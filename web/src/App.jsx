@@ -15,6 +15,8 @@ import Settings from './pages/Settings.jsx';
 import Mots from './pages/Mots.jsx';
 import Theme from './pages/Theme.jsx';
 import GenderRules from './pages/GenderRules.jsx';
+import Grammar from './pages/Grammar.jsx';
+import Chapter from './pages/Chapter.jsx';
 import { wordCourse } from './lib/vocab.js';
 import { getStatus, hasModel, MODELS, recommendedModel } from './lib/coco.js';
 import CocoPanel, { CocoAvatar } from './components/Coco.jsx';
@@ -23,8 +25,8 @@ const VERBS = DATA.verbs;
 const BY_INF = new Map(VERBS.map((v) => [v.inf, v]));
 const lookup = (inf) => BY_INF.get(inf);
 const WORD_COURSE = wordCourse();
-const NAV = [['today', 'home', 'nav_today'], ['verbs', 'list', 'nav_verbs'], ['words', 'book', 'nav_words'], ['settings', 'gear', 'nav_settings']];
-const NAV_OF = { verb: 'verbs', theme: 'words', rules: 'words' };
+const NAV = [['today', 'home', 'nav_today'], ['verbs', 'list', 'nav_verbs'], ['words', 'book', 'nav_words'], ['grammar', 'rule', 'nav_grammar'], ['settings', 'gear', 'nav_settings']];
+const NAV_OF = { verb: 'verbs', theme: 'words', rules: 'words', chapter: 'grammar' };
 
 export default function App() {
   const [events, setEvents] = useState(null);
@@ -152,6 +154,8 @@ export default function App() {
     case 'words': page = <Mots />; break;
     case 'theme': page = <Theme key={route.params.id} id={route.params.id} />; break;
     case 'rules': page = <GenderRules />; break;
+    case 'grammar': page = <Grammar />; break;
+    case 'chapter': page = <Chapter key={route.params.id} id={route.params.id} />; break;
     default: page = <Today />;
   }
   const active = NAV_OF[route.name] || route.name;

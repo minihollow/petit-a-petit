@@ -21,9 +21,11 @@ export default function Today() {
     for (const card of cards.values()) { if (parseCard(card.id)?.tense !== t) continue; started++; if (isKnown(card)) known++; }
     return { t, label: TENSES[t].fr, known, started };
   }).filter((x) => x.started > 0);
-  let wk = 0; let ws = 0;
-  for (const card of cards.values()) if (card.id.startsWith('word:')) { ws++; if (isKnown(card)) wk++; }
-  if (ws) perTense.push({ t: 'words', label: 'Mots · Kelimeler', known: wk, started: ws });
+  for (const [prefix, lab] of [['word:', 'Mots · Kelimeler'], ['gram:', 'Grammaire · Gramer']]) {
+    let k = 0; let s = 0;
+    for (const card of cards.values()) if (card.id.startsWith(prefix)) { s++; if (isKnown(card)) k++; }
+    if (s) perTense.push({ t: prefix, label: lab, known: k, started: s });
+  }
   const known = perTense.reduce((a, x) => a + x.known, 0);
   const started = perTense.reduce((a, x) => a + x.started, 0);
 
