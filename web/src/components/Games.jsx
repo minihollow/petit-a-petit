@@ -19,7 +19,7 @@ function End({ ok, n, onAgain }) {
     <div className="game-end">
       <p className="big-num">{ok} / {n}</p>
       <p><Bi k={ok === n ? 'well_done' : 'score'} inline /></p>
-      <button type="button" className="btn" onClick={onAgain}><Bi k="play_again" inline /></button>
+      <button type="button" className="btn primary" onClick={onAgain}><Bi k="play_again" inline /></button>
     </div>
   );
 }
@@ -59,7 +59,7 @@ export function GenderGame({ words, rounds = 10 }) {
           <span className={`chip c-${pick === genderOf(w) ? 'ok' : 'bad'}`}><Bi k={pick === genderOf(w) ? 'fb_ok' : 'fb_gender'} inline /></span>
           <WordLabel w={w} big />
           <RuleLine w={w} />
-          <button type="button" className="btn" onClick={next}><Bi k="next" inline /></button>
+          <button type="button" className="btn primary" onClick={next}><Bi k="next" inline /></button>
         </div>
       )}
     </div>
@@ -132,7 +132,7 @@ export function ListenGame({ words, rounds = 8 }) {
       {pick && (
         <div className="game-fb">
           <WordLabel w={w} big />
-          <button type="button" className="btn" onClick={() => { if (i + 1 >= list.length) log(ok, list.length); setPick(null); setI(i + 1); }}><Bi k="next" inline /></button>
+          <button type="button" className="btn primary" onClick={() => { if (i + 1 >= list.length) log(ok, list.length); setPick(null); setI(i + 1); }}><Bi k="next" inline /></button>
         </div>
       )}
     </div>

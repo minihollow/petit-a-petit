@@ -1,6 +1,6 @@
 {
   "name": "petit-a-petit",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Apprendre le français pas à pas, avec l'aide du turc",
   "private": true,
   "type": "module",

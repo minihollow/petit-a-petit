@@ -56,7 +56,7 @@ export function Sprint({ seconds = 60 }) {
     next();
   };
   if (state === 'ready') {
-    return <div className="game"><p className="small"><Bi k="sprint_desc" /></p><button type="button" className="btn" onClick={start}><Bi k="sprint_start" inline /></button></div>;
+    return <div className="game"><p className="small"><Bi k="sprint_desc" /></p><button type="button" className="btn primary" onClick={start}><Bi k="sprint_start" inline /></button></div>;
   }
   if (state === 'end') {
     return (
@@ -68,7 +68,7 @@ export function Sprint({ seconds = 60 }) {
             <li key={k}><span className="muted" lang="fr">{m.q.row.label}</span> <s>{m.typed}</s> → <Parts parts={m.q.row.parts} /> <span className="muted small">({m.q.v.inf}, {TENSES[m.q.tense].fr})</span></li>
           ))}</ul>
         )}
-        <button type="button" className="btn" onClick={start}><Bi k="play_again" inline /></button>
+        <button type="button" className="btn primary" onClick={start}><Bi k="play_again" inline /></button>
       </div>
     );
   }
@@ -82,7 +82,7 @@ export function Sprint({ seconds = 60 }) {
         <input id="sprint-f" ref={field} data-fr="" lang="fr" className="field" value={val} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false}
           enterKeyHint="next" onChange={(e) => setVal(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); submit(); } }} />
       </div>
-      <button type="button" className="btn" onClick={submit}><Bi k="check" inline /></button>
+      <button type="button" className="btn primary" onClick={submit}><Bi k="check" inline /></button>
     </div>
   );
 }
@@ -105,7 +105,7 @@ export function WhichTense({ rounds = 10 }) {
     return shuffle([cur.tense, ...others]);
   }, [cur, tenses]);
   useEffect(() => { if (cur) speak(cur.row.say, { rate: settings.rate }); }, [cur]); // eslint-disable-line react-hooks/exhaustive-deps
-  if (!cur) return <div className="game-end"><p className="big-num">{ok} / {list.length}</p><button type="button" className="btn" onClick={() => { setSeed((s) => s + 1); setI(0); setOk(0); setChoice(null); }}><Bi k="play_again" inline /></button></div>;
+  if (!cur) return <div className="game-end"><p className="big-num">{ok} / {list.length}</p><button type="button" className="btn primary" onClick={() => { setSeed((s) => s + 1); setI(0); setOk(0); setChoice(null); }}><Bi k="play_again" inline /></button></div>;
   return (
     <div className="game">
       <div className="game-top"><span>{i + 1} / {list.length}</span><span>{ok} ✓</span></div>
@@ -114,14 +114,14 @@ export function WhichTense({ rounds = 10 }) {
         {options.map((t) => (
           <button key={t} type="button" disabled={!!choice} className={`opt${choice && t === cur.tense ? ' good' : ''}${choice === t && t !== cur.tense ? ' bad' : ''}`}
             onClick={() => { setChoice(t); if (t === cur.tense) setOk((n) => n + 1); }}>
-            <span lang="fr">{TENSES[t].fr}</span>{settings.help && <span className="tr-i" lang="tr">{TENSES[t].tr}</span>}
+            <span lang="fr">{TENSES[t].fr}</span>{settings.mode === 'tr' && <span className="tr-i" lang="tr">{TENSES[t].tr}</span>}
           </button>
         ))}
       </div>
       {choice && (
         <div className="game-fb">
           <p className="small"><b lang="fr">{cur.v.inf}</b> · <span lang="tr">{cur.v.tr}</span></p>
-          <button type="button" className="btn" onClick={() => { if (i + 1 >= list.length) log(ok, list.length); setChoice(null); setI(i + 1); }}><Bi k="next" inline /></button>
+          <button type="button" className="btn primary" onClick={() => { if (i + 1 >= list.length) log(ok, list.length); setChoice(null); setI(i + 1); }}><Bi k="next" inline /></button>
         </div>
       )}
     </div>

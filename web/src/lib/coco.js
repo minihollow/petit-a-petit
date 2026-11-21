@@ -120,6 +120,12 @@ export function tableContext({ verb, tenseName, rows, answers, grades }) {
   });
   return lines.join('\n');
 }
+export function taskContext({ prompt, text, model }) {
+  return [`Exercice d'écriture (niveau A1-A2) : ${prompt}`, `Son texte : « ${text} »`, `Exemple de réponse possible : « ${model} »`,
+    'Corrige ses fautes une par une (orthographe, accents, accords, conjugaison, articles) et explique chaque correction en turc, avec la règle.',
+    'Puis réécris son texte corrigé en entier. Garde ses idées et ses phrases simples. Termine par un encouragement.'].join('\n');
+}
+
 export function wordContext({ w, answer, grade, expected }) {
   return [`Exercice : traduire « ${w.tr} » (turc) en français, avec l'article.`, `Réponse attendue : « ${expected} ».`,
     `Sa réponse : « ${answer || ''} » (${grade.k === 'ok' ? 'juste' : grade.k === 'near' ? `presque : ${grade.why}` : `faux${grade.why ? ` : ${grade.why}` : ''}`}).`,

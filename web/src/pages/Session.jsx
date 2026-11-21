@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { tableRows, TENSES } from '../lib/conj.js';
 import { tableContext } from '../lib/coco.js';
 import { parseCard } from '../lib/plan.js';
@@ -11,10 +11,11 @@ import ConjTable from '../components/ConjTable.jsx';
 import Drill from '../components/Drill.jsx';
 import TenseHead from '../components/TenseHead.jsx';
 import { WordDrill, WordLearn } from '../components/WordCard.jsx';
-import { Bi, Icon, tx } from '../components/ui.jsx';
+import { Bi, Icon, scrollTop, tx } from '../components/ui.jsx';
 
-// A series of cards: conjugation tables and words. A new card is first shown, then asked from memory.
-export default function Session({ items: asked, onEnd }) {
+// A series of cards: conjugation tables, words, rules. A new card is first shown, then asked from memory.
+// onFinish(log): used by the course lessons instead of the summary screen.
+export default function Session({ items: asked, onEnd, onFinish }) {
   const { byInf, lookup, cards, record } = useApp();
   const valid = (id) => {
     if (id.startsWith('word:')) return !!parseWordCard(id);
@@ -27,8 +28,11 @@ export default function Session({ items: asked, onEnd }) {
   const [idx, setIdx] = useState(0);
   const [step, setStep] = useState(() => (isNew.has(items[0]) ? 'learn' : 'drill'));
   const [log, setLog] = useState([]);
+  const finished = idx >= items.length;
+  const fired = useRef(false);
+  useEffect(() => { if (finished && onFinish && !fired.current) { fired.current = true; onFinish(log); } }, [finished]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (idx >= items.length) return <Summary log={log} onEnd={onEnd} />;
+  if (finished) return onFinish ? null : <Summary log={log} onEnd={onEnd} />;
   const id = items[idx];
 
   const done = async (res) => {
@@ -39,7 +43,7 @@ export default function Session({ items: asked, onEnd }) {
     const nx = idx + 1;
     setIdx(nx);
     setStep(nx < items.length && isNew.has(items[nx]) ? 'learn' : 'drill');
-    window.scrollTo({ top: 0 });
+    scrollTop();
   };
 
   let body;
@@ -61,9 +65,9 @@ export default function Session({ items: asked, onEnd }) {
         <TenseHead key={`head-${id}`} verb={verb} tense={tense} formulaOpen={step === 'learn'} />
         {step === 'learn' ? (
           <div className="learn">
-            <p className="learn-tag"><b><Bi k="learn" inline /></b> · <span className="small"><Bi k="learn_hint" inline /></span></p>
+            <p className="learn-tag"><b><Bi k="learn" inline /></b> · <span className="small"><Bi k="learn_hint" inline tip /></span></p>
             <ConjTable rows={rows} />
-            <button type="button" className="btn big" onClick={() => setStep('drill')}><Bi k="to_drill" /></button>
+            <button type="button" className="btn primary big" onClick={() => setStep('drill')}><Bi k="to_drill" /></button>
           </div>
         ) : <Drill key={`drill-${id}`} rows={rows} onDone={done} doneLabel="next"
           cocoCtx={(answers, grades) => tableContext({ verb, tenseName: TENSES[tense].fr, rows, answers, grades })} />}
@@ -98,7 +102,7 @@ function Summary({ log, onEnd }) {
       {soonest !== null && (
         <p className="small"><Bi k="next_review" inline /> : {soonest === 0 ? <Bi k="today_word" inline /> : <Bi pair={tx('in_days', soonest)} inline />}</p>
       )}
-      <button type="button" className="btn big" onClick={() => onEnd(true)}><Bi k="back_home" /></button>
+      <button type="button" className="btn primary big" onClick={() => onEnd(true)}><Bi k="back_home" /></button>
     </div>
   );
 }

@@ -1,0 +1,175 @@
+{
+  "source": "Written for Petit à petit (CC BY-SA 4.0). Characters are fictional.",
+  "units": [
+    {
+      "id": "u1", "n": 1, "fr": "Se présenter", "tr": "Kendini tanıtmak",
+      "focus": ["être, avoir, verbes en -er", "être, avoir, -er fiilleri"],
+      "goal": ["Dire son prénom, sa nationalité, sa ville, ses langues et sa situation.", "Adını, milliyetini, şehrini, konuştuğun dilleri ve durumunu söylemek."],
+      "lessons": [
+        { "id": "u1-mots", "type": "words", "words": ["prénom", "nom", "pays", "ville", "adresse", "nationalité", "langue", "turc", "français", "anglais", "voisine", "travail"] },
+        { "id": "u1-regle", "type": "rule", "chapter": "phrase" },
+        { "id": "u1-verbes", "type": "verbs", "tense": "ind:pre", "verbs": ["être", "avoir", "parler", "habiter"] },
+        {
+          "id": "u1-dialogue", "type": "listen", "title": ["Une nouvelle voisine", "Yeni bir komşu"],
+          "who": { "A": "Claire", "B": "Elif" },
+          "lines": [
+            ["A", "Bonjour ! Vous êtes la nouvelle voisine ?", "Merhaba! Yeni komşu siz misiniz?"],
+            ["B", "Oui, bonjour ! Je m'appelle Elif.", "Evet, merhaba! Benim adım Elif."],
+            ["A", "Enchantée, Elif. Moi, c'est Claire. Vous venez d'où ?", "Memnun oldum Elif. Ben de Claire. Nerelisiniz?"],
+            ["B", "Je suis turque. Je viens d'Izmir.", "Türküm. İzmir'den geliyorum."],
+            ["A", "Vous parlez bien français !", "İyi Fransızca konuşuyorsunuz!"],
+            ["B", "Merci ! J'apprends le français. Je parle turc et un peu anglais.", "Teşekkürler! Fransızca öğreniyorum. Türkçe ve biraz İngilizce konuşuyorum."],
+            ["A", "Vous habitez ici avec votre famille ?", "Burada ailenizle mi oturuyorsunuz?"],
+            ["B", "Oui, avec mon mari. Il est français.", "Evet, eşimle. Kendisi Fransız."],
+            ["A", "Et vous travaillez ?", "Peki, çalışıyor musunuz?"],
+            ["B", "Pas encore. Je cherche du travail.", "Henüz değil. İş arıyorum."],
+            ["A", "Bienvenue dans l'immeuble, Elif !", "Apartmana hoş geldiniz, Elif!"]
+          ],
+          "questions": [
+            { "q": ["Comment s'appelle la nouvelle voisine ?", "Yeni komşunun adı ne?"], "o": ["Elif", "Claire", "Izmir"], "a": 0 },
+            { "q": ["Elif est de quelle nationalité ?", "Elif hangi milletten?"], "o": [["Elle est turque.", "Türk."], ["Elle est française.", "Fransız."], ["Elle est anglaise.", "İngiliz."]], "a": 0 },
+            { "q": ["Quelles langues parle Elif ?", "Elif hangi dilleri konuşuyor?"], "o": [["Le turc et un peu l'anglais.", "Türkçe ve biraz İngilizce."], ["Seulement le turc.", "Sadece Türkçe."], ["L'allemand.", "Almanca."]], "a": 0 },
+            { "q": ["Avec qui habite Elif ?", "Elif kiminle oturuyor?"], "o": [["Avec son mari.", "Eşiyle."], ["Avec sa sœur.", "Kız kardeşiyle."], ["Avec Claire.", "Claire'le."]], "a": 0 },
+            { "q": ["Est-ce qu'Elif travaille ?", "Elif çalışıyor mu?"], "o": [["Non, elle cherche du travail.", "Hayır, iş arıyor."], ["Oui, dans l'immeuble.", "Evet, apartmanda."], ["Oui, avec son mari.", "Evet, eşiyle."]], "a": 0 }
+          ]
+        },
+        {
+          "id": "u1-tache", "type": "task",
+          "prompt": ["Présente-toi en 4 ou 5 phrases : ton prénom, ta nationalité, ta ville, tes langues, ta famille.", "Kendini 4-5 cümleyle tanıt: adın, milliyetin, şehrin, konuştuğun diller, ailen."],
+          "hints": [
+            ["Je m'appelle …", "Benim adım …"],
+            ["Je suis turque.", "Türküm."],
+            ["J'habite à …", "… şehrinde oturuyorum."],
+            ["Je parle turc et un peu français.", "Türkçe ve biraz Fransızca konuşuyorum."],
+            ["Je suis mariée.", "Evliyim."],
+            ["Je cherche du travail.", "İş arıyorum."]
+          ],
+          "model": ["Bonjour ! Je m'appelle Elif. Je suis turque et j'habite à Lyon avec mon mari. Je parle turc, un peu anglais, et j'apprends le français. Je cherche du travail.", "Merhaba! Benim adım Elif. Türküm ve eşimle Lyon'da oturuyorum. Türkçe ve biraz İngilizce konuşuyorum, Fransızca da öğreniyorum. İş arıyorum."],
+          "checks": [
+            ["Mon prénom", "Adım"],
+            ["Ma nationalité", "Milliyetim"],
+            ["Ma ville", "Şehrim"],
+            ["Mes langues", "Konuştuğum diller"],
+            ["Une majuscule au début de chaque phrase, un point à la fin", "Her cümle büyük harfle başlıyor, noktayla bitiyor"]
+          ]
+        },
+        { "id": "u1-bilan", "type": "bilan" }
+      ]
+    },
+    {
+      "id": "u2", "n": 2, "fr": "La famille", "tr": "Aile",
+      "focus": ["possessifs, accord de l'adjectif", "iyelik sözcükleri, sıfat uyumu"],
+      "goal": ["Présenter sa famille : qui, quel âge, quelle ville, quel métier.", "Aileni tanıtmak: kim, kaç yaşında, hangi şehirde, ne iş yapıyor."],
+      "lessons": [
+        { "id": "u2-mots", "type": "words", "words": ["famille", "parents", "père", "mère", "frère", "sœur", "fils", "fille", "enfant", "mari", "grand-père", "grand-mère"] },
+        { "id": "u2-regle", "type": "rule", "chapter": "possessifs" },
+        { "id": "u2-verbes", "type": "verbs", "tense": "ind:pre", "verbs": ["aimer", "travailler", "vivre"] },
+        {
+          "id": "u2-dialogue", "type": "listen", "title": ["Les photos de famille", "Aile fotoğrafları"],
+          "who": { "A": "Claire", "B": "Elif" },
+          "lines": [
+            ["A", "C'est qui, sur la photo ?", "Fotoğraftaki kim?"],
+            ["B", "C'est ma famille, en Turquie. Là, ce sont mes parents.", "Bu benim ailem, Türkiye'de. Şuradakiler annemle babam."],
+            ["A", "Ils ont l'air gentils ! Et ce jeune homme ?", "Çok iyi insanlara benziyorlar! Ya bu genç adam?"],
+            ["B", "C'est mon frère, Emre. Il a vingt-cinq ans.", "Bu erkek kardeşim Emre. Yirmi beş yaşında."],
+            ["A", "Il habite à Izmir, lui aussi ?", "O da mı İzmir'de oturuyor?"],
+            ["B", "Non, il habite à Istanbul. Il est médecin.", "Hayır, İstanbul'da oturuyor. Doktor."],
+            ["A", "Et vous avez une sœur ?", "Kız kardeşiniz de var mı?"],
+            ["B", "Oui, ma petite sœur s'appelle Deniz. Elle est étudiante.", "Evet, küçük kız kardeşimin adı Deniz. Öğrenci."],
+            ["A", "Moi, j'ai deux enfants : un fils et une fille.", "Benim iki çocuğum var: bir oğlum ve bir kızım."],
+            ["B", "Ils ont quel âge ?", "Kaç yaşındalar?"],
+            ["A", "Mon fils a huit ans et ma fille a cinq ans.", "Oğlum sekiz, kızım beş yaşında."]
+          ],
+          "questions": [
+            { "q": ["Où habitent les parents d'Elif ?", "Elif'in annesiyle babası nerede oturuyor?"], "o": [["En Turquie.", "Türkiye'de."], ["En France.", "Fransa'da."], ["À Lyon.", "Lyon'da."]], "a": 0 },
+            { "q": ["Quel âge a le frère d'Elif ?", "Elif'in erkek kardeşi kaç yaşında?"], "o": [["Vingt-cinq ans.", "Yirmi beş."], ["Vingt ans.", "Yirmi."], ["Huit ans.", "Sekiz."]], "a": 0 },
+            { "q": ["Quel est le métier du frère d'Elif ?", "Elif'in erkek kardeşinin mesleği ne?"], "o": [["Il est médecin.", "Doktor."], ["Il est étudiant.", "Öğrenci."], ["Il est professeur.", "Öğretmen."]], "a": 0 },
+            { "q": ["Comment s'appelle la sœur d'Elif ?", "Elif'in kız kardeşinin adı ne?"], "o": ["Deniz", "Claire", "Emre"], "a": 0 },
+            { "q": ["Combien d'enfants a Claire ?", "Claire'in kaç çocuğu var?"], "o": [["Deux.", "İki."], ["Un.", "Bir."], ["Trois.", "Üç."]], "a": 0 }
+          ]
+        },
+        {
+          "id": "u2-tache", "type": "task",
+          "prompt": ["Présente ta famille en 5 phrases : qui ils sont, leur âge, leur ville, leur métier.", "Aileni 5 cümleyle tanıt: kim olduklarını, yaşlarını, şehirlerini, mesleklerini."],
+          "hints": [
+            ["Mes parents habitent à …", "Annemle babam …'da oturuyor."],
+            ["Mon frère a … ans.", "Erkek kardeşim … yaşında."],
+            ["Ma sœur est étudiante.", "Kız kardeşim öğrenci."],
+            ["Mon mari s'appelle …", "Eşimin adı …"],
+            ["J'ai … enfants.", "… çocuğum var."],
+            ["Il est médecin.", "O doktor."]
+          ],
+          "model": ["Mes parents habitent à Izmir. Mon père a soixante ans et ma mère a cinquante-huit ans. J'ai un frère : il s'appelle Emre et il est médecin. Ma petite sœur est étudiante. Mon mari est français.", "Annemle babam İzmir'de oturuyor. Babam altmış, annem elli sekiz yaşında. Bir erkek kardeşim var: adı Emre ve doktor. Küçük kız kardeşim öğrenci. Eşim Fransız."],
+          "checks": [
+            ["mon, ma, mes devant les noms", "isimlerden önce mon, ma, mes"],
+            ["L'âge avec avoir : il a vingt ans", "Yaş avoir ile söylenir: il a vingt ans"],
+            ["Le métier sans article : il est médecin", "Meslek tanımlıksız: il est médecin"],
+            ["5 phrases", "5 cümle"]
+          ]
+        },
+        { "id": "u2-bilan", "type": "bilan" }
+      ]
+    },
+    {
+      "id": "u3", "n": 3, "fr": "Faire les courses", "tr": "Alışveriş yapmak",
+      "focus": ["du, de la, quantités, prix", "du, de la, miktarlar, fiyatlar"],
+      "goal": ["Demander un produit, une quantité et un prix, puis payer.", "Bir ürün, bir miktar ve bir fiyat sormak, sonra ödemek."],
+      "lessons": [
+        { "id": "u3-mots", "type": "words", "words": ["marché", "prix", "euro", "monnaie", "carte", "cher", "fruit", "légume", "pomme", "tomate", "pain", "fromage"] },
+        { "id": "u3-regle", "type": "rule", "chapter": "articles" },
+        { "id": "u3-verbes", "type": "verbs", "tense": "ind:pre", "verbs": ["vouloir", "prendre", "acheter"] },
+        {
+          "id": "u3-dialogue", "type": "listen", "title": ["Au marché", "Pazarda"],
+          "who": { "A": "Le vendeur", "B": "Elif" },
+          "lines": [
+            ["A", "Bonjour madame, vous désirez ?", "Merhaba hanımefendi, ne arzu edersiniz?"],
+            ["B", "Bonjour ! Je voudrais un kilo de tomates, s'il vous plaît.", "Merhaba! Bir kilo domates istiyorum, lütfen."],
+            ["A", "Voilà. Et avec ça ?", "Buyurun. Başka bir şey?"],
+            ["B", "Des pommes aussi. C'est combien, le kilo ?", "Elma da. Kilosu ne kadar?"],
+            ["A", "Deux euros cinquante le kilo.", "Kilosu iki buçuk avro."],
+            ["B", "D'accord, deux kilos. Vous avez du fromage ?", "Tamam, iki kilo. Peyniriniz var mı?"],
+            ["A", "Non, désolé, pas de fromage ici. Il y a une fromagerie à côté.", "Hayır, kusura bakmayın, burada peynir yok. Hemen yanda bir peynirci var."],
+            ["B", "Merci. Ça fait combien en tout ?", "Teşekkürler. Hepsi ne kadar tutuyor?"],
+            ["A", "Huit euros, s'il vous plaît. Vous payez par carte ?", "Sekiz avro, lütfen. Kartla mı ödüyorsunuz?"],
+            ["B", "Non, en espèces. Voilà dix euros.", "Hayır, nakit. Buyurun, on avro."],
+            ["A", "Et voilà votre monnaie : deux euros. Bonne journée !", "Buyurun para üstünüz: iki avro. İyi günler!"]
+          ],
+          "questions": [
+            { "q": ["Qu'est-ce qu'Elif achète d'abord ?", "Elif önce ne alıyor?"], "o": [["Des tomates.", "Domates."], ["Du fromage.", "Peynir."], ["Du pain.", "Ekmek."]], "a": 0 },
+            { "q": ["Combien coûte le kilo de pommes ?", "Elmanın kilosu kaç para?"], "o": ["2,50 €", "8 €", "10 €"], "a": 0 },
+            { "q": ["Pourquoi Elif n'achète pas de fromage ?", "Elif neden peynir almıyor?"], "o": [["Le vendeur n'a pas de fromage.", "Satıcıda peynir yok."], ["Elle n'aime pas le fromage.", "Peyniri sevmiyor."], ["Le fromage est trop cher.", "Peynir çok pahalı."]], "a": 0 },
+            { "q": ["Combien Elif paie-t-elle en tout ?", "Elif toplam ne kadar ödüyor?"], "o": ["8 €", "10 €", "2 €"], "a": 0 },
+            { "q": ["Comment paie-t-elle ?", "Nasıl ödüyor?"], "o": [["En espèces.", "Nakit."], ["Par carte.", "Kartla."], ["Par chèque.", "Çekle."]], "a": 0 }
+          ]
+        },
+        {
+          "id": "u3-tache", "type": "task",
+          "prompt": ["Écris ta liste de courses, puis une phrase pour demander un produit au marché et son prix.", "Alışveriş listeni yaz, sonra pazarda bir ürün isteyip fiyatını soran bir cümle yaz."],
+          "hints": [
+            ["Je voudrais un kilo de …, s'il vous plaît.", "Bir kilo … istiyorum, lütfen."],
+            ["du pain, de la viande, de l'eau, des œufs", "ekmek, et, su, yumurta"],
+            ["C'est combien ?", "Ne kadar?"],
+            ["Vous avez du fromage ?", "Peyniriniz var mı?"],
+            ["Ça fait combien en tout ?", "Hepsi ne kadar tutuyor?"]
+          ],
+          "model": ["Ma liste : du pain, des tomates, de la viande et de l'eau. Au marché : « Bonjour ! Je voudrais un kilo de pommes, s'il vous plaît. C'est combien ? »", "Listem: ekmek, domates, et ve su. Pazarda: «Merhaba! Bir kilo elma istiyorum, lütfen. Ne kadar?»"],
+          "checks": [
+            ["du, de la, de l', des devant les aliments", "Yiyeceklerden önce du, de la, de l', des"],
+            ["« Je voudrais … » pour demander poliment", "Kibarca istemek için «Je voudrais …»"],
+            ["Une question pour le prix", "Fiyatı soran bir soru"]
+          ]
+        },
+        { "id": "u3-bilan", "type": "bilan" }
+      ]
+    },
+    { "id": "u4", "n": 4, "fr": "Le logement", "tr": "Ev", "focus": ["il y a, c'est, prépositions de lieu", "il y a, c'est, yer edatları"], "goal": ["Décrire son logement et dire où sont les choses.", "Evini anlatmak ve eşyaların nerede olduğunu söylemek."], "lessons": [] },
+    { "id": "u5", "n": 5, "fr": "Ma journée", "tr": "Günüm", "focus": ["verbes pronominaux, l'heure, la négation", "dönüşlü fiiller, saat, olumsuzluk"], "goal": ["Raconter sa journée et dire l'heure.", "Gününü anlatmak ve saati söylemek."], "lessons": [] },
+    { "id": "u6", "n": 6, "fr": "Se déplacer", "tr": "Ulaşım", "focus": ["aller, venir, prendre ; à, en, au", "aller, venir, prendre ; à, en, au"], "goal": ["Prendre les transports et demander son chemin.", "Toplu taşımayı kullanmak ve yol sormak."], "lessons": [] },
+    { "id": "u7", "n": 7, "fr": "La santé", "tr": "Sağlık", "focus": ["avoir mal à, l'impératif", "avoir mal à, emir kipi"], "goal": ["Expliquer ce qui ne va pas chez le médecin ou à la pharmacie.", "Doktorda ya da eczanede neyin yolunda gitmediğini anlatmak."], "lessons": [] },
+    { "id": "u8", "n": 8, "fr": "Les démarches", "tr": "Resmî işler", "focus": ["questions polies, il faut, je voudrais", "kibar sorular, il faut, je voudrais"], "goal": ["Prendre un rendez-vous et remplir un formulaire.", "Randevu almak ve form doldurmak."], "lessons": [] },
+    { "id": "u9", "n": 9, "fr": "Raconter son week-end", "tr": "Hafta sonunu anlatmak", "focus": ["passé composé avec avoir", "avoir ile passé composé"], "goal": ["Raconter ce qu'on a fait.", "Ne yaptığını anlatmak."], "lessons": [] },
+    { "id": "u10", "n": 10, "fr": "Voyages et souvenirs", "tr": "Yolculuklar ve anılar", "focus": ["passé composé avec être", "être ile passé composé"], "goal": ["Raconter un voyage.", "Bir yolculuğu anlatmak."], "lessons": [] },
+    { "id": "u11", "n": 11, "fr": "Quand j'étais petite", "tr": "Ben küçükken", "focus": ["imparfait ou passé composé", "imparfait mi passé composé mu"], "goal": ["Décrire le passé et raconter un souvenir.", "Geçmişi anlatmak ve bir anıyı aktarmak."], "lessons": [] },
+    { "id": "u12", "n": 12, "fr": "Mes projets", "tr": "Planlarım", "focus": ["futur proche, futur simple", "yakın gelecek, gelecek zaman"], "goal": ["Parler de ses projets.", "Planlarından söz etmek."], "lessons": [] }
+  ]
+}

@@ -24,7 +24,7 @@ export default function Verbs() {
       {game === 'sprint' && <Sprint />}
       {game === 'which' && <WhichTense />}
       <input className="field search" type="search" value={q} onChange={(e) => setQ(e.target.value)}
-        placeholder={settings.help ? tx('search').join(' · ') : tx('search')[0]} aria-label="Chercher / Ara" />
+        placeholder={tx('search')[settings.mode === 'tr' ? 1 : 0]} aria-label="Chercher / Ara" />
       <p className="muted small">{verbs.length} <Bi k="verbs_count" inline /></p>
       <ul className="vlist">
         {list.map((v) => (

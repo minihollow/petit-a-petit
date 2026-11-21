@@ -93,10 +93,10 @@ export const dayKey = (ts) => { const d = new Date(ts); return `${d.getFullYear(
 export function dayStats(events) {
   const days = {};
   for (const e of events) {
-    if (e.kind !== 'review' && e.kind !== 'game') continue;
+    if (e.kind !== 'review' && e.kind !== 'game' && e.kind !== 'lesson') continue;
     const k = dayKey(e.ts);
     const d = (days[k] ||= { ms: 0, items: 0 });
-    d.ms += Math.min(e.ms || 0, (e.kind === 'game' ? 15 : 5) * 60000); // a card left open for long counts 5 min at most
+    d.ms += Math.min(e.ms || 0, (e.kind === 'review' ? 5 : 15) * 60000); // a card left open for long counts 5 min at most
     if (e.kind === 'review') d.items++;
   }
   return days;

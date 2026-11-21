@@ -42,7 +42,7 @@ export function PairsGame({ rounds = 10 }) {
       </div>
       <p className="small muted" lang="tr">{group.tr}</p>
       {i >= list.length ? (
-        <div className="game-end"><p className="big-num">{ok} / {list.length}</p><button type="button" className="btn" onClick={() => restart()}><Bi k="play_again" inline /></button></div>
+        <div className="game-end"><p className="big-num">{ok} / {list.length}</p><button type="button" className="btn primary" onClick={() => restart()}><Bi k="play_again" inline /></button></div>
       ) : (
         <>
           <div className="game-top"><span>{i + 1} / {list.length}</span><span>{ok} ✓</span></div>
@@ -57,7 +57,7 @@ export function PairsGame({ rounds = 10 }) {
           {pick && (
             <div className="game-fb">
               <div className="row">{cur.items.map((w) => <button key={w} type="button" className="btn ghost small" onClick={() => speak(w, { rate: settings.rate * 0.9 })} lang="fr">{w}</button>)}</div>
-              <button type="button" className="btn" onClick={() => { if (i + 1 >= list.length) log(ok, list.length); setPick(null); setI(i + 1); }}><Bi k="next" inline /></button>
+              <button type="button" className="btn primary" onClick={() => { if (i + 1 >= list.length) log(ok, list.length); setPick(null); setI(i + 1); }}><Bi k="next" inline /></button>
             </div>
           )}
         </>
@@ -116,7 +116,7 @@ export function Dictation({ mode = 'sentences', rounds = 6 }) {
   const cur = list[i];
   useEffect(() => { if (cur) { speak(cur.s, { rate: settings.rate }); setTimeout(() => field.current?.focus({ preventScroll: true }), 50); } }, [cur]); // eslint-disable-line react-hooks/exhaustive-deps
   if (!cur) {
-    return <div className="game-end"><p className="big-num">{ok} / {list.length}</p><button type="button" className="btn" onClick={() => { setSeed((x) => x + 1); setI(0); setOk(0); setRes(null); setVal(''); }}><Bi k="play_again" inline /></button></div>;
+    return <div className="game-end"><p className="big-num">{ok} / {list.length}</p><button type="button" className="btn primary" onClick={() => { setSeed((x) => x + 1); setI(0); setOk(0); setRes(null); setVal(''); }}><Bi k="play_again" inline /></button></div>;
   }
   const check = () => {
     if (res) return;
@@ -146,7 +146,7 @@ export function Dictation({ mode = 'sentences', rounds = 6 }) {
       <input ref={field} data-fr="" lang="fr" className={`field big-field${res ? ` r-${res.k}` : ''}`} value={val} disabled={!!res}
         placeholder={mode === 'words' ? 'le / la / un / une …' : ''} autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false}
         onChange={(e) => setVal(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); res ? next() : check(); } }} />
-      {!res && <button type="button" className="btn" onClick={check}><Bi k="check" inline /></button>}
+      {!res && <button type="button" className="btn primary" onClick={check}><Bi k="check" inline /></button>}
       {res && (
         <div className="wfb">
           <span className={`chip c-${res.k}`}><Bi k={res.k === 'ok' ? 'fb_ok' : res.k === 'near' ? 'fb_accent' : 'fb_bad'} inline /></span>
@@ -158,7 +158,7 @@ export function Dictation({ mode = 'sentences', rounds = 6 }) {
           {mode === 'words' ? <WordLabel w={cur.w} big /> : <p className="dict-right"><Words text={cur.s} /></p>}
           {pron && <p className="small"><span className="tk">{pron}</span></p>}
           {cur.tr && <p className="ann-tr" lang="tr">{cur.tr}</p>}
-          <button type="button" className="btn" onClick={next}><Bi k="next" inline /></button>
+          <button type="button" className="btn primary" onClick={next}><Bi k="next" inline /></button>
         </div>
       )}
     </div>

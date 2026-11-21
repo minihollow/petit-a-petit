@@ -26,7 +26,7 @@ export default function Verb({ inf }) {
         {v.pron && <span><Bi k="pron_verb" inline /></span>}
         {v.only3s && <span><Bi k="impersonal" inline /></span>}
       </div>
-      {v.note && settings.help && <p className="note small" lang="tr">{v.note}</p>}
+      {v.note && settings.mode !== 'fr' && <p className="note small" lang="tr">{v.note}</p>}
       <div className="tabs-row" role="tablist">
         {tenses.map((t) => (
           <button key={t} type="button" role="tab" aria-selected={t === tense} className={`ttab${t === tense ? ' on' : ''}`} onClick={() => setTense(t)}>
@@ -37,7 +37,7 @@ export default function Verb({ inf }) {
       <TenseHead key={tense} verb={v} tense={tense} />
       <ConjTable rows={rows} />
       {card && <p className="muted small"><Bi k="next_review" inline /> : {nextInDays(card) === 0 ? <Bi k="today_word" inline /> : <Bi pair={tx('in_days', nextInDays(card))} inline />}</p>}
-      <button type="button" className="btn big" onClick={() => go('session', { items: [cardId(inf, tense)] })}><Bi k="practice" /></button>
+      <button type="button" className="btn primary big" onClick={() => go('session', { items: [cardId(inf, tense)] })}><Bi k="practice" /></button>
     </div>
   );
 }

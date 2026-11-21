@@ -5,9 +5,16 @@ import { buildCards } from './lib/srs.js';
 import { curriculum, dayStats, dayKey, streak } from './lib/plan.js';
 import { getSync, pairFromHash, syncNow } from './lib/sync.js';
 import { refreshInstalled, setVoiceEngine, stopSpeaking } from './lib/tts.js';
-import { AppCtx, DEFAULTS } from './store.js';
-import { Bi, Icon, tx } from './components/ui.jsx';
-import Today from './pages/Today.jsx';
+import { doneLessons } from './lib/course.js';
+import { AppCtx, migrate, DEFAULTS } from './store.js';
+import { UI } from './i18n.js';
+import { Bi, Icon, ModeFlag, MODES, scrollTop, tx } from './components/ui.jsx';
+import Home from './pages/Home.jsx';
+import Unit from './pages/Unit.jsx';
+import Lesson from './pages/Lesson.jsx';
+import Review from './pages/Review.jsx';
+import Library from './pages/Library.jsx';
+import Progress from './pages/Progress.jsx';
 import Verbs from './pages/Verbs.jsx';
 import Verb from './pages/Verb.jsx';
 import Session from './pages/Session.jsx';
@@ -18,6 +25,7 @@ import GenderRules from './pages/GenderRules.jsx';
 import Grammar from './pages/Grammar.jsx';
 import Chapter from './pages/Chapter.jsx';
 import Sounds from './pages/Sounds.jsx';
+import SyncLine from './components/SyncLine.jsx';
 import { wordCourse } from './lib/vocab.js';
 import { getStatus, hasModel, MODELS, recommendedModel } from './lib/coco.js';
 import CocoPanel, { CocoAvatar } from './components/Coco.jsx';
@@ -26,13 +34,21 @@ const VERBS = DATA.verbs;
 const BY_INF = new Map(VERBS.map((v) => [v.inf, v]));
 const lookup = (inf) => BY_INF.get(inf);
 const WORD_COURSE = wordCourse();
-const NAV = [['today', 'home', 'nav_today'], ['verbs', 'list', 'nav_verbs'], ['words', 'book', 'nav_words'], ['grammar', 'rule', 'nav_grammar'], ['settings', 'gear', 'nav_settings']];
-const NAV_OF = { verb: 'verbs', theme: 'words', rules: 'words', sounds: 'words', chapter: 'grammar' };
+
+// Side menu on a computer, bottom bar on a phone (Settings moves to the top bar there).
+const NAV = [
+  { id: 'home', icon: 'route', k: 'nav_path' },
+  { id: 'review', icon: 'cards', k: 'nav_review' },
+  { id: 'library', icon: 'library', k: 'nav_library' },
+  { id: 'progress', icon: 'chart', k: 'nav_progress' },
+  { id: 'settings', icon: 'gear', k: 'nav_settings' },
+];
+const NAV_OF = { unit: 'home', lesson: 'home', session: 'library', verbs: 'library', verb: 'library', words: 'library', theme: 'library', rules: 'library', grammar: 'library', chapter: 'library', sounds: 'library' };
 
 export default function App() {
   const [events, setEvents] = useState(null);
   const [settings, setSettings] = useState(DEFAULTS);
-  const [route, setRoute] = useState({ name: 'today', params: {} });
+  const [route, setRoute] = useState({ name: 'home', params: {} });
   const [sync, setSyncState] = useState({ status: 'off' });
   const [toast, setToast] = useState(null);
   const toastTimer = useRef(null);
@@ -64,7 +80,7 @@ export default function App() {
     (async () => {
       persist();
       const paired = await pairFromHash();
-      setSettings({ ...DEFAULTS, ...(await getKV('settings', {})) });
+      setSettings(migrate(await getKV('settings', {})));
       await reload();
       if (paired) notify(tx('sync_paired'));
       refreshInstalled();
@@ -94,26 +110,31 @@ export default function App() {
     return () => mq.removeEventListener('change', apply);
   }, [settings.theme]);
 
+  const addLocal = (ev) => setEvents((prev) => [...(prev || []), { ...ev, synced: 0 }]);
   const record = useCallback(async (card, res) => {
-    const ev = await addEvent({ kind: 'review', card, rating: res.rating, ok: res.ok, near: res.near, n: res.n, ms: res.ms });
-    setEvents((prev) => [...(prev || []), { ...ev, synced: 0 }]);
+    addLocal(await addEvent({ kind: 'review', card, rating: res.rating, ok: res.ok, near: res.near, n: res.n, ms: res.ms }));
   }, []);
   // A finished game counts in today's minutes (no card is scheduled).
   const logGame = useCallback(async ({ game, ok, n, ms }) => {
-    const ev = await addEvent({ kind: 'game', game, ok, n, ms });
-    setEvents((prev) => [...(prev || []), { ...ev, synced: 0 }]);
+    addLocal(await addEvent({ kind: 'game', game, ok, n, ms }));
   }, []);
+  // A finished lesson of the course (its cards were recorded on the way; ms only for listening and writing).
+  const logLesson = useCallback(async (lesson, { ok = 0, n = 0, ms = 0, text = '' } = {}) => {
+    addLocal(await addEvent({ kind: 'lesson', lesson, ok, n, ms, ...(text ? { text: text.slice(0, 1500) } : {}) }));
+    doSync();
+  }, [doSync]);
 
   // Navigation, with the phone's back button.
   const go = useCallback((name, params = {}) => {
     stopSpeaking();
     setRoute({ name, params });
     history.pushState({ name, params }, '');
-    window.scrollTo({ top: 0 });
+    scrollTop();
   }, []);
+  const back = useCallback(() => { if (history.state?.name && history.length > 1) history.back(); else go('home'); }, [go]);
   useEffect(() => {
-    history.replaceState({ name: 'today', params: {} }, '');
-    const onPop = (e) => { stopSpeaking(); setRoute(e.state?.name ? e.state : { name: 'today', params: {} }); };
+    history.replaceState({ name: 'home', params: {} }, '');
+    const onPop = (e) => { stopSpeaking(); setRoute(e.state?.name ? e.state : { name: 'home', params: {} }); scrollTop(); };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
@@ -137,17 +158,23 @@ export default function App() {
   const course = useMemo(() => curriculum(VERBS), []);
   const cards = useMemo(() => (events ? buildCards(events) : new Map()), [events]);
   const days = useMemo(() => (events ? dayStats(events) : {}), [events]);
+  const done = useMemo(() => doneLessons(events), [events]);
 
   const store = useMemo(() => ({
-    verbs: VERBS, byInf: BY_INF, lookup, events, cards, days, course, wordCourse: WORD_COURSE, settings, update, record, logGame, go, notify, reload, sync, doSync,
-    coco, openCoco, refreshCoco,
-  }), [events, cards, days, course, settings, update, record, logGame, go, notify, reload, sync, doSync, coco, openCoco, refreshCoco]);
+    verbs: VERBS, byInf: BY_INF, lookup, events, cards, days, done, course, wordCourse: WORD_COURSE, settings, update, record, logGame, logLesson,
+    go, back, notify, reload, sync, doSync, coco, openCoco, refreshCoco,
+  }), [events, cards, days, done, course, settings, update, record, logGame, logLesson, go, back, notify, reload, sync, doSync, coco, openCoco, refreshCoco]);
 
   if (!events) return <div className="splash" aria-busy="true"><span className="brand-mark">Petit <i>à</i> petit</span></div>;
 
-  const endSession = (did) => { if (did) doSync(); go('today'); };
+  const endSession = (did) => { if (did) doSync(); back(); };
   let page;
   switch (route.name) {
+    case 'unit': page = <Unit key={route.params.id} id={route.params.id} />; break;
+    case 'lesson': page = <Lesson key={`${route.params.id}-${route.params.k || 0}`} id={route.params.id} />; break;
+    case 'review': page = <Review key={route.params.k || 0} />; break;
+    case 'library': page = <Library />; break;
+    case 'progress': page = <Progress />; break;
     case 'verbs': page = <Verbs />; break;
     case 'verb': page = <Verb key={route.params.inf} inf={route.params.inf} />; break;
     case 'session': page = <Session key={route.params.items.join('|')} items={route.params.items} onEnd={endSession} />; break;
@@ -158,31 +185,52 @@ export default function App() {
     case 'grammar': page = <Grammar />; break;
     case 'sounds': page = <Sounds />; break;
     case 'chapter': page = <Chapter key={route.params.id} id={route.params.id} />; break;
-    default: page = <Today />;
+    default: page = <Home />;
   }
   const active = NAV_OF[route.name] || route.name;
   const st = streak(days);
   const minutes = Math.round((days[dayKey(Date.now())]?.ms || 0) / 60000);
+  const mode = MODES.includes(settings.mode) ? settings.mode : 'bi';
 
   return (
     <AppCtx.Provider value={store}>
-      <div className={`app${route.name === 'session' ? ' in-session' : ''}`} lang="fr">
-        <header className="top">
-          <button type="button" className="brand-mark" onClick={() => go('today')}>Petit <i>à</i> petit</button>
-          <span className="top-stats" title="minutes · jours">
-            {coco.ready && <button type="button" className="coco-btn" onClick={() => openCoco()} aria-label="Coco"><CocoAvatar size={26} /></button>}
-            <span>{minutes}/{settings.goal} min</span>
-            <span className="streak"><Icon name="flame" size={16} />{st}</span>
-          </span>
-        </header>
-        <nav className="tabs" aria-label="Menu">
-          {NAV.map(([id, icon, k]) => (
-            <button key={id} type="button" className="tab" aria-current={active === id ? 'page' : undefined} onClick={() => go(id)}>
-              <Icon name={icon} /><span className="tab-l"><Bi k={k} /></span>
+      <div className="app" lang={mode === 'tr' ? 'tr' : 'fr'}>
+        <nav className="side" aria-label="Menu">
+          <button type="button" className="brand" onClick={() => go('home')}>
+            <span className="brand-logo" aria-hidden="true">à</span>
+            <span className="brand-name">Petit à petit<small><Bi k="app_sub" /></small></span>
+          </button>
+          {NAV.map((n) => (
+            <button key={n.id} type="button" className={`nav-btn nav-${n.id}`} aria-current={active === n.id ? 'page' : undefined} onClick={() => go(n.id)}>
+              <span className="ico"><Icon name={n.icon} size={20} /></span>
+              <span className="nav-label"><Bi k={n.k} dual /></span>
+              <span className="nav-short"><Bi k={n.k} /></span>
             </button>
           ))}
+          <div className="side-foot"><SyncLine /></div>
         </nav>
-        <main className="content">{page}</main>
+
+        <div className="main">
+          <header className="topbar">
+            <div className="modes" role="group" aria-label={UI.mode_label[mode === 'tr' ? 1 : 0]}>
+              {MODES.map((m) => (
+                <button key={m} type="button" aria-pressed={mode === m} title={UI[`mode_${m}_desc`][mode === 'tr' ? 1 : 0]} onClick={() => update({ mode: m })}>
+                  <ModeFlag mode={m} /><span>{UI[`mode_${m}`][mode === 'tr' ? 1 : 0]}</span>
+                </button>
+              ))}
+            </div>
+            <div className="spacer" />
+            <span className="pill sun" title={tx('streak')[mode === 'tr' ? 1 : 0]}><Icon name="flame" size={16} />{st}</span>
+            <span className="pill" title={tx('minutes_today')[mode === 'tr' ? 1 : 0]}>{minutes}/{settings.goal} min</span>
+            {coco.ready && (
+              <button type="button" className="btn small ink coco-open" onClick={() => openCoco()}><CocoAvatar size={22} /> Coco</button>
+            )}
+            <button type="button" className="icon-btn top-settings" aria-label={UI.nav_settings[0]} aria-current={active === 'settings' ? 'page' : undefined}
+              onClick={() => go('settings')}><Icon name="gear" size={20} /></button>
+          </header>
+          <main className="content">{page}</main>
+        </div>
+
         {cocoOpen && coco.ready && <CocoPanel key={cocoOpen.key} ctx={cocoOpen.ctx} ask={cocoOpen.ask} onClose={() => setCocoOpen(null)} />}
         {toast && <div className="toast" role="status"><Bi pair={toast} /></div>}
       </div>

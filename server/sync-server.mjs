@@ -79,10 +79,10 @@ function status() {
   const days = new Map();
   let last = 0;
   for (const e of events) {
-    if (e.kind !== 'review' && e.kind !== 'game') continue;
+    if (e.kind !== 'review' && e.kind !== 'game' && e.kind !== 'lesson') continue;
     const k = dayKey(e.ts);
     const d = days.get(k) || { ms: 0, items: 0 };
-    d.ms += Math.min(Number(e.ms) || 0, e.kind === 'game' ? 900000 : 300000);
+    d.ms += Math.min(Number(e.ms) || 0, e.kind === 'review' ? 300000 : 900000);
     if (e.kind === 'review') d.items++;
     days.set(k, d);
     if (e.ts > last) last = e.ts;

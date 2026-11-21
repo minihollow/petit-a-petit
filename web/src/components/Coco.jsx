@@ -103,7 +103,7 @@ export default function CocoPanel({ ask, ctx, onClose }) {
         <textarea className="field" rows={2} value={text} placeholder="Coco'ya sor… / Demande à Coco…" onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(text); } }} />
         {busy ? <button type="button" className="btn ghost" onClick={() => ctrl.current?.abort()}><Bi k="coco_stop" inline /></button>
-          : <button type="submit" className="btn"><Bi k="coco_send" inline /></button>}
+          : <button type="submit" className="btn primary"><Bi k="coco_send" inline /></button>}
       </form>
     </aside>
   );

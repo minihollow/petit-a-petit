@@ -2,12 +2,16 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { filled, gradeTyped, LABELS, pickExercises, shuffledOptions } from '../lib/grammar.js';
 import { speak } from '../lib/tts.js';
 import { useApp } from '../store.js';
-import { AccentBar, Bi, SpeakBtn } from './ui.jsx';
+import { AccentBar, Bi, SpeakBtn, TrBtn, TrLine, TrScope, Tx, useMode, useTrOpen } from './ui.jsx';
 import Words from './Words.jsx';
 
 // Sentence cut into groups, each underlined with its role under it (French, Turkish).
 export function Annotated({ groups, tr }) {
-  const { settings } = useApp();
+  return <TrScope><AnnotatedIn groups={groups} tr={tr} /></TrScope>;
+}
+function AnnotatedIn({ groups, tr }) {
+  const mode = useMode();
+  const open = useTrOpen();
   const sentence = groups.map((g) => g[0]).join(' ').replace(/' /g, "'");
   return (
     <div className="annot">
@@ -16,12 +20,13 @@ export function Annotated({ groups, tr }) {
           <span key={i} className="grp">
             <span className="gw"><Words text={text} /></span>
             {role && <span className="gl">{LABELS[role]?.[0]}</span>}
-            {role && settings.help && <span className="gl2" lang="tr">{LABELS[role]?.[1]}</span>}
+            {role && (mode === 'tr' || (mode === 'bi' && open)) && <span className="gl2" lang="tr">{LABELS[role]?.[1]}</span>}
           </span>
         ))}
         <SpeakBtn text={sentence} />
+        {tr && <TrBtn />}
       </div>
-      {tr && <div className="ann-tr" lang="tr">{tr}</div>}
+      {tr && <div className="ann-tr"><TrLine>{tr}</TrLine></div>}
     </div>
   );
 }
@@ -29,21 +34,21 @@ export function Annotated({ groups, tr }) {
 export function Example({ ex }) {
   if (ex.g) return <Annotated groups={ex.g} tr={ex.tr} />;
   return (
-    <div className="annot">
-      <div className="ann-plain"><Words text={ex.s} /> <SpeakBtn text={ex.s} /></div>
-      {ex.tr && <div className="ann-tr" lang="tr">{ex.tr}</div>}
-    </div>
+    <TrScope>
+      <div className="annot">
+        <div className="ann-plain"><Words text={ex.s} /> <SpeakBtn text={ex.s} />{ex.tr && <TrBtn />}</div>
+        {ex.tr && <div className="ann-tr"><TrLine>{ex.tr}</TrLine></div>}
+      </div>
+    </TrScope>
   );
 }
 
 function Why({ why, children }) {
-  const { settings } = useApp();
   if (!why && !children) return null;
   return (
     <div className="why small">
       {children}
-      {why && <span lang="fr">{why[0]}</span>}
-      {why && settings.help && <span className="tr-t" lang="tr">{why[1]}</span>}
+      {why && <p><Tx v={why} /></p>}
     </div>
   );
 }
@@ -62,7 +67,7 @@ function Choice({ e, onAnswer }) {
             onClick={() => { setPick(o.text); onAnswer(o.right ? 'ok' : 'bad', filled(e.q, right)); }}>{o.text}</button>
         ))}
       </div>
-      {pick && <Why why={e.why}><p className="ann-tr" lang="tr">{e.tr}</p></Why>}
+      {pick && <Why why={e.why}><p className="ann-tr"><TrLine always>{e.tr}</TrLine></p></Why>}
     </div>
   );
 }
@@ -81,12 +86,12 @@ function Typed({ e, onAnswer }) {
         <input ref={field} data-fr="" lang="fr" className={`field${res ? ` r-${res.k}` : ''}`} value={val} disabled={!!res} style={{ flex: 1 }}
           autoComplete="off" autoCapitalize="off" autoCorrect="off" spellCheck={false} onChange={(x) => setVal(x.target.value)}
           onKeyDown={(x) => { if (x.key === 'Enter') { x.preventDefault(); check(); } }} />
-        {!res && <button type="button" className="btn" onClick={check}><Bi k="check" inline /></button>}
+        {!res && <button type="button" className="btn primary" onClick={check}><Bi k="check" inline /></button>}
       </div>
       {res && (
         <Why why={e.why}>
           <p><span className={`chip c-${res.k}`}><Bi k={res.k === 'ok' ? 'fb_ok' : res.why === 'accent' ? 'fb_accent' : 'fb_bad'} inline /></span> <b lang="fr">{e.a[0]}</b></p>
-          <p className="ann-tr" lang="tr">{e.tr}</p>
+          <p className="ann-tr"><TrLine always>{e.tr}</TrLine></p>
         </Why>
       )}
     </div>
@@ -94,7 +99,7 @@ function Typed({ e, onAnswer }) {
 }
 
 function Detect({ e, onAnswer }) {
-  const { settings } = useApp();
+  const mode = useMode();
   const [roles, setRoles] = useState({});
   const [done, setDone] = useState(false);
   const all = e.g.every((_, i) => roles[i]);
@@ -105,7 +110,7 @@ function Detect({ e, onAnswer }) {
   };
   return (
     <div className="gx">
-      <p className="small muted"><Bi k="choose_role" inline /></p>
+      <p className="small muted"><Bi k="choose_role" inline tip /></p>
       <div className="det">
         {e.g.map(([text, role], i) => (
           <div key={i} className="det-g">
@@ -115,14 +120,14 @@ function Detect({ e, onAnswer }) {
                 <button key={o} type="button" disabled={done} aria-pressed={roles[i] === o}
                   className={done ? (o === role ? 'good' : roles[i] === o ? 'bad' : '') : ''}
                   onClick={() => setRoles((r) => ({ ...r, [i]: o }))}>
-                  {LABELS[o]?.[0]}{settings.help && <span className="tr-i" lang="tr">{LABELS[o]?.[1]}</span>}
+                  {LABELS[o]?.[0]}{mode !== 'fr' && <span className="tr-i" lang="tr">{LABELS[o]?.[1]}</span>}
                 </button>
               ))}
             </div>
           </div>
         ))}
       </div>
-      {!done && <button type="button" className="btn" disabled={!all} onClick={check}><Bi k="check" inline /></button>}
+      {!done && <button type="button" className="btn primary" disabled={!all} onClick={check}><Bi k="check" inline /></button>}
       {done && <><Annotated groups={e.g} tr={e.tr} /></>}
     </div>
   );
@@ -148,11 +153,11 @@ export default function GramSession({ chapter, count, onDone }) {
   };
   return (
     <div className="gram-run">
-      <div className="game-top"><span>{chapter.fr}</span><span>{i + 1} / {list.length}</span></div>
+      <div className="game-top"><span><Bi pair={[chapter.fr, chapter.tr]} /></span><span>{i + 1} / {list.length}</span></div>
       {e.t === 'choice' && <Choice key={i} e={e} onAnswer={answer} />}
       {e.t === 'type' && <Typed key={i} e={e} onAnswer={answer} />}
       {e.t === 'detect' && <Detect key={i} e={e} onAnswer={answer} />}
-      {answered && <div className="drill-actions"><button type="button" className="btn" onClick={next}><Bi k="next" /></button></div>}
+      {answered && <div className="drill-actions"><button type="button" className="btn primary" onClick={next}><Bi k="next" /></button></div>}
     </div>
   );
 }

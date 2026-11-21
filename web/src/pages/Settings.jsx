@@ -146,7 +146,7 @@ export default function Settings() {
         <div className="row-l"><Bi k="s_pron" /></div>
         <Choice label="pron" value={settings.pron} onChange={set('pron')} options={[['tk', 'pron_tk'], ['ipa', 'pron_ipa'], ['both', 'pron_both']]} />
         <div className="row-l"><Bi k="s_help" /></div>
-        <Choice label="help" value={settings.help} onChange={set('help')} options={[[true, 'show'], [false, 'hide']]} />
+        <Choice label="mode" value={settings.mode} onChange={set('mode')} options={[['tr', 'mode_tr'], ['bi', 'mode_bi'], ['fr', 'mode_fr']]} />
         <div className="row-l"><Bi k="s_theme" /></div>
         <Choice label="theme" value={settings.theme} onChange={set('theme')} options={[['auto', 'th_auto'], ['light', 'th_light'], ['dark', 'th_dark']]} />
       </section>

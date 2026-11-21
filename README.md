@@ -1,38 +1,49 @@
 # Petit à petit
 
 **Apprendre le français petit à petit, avec l'aide du turc.**
-Application web gratuite, sans compte, qui fonctionne hors ligne. Interface en français, aide en turc sous chaque texte.
+Application web gratuite, sans compte, qui fonctionne hors ligne, pour aller du niveau A1 au niveau A2
+(le niveau demandé pour une première carte de séjour pluriannuelle depuis 2026).
 
 > *Petit à petit, l'oiseau fait son nid.* · Damlaya damlaya göl olur.
 
-## Ce que fait la version 0.1
+## Le parcours
 
-- **Conjugaison de 198 verbes**, du plus fréquent au plus rare, sur 8 temps : présent, passé composé, futur proche,
-  imparfait, impératif, futur simple, conditionnel, subjonctif.
-- **Tableaux colorés** façon Bescherelle : radical, terminaison prononcée, lettres muettes en gris
-  (*ils parlent* : le *-ent* ne se prononce pas), accord avec *être*, verbes pronominaux.
-- **Prononciation de chaque forme**, en lettres turques (*parlons = parloⁿ*) ou en API, et lecture à voix haute
-  (voix naturelle Piper téléchargée une fois, ou voix du téléphone). Les formes qui se prononcent pareil portent la même lettre.
-- **Formule de chaque temps** et équivalent turc (passé composé ≈ -di, imparfait ≈ -iyordu…).
-- **Série du jour** : révisions (répétition espacée FSRS), puis nouveaux tableaux à découvrir puis à remplir de mémoire,
-  avec barre d'accents et correction détaillée (radical juste et terminaison fausse, accent, accord, auxiliaire).
-- **Vocabulaire** : 585 mots en 26 thèmes (famille, maison, ville, démarches…), appris avec leur article et leur sens en turc ;
-  jeux « le ou la ? », association et écoute ; **règles du genre** par terminaison avec leurs pourcentages réels
-  (‑tion : 99,8 % féminin sur 426 noms…).
-- **Mot cliquable** : un mot touché est lu, traduit en turc quand le sens est connu, avec sa nature, son genre,
-  sa prononciation et le lien vers sa conjugaison (lexique de 21 000 formes tiré de Lexique).
-- **Grammaire** : 13 chapitres A1-A2 en cartes de règles façon Bescherelle (ce qu'il faut savoir, règles numérotées,
-  exemples annotés sujet / verbe / COD…, exceptions, comparaison avec le turc, méthode pour reconnaître) et 77 exercices
-  (QCM, phrases à compléter, exercice « détective »). Un chapitre étudié revient dans la série du jour.
-- **Prononciation et dictée** : lettres françaises écrites en lettres turques (u = ü, ch = ş…), règles (lettres muettes,
-  liaison, -ent), mots turcs venus du français (kuaför ← coiffeur), écoute fine (tu / tout, vent / vont / vin,
-  le / les, je / j'ai) et dictées de mots ou de phrases avec correction mot par mot.
-- **Coco, tuteur IA (ordinateur uniquement)** : explique en turc les erreurs d'un tableau ou d'une carte, répond aux
-  questions sur le français. Il tourne avec [Ollama](https://ollama.com) sur l'ordinateur : rien ne part sur Internet.
-  À activer dans Réglages, qui expliquent comment autoriser le site (`setx OLLAMA_ORIGINS "https://minihollow.github.io"`).
+- **12 unités tirées de la vie en France** : se présenter, la famille, faire les courses, le logement, la santé,
+  les démarches… Chaque jour, un seul bouton, « Continuer », ouvre la leçon suivante.
+- **6 leçons par unité**, dans le même ordre : les mots du thème (découverts puis tapés de mémoire), la règle de
+  grammaire (carte de règle et exercices), les verbes (tableaux à remplir), un dialogue à écouter puis à comprendre
+  (questions, texte et traduction à la fin), un texte à écrire (phrases utiles, modèle, liste de vérification,
+  lecture à voix haute, correction par Coco sur l'ordinateur) et un bilan.
+- **Révisions espacées** (FSRS) : tout ce qui est appris dans les leçons revient au bon moment dans « Réviser ».
+- Les unités 1 à 3 sont écrites ; les suivantes arrivent au fil des semaines. Contenu dans
+  [`web/src/data/course.json`](web/src/data/course.json).
+
+## L'aide en turc
+
+Trois modes, comme dans Passeport civique : **Türkçe** (interface et explications en turc, exemples traduits),
+**Français + aide** (en français, le turc à la demande avec les boutons TR ou en touchant une explication) et
+**Français** (tout en français, comme le jour du test). Un mot touché est toujours lu et traduit.
+
+## La bibliothèque
+
+- **Conjugaison de 198 verbes** sur 8 temps, tableaux colorés (radical, terminaison prononcée, lettres muettes),
+  prononciation de chaque forme en lettres turques (*parlons = parloⁿ*) ou en API, formule de chaque temps.
+- **Vocabulaire** : 585 mots en 26 thèmes, avec leur article et leur sens en turc ; jeux « le ou la ? », association
+  et écoute ; **règles du genre** par terminaison avec leurs pourcentages réels (‑tion : 99,8 % féminin sur 426 noms).
+- **Grammaire** : 13 chapitres A1-A2 (ce qu'il faut savoir, règles numérotées, exemples annotés, exceptions,
+  comparaison avec le turc) et 77 exercices.
+- **Prononciation et dictée** : lettres françaises en lettres turques, règles, mots turcs venus du français,
+  écoute fine et dictées.
+- **Mot cliquable** : lexique de 21 000 formes tiré de Lexique (sens en turc, nature, genre, prononciation).
+
+## Et aussi
+
+- **Coco, tuteur IA (ordinateur uniquement)** : explique en turc les erreurs et corrige les textes écrits. Il tourne
+  avec [Ollama](https://ollama.com) sur l'ordinateur : rien ne part sur Internet. À activer dans Réglages, qui
+  expliquent comment autoriser le site (`setx OLLAMA_ORIGINS "https://minihollow.github.io"`).
+- **Progrès** : jours de suite, minutes, calendrier d'étude, unités, et les textes déjà écrits.
 - **Synchronisation** facultative entre téléphone et ordinateur par un petit serveur à la maison (voir [`server/`](server/)).
 - Sauvegarde et import d'un fichier de progression.
-
 
 ## Utiliser
 
@@ -55,7 +66,8 @@ npm run build    # -> ../site (publié par .github/workflows/pages.yml)
 
 - `web/src/lib/conj.js` : temps, lignes d'un tableau (élision, pronominaux, accord), coloration, correction.
 - `web/src/lib/phon.js` : notation phonologique de Lexique vers API et vers lettres turques.
-- `web/src/lib/srs.js`, `plan.js` : répétition espacée (ts-fsrs) et série du jour.
+- `web/src/lib/course.js`, `web/src/data/course.json` : le parcours (unités, leçons, progression).
+- `web/src/lib/srs.js`, `plan.js` : répétition espacée (ts-fsrs) et révisions.
 - `web/src/lib/db.js`, `sync.js` : stockage (journal d'événements en ajout seul) et synchronisation.
 - `scripts/build-verbs.mjs` : génère `web/src/data/verbs.json` depuis Lexique 3.83 et `scripts/verbs-meta.json`
   (liste des verbes et sens en turc). `scripts/check-conj.mjs` affiche les tableaux générés pour vérification.

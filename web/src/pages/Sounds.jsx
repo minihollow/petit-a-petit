@@ -2,7 +2,7 @@ import { useState } from 'react';
 import SOUNDS from '../data/sounds.json';
 import { speak } from '../lib/tts.js';
 import { useApp } from '../store.js';
-import { Bi, Icon } from '../components/ui.jsx';
+import { Bi, Icon, Tx } from '../components/ui.jsx';
 import Words from '../components/Words.jsx';
 import { Dictation, PairsGame } from '../components/Listening.jsx';
 
@@ -49,8 +49,7 @@ export default function Sounds() {
         <div className="snd-rules">
           {SOUNDS.rules.map((r, k) => (
             <div key={k} className="snd-rule">
-              <p lang="fr">{r.fr}</p>
-              {settings.help && <p className="tr-t" lang="tr">{r.tr}</p>}
+              <p><Tx v={[r.fr, r.tr]} /></p>
               <p className="snd-rule-ex"><Words text={r.ex} /></p>
             </div>
           ))}

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { answerOf, genderOf, gradeWord, isNoun, label, posLabel, ruleFor } from '../lib/vocab.js';
 import { speak } from '../lib/tts.js';
 import { useApp } from '../store.js';
-import { AccentBar, Bi, Pron, SpeakBtn } from './ui.jsx';
+import { AccentBar, Bi, Pron, SpeakBtn, useMode } from './ui.jsx';
 import { AskCoco } from './Coco.jsx';
 import { wordContext } from '../lib/coco.js';
 import { UI } from '../i18n.js';
@@ -29,9 +29,10 @@ export function RuleLine({ w }) {
 
 function Details({ w }) {
   const pos = posLabel(w);
+  const mode = useMode();
   return (
     <>
-      <p className="small muted">{pos[0]} · <span lang="tr">{pos[1]}</span></p>
+      <p className="small muted">{mode === 'tr' ? <span lang="tr">{pos[1]}</span> : pos[0]}</p>
       <div className="row"><Pron phon={w.ph} />{w.fem && <span className="small">· <span lang="fr">{w.fem}</span> <Pron phon={w.femPh} /></span>}
         {w.pl && <span className="small">· <Bi k="plural" inline /> : <span lang="fr">{w.pl}</span> <Pron phon={w.plPh} /></span>}</div>
       {w.note && <p className="note small" lang="tr">{w.note}</p>}
@@ -50,7 +51,7 @@ export function WordLearn({ w, onNext }) {
       <div className="wcard-main"><WordLabel w={w} big /><SpeakBtn text={sayText(w)} /></div>
       <p className="wcard-tr" lang="tr">{w.tr}</p>
       <Details w={w} />
-      <button type="button" className="btn big" onClick={onNext}><Bi k="next" /></button>
+      <button type="button" className="btn primary big" onClick={onNext}><Bi k="next" /></button>
     </div>
   );
 }
@@ -70,7 +71,7 @@ export function WordDrill({ w, onDone }) {
   const check = () => { const g = gradeWord(val, w); setRes(g); speak(sayText(w), { rate: settings.rate }); };
   return (
     <div className="wcard">
-      <p className="small muted"><Bi k={isNoun(w) ? 'type_answer' : 'type_answer_plain'} inline /></p>
+      <p className="small muted"><Bi k={isNoun(w) ? 'type_answer' : 'type_answer_plain'} inline tip /></p>
       <p className="wcard-q" lang="tr">{w.tr}</p>
       <p className="small muted">{posLabel(w)[0]} · <span lang="tr">{posLabel(w)[1]}</span></p>
       <AccentBar />
@@ -87,8 +88,8 @@ export function WordDrill({ w, onDone }) {
         </div>
       )}
       <div className="drill-actions">
-        {!res ? <button type="button" className="btn" onClick={check}><Bi k="check" /></button>
-          : <button type="button" ref={next} className="btn" onClick={() => onDone({ ok: res.k === 'ok' ? 1 : 0, near: res.k === 'near' ? 1 : 0, n: 1, ms: Date.now() - start.current })}><Bi k="next" /></button>}
+        {!res ? <button type="button" className="btn primary" onClick={check}><Bi k="check" /></button>
+          : <button type="button" ref={next} className="btn primary" onClick={() => onDone({ ok: res.k === 'ok' ? 1 : 0, near: res.k === 'near' ? 1 : 0, n: 1, ms: Date.now() - start.current })}><Bi k="next" /></button>}
       </div>
     </div>
   );

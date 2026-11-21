@@ -21,9 +21,9 @@ export default function Theme({ id }) {
     <div className="page theme">
       <button type="button" className="link back" onClick={() => history.back()}><Icon name="back" size={18} /> <Bi k="nav_words" inline /></button>
       <h1><Bi pair={[t.fr, t.tr]} /></h1>
-      <div className="modes">
+      <div className="word-modes">
         {fresh.length > 0 ? (
-          <button type="button" className="btn" onClick={() => go('session', { items: fresh.slice(0, 8).map((w) => wordCardId(w.fr)) })}>
+          <button type="button" className="btn primary" onClick={() => go('session', { items: fresh.slice(0, 8).map((w) => wordCardId(w.fr)) })}>
             <Bi k="learn_words" /><span className="btn-meta">{Math.min(8, fresh.length)} / {fresh.length}</span>
           </button>
         ) : <p className="small muted"><Bi k="done_all_new" /></p>}

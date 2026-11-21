@@ -69,7 +69,7 @@ export default function Drill({ rows, onDone, doneLabel = 'next', cocoCtx }) {
         })}
       </div>
       <div className="drill-actions">
-        {!res && <button type="button" className="btn" onClick={check}><Bi k="check" /></button>}
+        {!res && <button type="button" className="btn primary" onClick={check}><Bi k="check" /></button>}
         {!res && (
           <button type="button" className="btn ghost" onClick={() => { setRevealed(true); setVals(Object.fromEntries(rows.map((r) => [r.i, r.answer]))); setRes(rows.map(() => ({ k: 'near', why: 'empty' }))); }}>
             <Bi k="solution" />
@@ -80,7 +80,7 @@ export default function Drill({ rows, onDone, doneLabel = 'next', cocoCtx }) {
             <span className="score-big">{revealed ? '—' : `${score} / ${rows.length}`} <Bi k="score" inline /></span>
             {cocoCtx && <AskCoco build={() => cocoCtx(vals, res)} ask={UI[score === rows.length && !revealed ? 'coco_q_table_ok' : 'coco_q_table'][1]} />}
             <button type="button" className="btn ghost" onClick={() => speak(rows.map((x) => x.say), { rate: settings.rate })}><Bi k="listen_all" /></button>
-            <button type="button" ref={nextBtn} className="btn" onClick={finish}><Bi k={doneLabel} /></button>
+            <button type="button" ref={nextBtn} className="btn primary" onClick={finish}><Bi k={doneLabel} /></button>
           </>
         )}
       </div>
