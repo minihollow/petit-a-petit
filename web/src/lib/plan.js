@@ -52,33 +52,40 @@ export function curriculum(verbs) {
 
 const dayStart = (ts = Date.now()) => { const d = new Date(ts); d.setHours(0, 0, 0, 0); return d.getTime(); };
 
-// New cards already started today (their first review is today).
-export function newToday(cards) {
+// New cards of one kind ('conj:' or 'word:') already started today (their first review is today).
+export function newToday(cards, prefix = '') {
   const start = dayStart();
   let n = 0;
-  for (const c of cards.values()) if (c.first >= start) n++;
+  for (const c of cards.values()) if (c.first >= start && c.id.startsWith(prefix)) n++;
   return n;
 }
 
-// The next series: due cards (most overdue first), then new ones within today's quota.
-export function buildSeries(cards, course, { newPerDay = 4, size = 12 } = {}) {
+// The next series: due cards (most overdue first), then new tables and new words within today's quotas,
+// one table then two words.
+export function buildSeries(cards, conjCourse, wordCourse, { newPerDay = 4, newWords = 8, size = 24 } = {}) {
   const now = Date.now();
-  const due = [...cards.values()].filter((c) => isDue(c, now)).sort((a, b) => a.fsrs.due - b.fsrs.due).map((c) => c.id);
-  const items = due.slice(0, size);
-  let quota = Math.max(0, newPerDay - newToday(cards));
-  for (const id of course) {
-    if (items.length >= size || quota <= 0) break;
-    if (!cards.has(id) && !items.includes(id)) { items.push(id); quota--; }
+  const due = [...cards.values()].filter((c) => isDue(c, now)).sort((a, b) => a.fsrs.due - b.fsrs.due).map((c) => c.id).slice(0, size);
+  const freshC = conjCourse.filter((id) => !cards.has(id)).slice(0, Math.max(0, newPerDay - newToday(cards, 'conj:')));
+  const freshW = wordCourse.filter((id) => !cards.has(id)).slice(0, Math.max(0, newWords - newToday(cards, 'word:')));
+  const fresh = [];
+  for (let i = 0, j = 0; i < freshC.length || j < freshW.length;) {
+    if (i < freshC.length) fresh.push(freshC[i++]);
+    for (let k = 0; k < 2 && j < freshW.length; k++) fresh.push(freshW[j++]);
   }
-  return items;
+  return [...due, ...fresh].slice(0, size);
 }
 
-export function counts(cards, course, newPerDay) {
+export function counts(cards, conjCourse, wordCourse, newPerDay, newWords) {
   const now = Date.now();
   let due = 0;
   for (const c of cards.values()) if (isDue(c, now)) due++;
-  const left = course.filter((id) => !cards.has(id)).length;
-  return { due, fresh: Math.min(left, Math.max(0, newPerDay - newToday(cards))), left };
+  const leftC = conjCourse.filter((id) => !cards.has(id)).length;
+  const leftW = wordCourse.filter((id) => !cards.has(id)).length;
+  return {
+    due,
+    freshConj: Math.min(leftC, Math.max(0, newPerDay - newToday(cards, 'conj:'))),
+    freshWords: Math.min(leftW, Math.max(0, newWords - newToday(cards, 'word:'))),
+  };
 }
 
 // Per day: { 'YYYY-MM-DD': { ms, items } } and the streak (days in a row with at least one table).
@@ -86,11 +93,11 @@ export const dayKey = (ts) => { const d = new Date(ts); return `${d.getFullYear(
 export function dayStats(events) {
   const days = {};
   for (const e of events) {
-    if (e.kind !== 'review') continue;
+    if (e.kind !== 'review' && e.kind !== 'game') continue;
     const k = dayKey(e.ts);
     const d = (days[k] ||= { ms: 0, items: 0 });
-    d.ms += Math.min(e.ms || 0, 5 * 60000); // an item left open for long counts 5 min at most
-    d.items++;
+    d.ms += Math.min(e.ms || 0, (e.kind === 'game' ? 15 : 5) * 60000); // a card left open for long counts 5 min at most
+    if (e.kind === 'review') d.items++;
   }
   return days;
 }

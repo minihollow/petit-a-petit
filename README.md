@@ -16,10 +16,15 @@ Application web gratuite, sans compte, qui fonctionne hors ligne. Interface en f
 - **Formule de chaque temps** et équivalent turc (passé composé ≈ -di, imparfait ≈ -iyordu…).
 - **Série du jour** : révisions (répétition espacée FSRS), puis nouveaux tableaux à découvrir puis à remplir de mémoire,
   avec barre d'accents et correction détaillée (radical juste et terminaison fausse, accent, accord, auxiliaire).
+- **Vocabulaire** : 585 mots en 26 thèmes (famille, maison, ville, démarches…), appris avec leur article et leur sens en turc ;
+  jeux « le ou la ? », association et écoute ; **règles du genre** par terminaison avec leurs pourcentages réels
+  (‑tion : 99,8 % féminin sur 426 noms…).
+- **Mot cliquable** : un mot touché est lu, traduit en turc quand le sens est connu, avec sa nature, son genre,
+  sa prononciation et le lien vers sa conjugaison (lexique de 21 000 formes tiré de Lexique).
 - **Synchronisation** facultative entre téléphone et ordinateur par un petit serveur à la maison (voir [`server/`](server/)).
 - Sauvegarde et import d'un fichier de progression.
 
-À venir : cartes de règles de grammaire, vocabulaire par thèmes (cartes et jeux), prononciation et dictées, tuteur IA.
+À venir : cartes de règles de grammaire, prononciation et dictées, tuteur IA sur l'ordinateur.
 
 ## Utiliser
 
@@ -46,10 +51,13 @@ npm run build    # -> ../site (publié par .github/workflows/pages.yml)
 - `web/src/lib/db.js`, `sync.js` : stockage (journal d'événements en ajout seul) et synchronisation.
 - `scripts/build-verbs.mjs` : génère `web/src/data/verbs.json` depuis Lexique 3.83 et `scripts/verbs-meta.json`
   (liste des verbes et sens en turc). `scripts/check-conj.mjs` affiche les tableaux générés pour vérification.
+- `scripts/build-words.mjs` : génère `web/src/data/words.json` (thèmes, genre, pluriels, féminins, règles du genre) et
+  `web/public/lexicon.json` (mot cliquable) depuis Lexique et `scripts/words-themes.json`, `scripts/function-words.json`.
 
 ```sh
 # Lexique383.zip depuis http://www.lexique.org, puis :
 node scripts/build-verbs.mjs chemin/vers/Lexique383.tsv
+node scripts/build-words.mjs chemin/vers/Lexique383.tsv
 node scripts/check-conj.mjs parler aller souvenir
 ```
 

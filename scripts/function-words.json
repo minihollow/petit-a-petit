@@ -1,0 +1,18 @@
+{
+  "_comment": "Sens en turc des mots grammaticaux, pour la bulle « mot cliquable » (pas de cartes).",
+  "le": "belirli tanımlık (eril tekil) · onu (zamir)", "la": "belirli tanımlık (dişil tekil) · onu (zamir)", "les": "belirli tanımlık (çoğul) · onları (zamir)",
+  "un": "bir (eril)", "une": "bir (dişil)", "des": "belirsiz çoğul (birtakım); de + les", "du": "de + le; biraz (bölümleyici)", "de": "-in; -den; biraz",
+  "au": "à + le: -e, -de", "aux": "à + les: -lere, -lerde", "à": "-e, -de",
+  "je": "ben", "tu": "sen", "il": "o (erkek); kişisiz yapılarda özne", "elle": "o (kadın)", "on": "biz (konuşma dili); insanlar, herkes",
+  "nous": "biz; bizi, bize", "vous": "siz; sizi, size", "ils": "onlar (erkek ya da karışık)", "elles": "onlar (kadın)",
+  "me": "beni, bana", "te": "seni, sana", "se": "kendini, kendine", "lui": "ona; o (erkek, vurgulu)", "leur": "onlara; onların",
+  "y": "oraya, orada; buna", "en": "-de, -e (ülke, ay); ondan, ondan biraz", "moi": "ben, beni (vurgulu)", "toi": "sen, seni (vurgulu)", "eux": "onlar (vurgulu)",
+  "ce": "bu, şu", "cet": "bu (eril, ünlüden önce)", "cette": "bu (dişil)", "ces": "bunlar, şunlar", "ça": "bu, şu (konuşma dili)", "cela": "bu, şu",
+  "mon": "benim (eril)", "ma": "benim (dişil)", "mes": "benim (çoğul)", "ton": "senin (eril)", "ta": "senin (dişil)", "tes": "senin (çoğul)",
+  "son": "onun (eril)", "sa": "onun (dişil)", "ses": "onun (çoğul)", "notre": "bizim", "nos": "bizim (çoğul)", "votre": "sizin", "vos": "sizin (çoğul)", "leurs": "onların (çoğul)",
+  "que": "ki; -diği; ne", "dont": "-diği (de ile kurulan)", "ne": "olumsuzluk (ne … pas)", "pas": "değil (ne … pas); adım", "plus": "daha; artık (ne … plus)",
+  "rien": "hiçbir şey", "quel": "hangi, ne (eril)", "quelle": "hangi, ne (dişil)", "quels": "hangi (çoğul)", "quelles": "hangi (dişil çoğul)",
+  "tout": "her şey; bütün", "tous": "hepsi, herkes", "toute": "bütün (dişil)", "toutes": "hepsi (dişil)", "même": "aynı; bile", "autre": "başka, diğer",
+  "comme": "gibi; olarak", "alors": "o zaman, öyleyse", "puis": "sonra", "ensuite": "sonra, ardından", "enfin": "sonunda; nihayet", "vers": "-e doğru", "par": "tarafından; -den (yol)",
+  "contre": "karşı", "selon": "-e göre", "voici": "işte (bu)", "voilà": "işte (şu)", "est-ce que": "soru kalıbı (… mi?)", "il y a": "var; … önce"
+}

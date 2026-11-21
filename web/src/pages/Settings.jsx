@@ -73,6 +73,8 @@ export default function Settings() {
         <Choice label="goal" value={settings.goal} onChange={set('goal')} options={[10, 15, 20, 30, 45, 60].map((n) => [n, String(n)])} />
         <div className="row-l"><Bi k="s_new" /></div>
         <Choice label="new" value={settings.newPerDay} onChange={set('newPerDay')} options={[2, 3, 4, 6, 8].map((n) => [n, String(n)])} />
+        <div className="row-l"><Bi k="s_new_words" /></div>
+        <Choice label="new words" value={settings.newWords} onChange={set('newWords')} options={[0, 4, 8, 12, 16].map((n) => [n, String(n)])} />
       </section>
 
       <section className="block">

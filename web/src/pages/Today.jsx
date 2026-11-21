@@ -7,19 +7,23 @@ import { Bi, Icon, Ring } from '../components/ui.jsx';
 import SyncLine from '../components/SyncLine.jsx';
 
 export default function Today() {
-  const { settings, cards, course, days, go } = useApp();
-  const series = useMemo(() => buildSeries(cards, course, { newPerDay: settings.newPerDay }), [cards, course, settings.newPerDay]);
-  const c = counts(cards, course, settings.newPerDay);
+  const { settings, cards, course, wordCourse, days, go } = useApp();
+  const series = useMemo(() => buildSeries(cards, course, wordCourse, { newPerDay: settings.newPerDay, newWords: settings.newWords }),
+    [cards, course, wordCourse, settings.newPerDay, settings.newWords]);
+  const c = counts(cards, course, wordCourse, settings.newPerDay, settings.newWords);
   const minutes = Math.round((days[dayKey(Date.now())]?.ms || 0) / 60000);
   const st = streak(days);
   const doneToday = !!days[dayKey(Date.now())];
 
-  // Known tables per tense (course order).
+  // Known tables per tense (course order), then words.
   const perTense = TENSE_ORDER.map((t) => {
     let known = 0; let started = 0;
     for (const card of cards.values()) { if (parseCard(card.id)?.tense !== t) continue; started++; if (isKnown(card)) known++; }
-    return { t, known, started };
+    return { t, label: TENSES[t].fr, known, started };
   }).filter((x) => x.started > 0);
+  let wk = 0; let ws = 0;
+  for (const card of cards.values()) if (card.id.startsWith('word:')) { ws++; if (isKnown(card)) wk++; }
+  if (ws) perTense.push({ t: 'words', label: 'Mots · Kelimeler', known: wk, started: ws });
   const known = perTense.reduce((a, x) => a + x.known, 0);
   const started = perTense.reduce((a, x) => a + x.started, 0);
 
@@ -32,7 +36,7 @@ export default function Today() {
         <div className="day-stats">
           <div><b>{minutes}</b> <Bi k="minutes_today" inline /> · <Bi k="goal" inline /> {settings.goal}</div>
           <div className="streak"><Icon name="flame" size={18} /> <b>{st}</b> <Bi k="streak" inline /></div>
-          <div className="muted small"><b>{c.due}</b> <Bi k="due" inline /> · <b>{c.fresh}</b> <Bi k="fresh" inline /></div>
+          <div className="muted small"><b>{c.due}</b> <Bi k="due" inline /> · <b>{c.freshConj}</b> <Bi k="new_tables" inline /> · <b>{c.freshWords}</b> <Bi k="new_words" inline /></div>
         </div>
       </section>
 
@@ -52,7 +56,7 @@ export default function Today() {
           <ul className="bars">
             {perTense.map((x) => (
               <li key={x.t}>
-                <span className="bar-l" lang="fr">{TENSES[x.t].fr}</span>
+                <span className="bar-l" lang="fr">{x.label}</span>
                 <span className="bar"><span style={{ width: `${Math.round((x.known / Math.max(1, x.started)) * 100)}%` }} /></span>
                 <span className="bar-n">{x.known}/{x.started}</span>
               </li>

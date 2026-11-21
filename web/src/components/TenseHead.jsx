@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { TENSES } from '../lib/conj.js';
 import { useApp } from '../store.js';
 import { Bi, SpeakBtn } from './ui.jsx';
+import Words from './Words.jsx';
 
 // Verb + tense header, with the formula (French, Turkish help) and the closest Turkish form.
 export default function TenseHead({ verb, tense, formulaOpen = true }) {
@@ -24,7 +25,7 @@ export default function TenseHead({ verb, tense, formulaOpen = true }) {
         <div className="formula">
           <span lang="fr">{T.f[0]}</span>
           {settings.help && <span className="tr-t" lang="tr">{T.f[1]}</span>}
-          <span className="formula-ex"><span lang="fr">{T.ex[0]}</span>{settings.help && <span lang="tr"> = {T.ex[1]}</span>}</span>
+          <span className="formula-ex"><Words text={T.ex[0]} />{settings.help && <span lang="tr"> = {T.ex[1]}</span>}</span>
         </div>
       )}
     </div>

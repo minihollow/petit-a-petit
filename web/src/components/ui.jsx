@@ -24,9 +24,10 @@ const ICONS = {
   gear: 'M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM19.4 13a7.5 7.5 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7 7 0 0 0-1.7-1L15 3.5h-4L10.6 6a7 7 0 0 0-1.7 1l-2.4-1-2 3.4L6.6 11a7.5 7.5 0 0 0 0 2l-2 1.6 2 3.4 2.4-1a7 7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7 7 0 0 0 1.7-1l2.4 1 2-3.4z',
   flame: 'M12 2c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.4 1.3-3.8 2.5-5 .3 1.6 1.2 2.6 2 3 0-3 .3-5.4.5-8z',
   back: 'M15 5l-7 7 7 7',
+  book: 'M4 5.5C4 4.7 4.7 4 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5zM20 5.5c0-.8-.7-1.5-1.5-1.5H13v15h5.5c.8 0 1.5.7 1.5 1.5z',
 };
 export function Icon({ name, size = 22 }) {
-  const stroke = name === 'list' || name === 'back';
+  const stroke = name === 'list' || name === 'back' || name === 'book';
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true" className="icon">
       <path d={ICONS[name]} fill={stroke ? 'none' : 'currentColor'} stroke={stroke || name === 'gear' ? 'currentColor' : 'none'}

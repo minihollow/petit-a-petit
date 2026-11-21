@@ -12,11 +12,17 @@ import Verbs from './pages/Verbs.jsx';
 import Verb from './pages/Verb.jsx';
 import Session from './pages/Session.jsx';
 import Settings from './pages/Settings.jsx';
+import Mots from './pages/Mots.jsx';
+import Theme from './pages/Theme.jsx';
+import GenderRules from './pages/GenderRules.jsx';
+import { wordCourse } from './lib/vocab.js';
 
 const VERBS = DATA.verbs;
 const BY_INF = new Map(VERBS.map((v) => [v.inf, v]));
 const lookup = (inf) => BY_INF.get(inf);
-const NAV = [['today', 'home', 'nav_today'], ['verbs', 'list', 'nav_verbs'], ['settings', 'gear', 'nav_settings']];
+const WORD_COURSE = wordCourse();
+const NAV = [['today', 'home', 'nav_today'], ['verbs', 'list', 'nav_verbs'], ['words', 'book', 'nav_words'], ['settings', 'gear', 'nav_settings']];
+const NAV_OF = { verb: 'verbs', theme: 'words', rules: 'words' };
 
 export default function App() {
   const [events, setEvents] = useState(null);
@@ -85,6 +91,11 @@ export default function App() {
     const ev = await addEvent({ kind: 'review', card, rating: res.rating, ok: res.ok, near: res.near, n: res.n, ms: res.ms });
     setEvents((prev) => [...(prev || []), { ...ev, synced: 0 }]);
   }, []);
+  // A finished game counts in today's minutes (no card is scheduled).
+  const logGame = useCallback(async ({ game, ok, n, ms }) => {
+    const ev = await addEvent({ kind: 'game', game, ok, n, ms });
+    setEvents((prev) => [...(prev || []), { ...ev, synced: 0 }]);
+  }, []);
 
   // Navigation, with the phone's back button.
   const go = useCallback((name, params = {}) => {
@@ -105,8 +116,8 @@ export default function App() {
   const days = useMemo(() => (events ? dayStats(events) : {}), [events]);
 
   const store = useMemo(() => ({
-    verbs: VERBS, byInf: BY_INF, lookup, events, cards, days, course, settings, update, record, go, notify, reload, sync, doSync,
-  }), [events, cards, days, course, settings, update, record, go, notify, reload, sync, doSync]);
+    verbs: VERBS, byInf: BY_INF, lookup, events, cards, days, course, wordCourse: WORD_COURSE, settings, update, record, logGame, go, notify, reload, sync, doSync,
+  }), [events, cards, days, course, settings, update, record, logGame, go, notify, reload, sync, doSync]);
 
   if (!events) return <div className="splash" aria-busy="true"><span className="brand-mark">Petit <i>à</i> petit</span></div>;
 
@@ -117,9 +128,12 @@ export default function App() {
     case 'verb': page = <Verb key={route.params.inf} inf={route.params.inf} />; break;
     case 'session': page = <Session key={route.params.items.join('|')} items={route.params.items} onEnd={endSession} />; break;
     case 'settings': page = <Settings />; break;
+    case 'words': page = <Mots />; break;
+    case 'theme': page = <Theme key={route.params.id} id={route.params.id} />; break;
+    case 'rules': page = <GenderRules />; break;
     default: page = <Today />;
   }
-  const active = route.name === 'verb' ? 'verbs' : route.name;
+  const active = NAV_OF[route.name] || route.name;
   const st = streak(days);
   const minutes = Math.round((days[dayKey(Date.now())]?.ms || 0) / 60000);
 

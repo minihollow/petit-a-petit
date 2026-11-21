@@ -1,0 +1,164 @@
+{
+  "_comment": "Thèmes de vocabulaire. Entrée : [mot, sens en turc, type]. Type : m, f (nom et genre), mf (nom des deux genres), mpl / fpl (nom pluriel), adj, adv, pre, con, pro, art, num, expr (expression), int (mot interrogatif). Un 4e élément optionnel : remarque en turc. Genre vérifié avec Lexique 3.83 par scripts/build-words.mjs.",
+  "famille": { "fr": "La famille", "tr": "Aile", "words": [
+    ["famille", "aile", "f"], ["père", "baba", "m"], ["mère", "anne", "f"], ["parents", "anne ve baba; akrabalar", "mpl"],
+    ["fils", "oğul", "m", "s okunur, l okunmaz: [fis]"], ["fille", "kız evlat; kız", "f"], ["enfant", "çocuk", "mf"],
+    ["frère", "erkek kardeş", "m"], ["sœur", "kız kardeş", "f"], ["grand-père", "dede, büyükbaba", "m"], ["grand-mère", "anneanne, babaanne", "f"],
+    ["mari", "koca, eş", "m"], ["femme", "kadın; karı, eş", "f"], ["oncle", "amca, dayı", "m"], ["tante", "teyze, hala", "f"],
+    ["cousin", "kuzen (erkek)", "m"], ["cousine", "kuzen (kız)", "f"], ["neveu", "erkek yeğen", "m"], ["nièce", "kız yeğen", "f"],
+    ["bébé", "bebek", "m"], ["beau-frère", "kayınbirader, enişte, bacanak", "m"], ["belle-sœur", "görümce, baldız, yenge", "f"],
+    ["beau-père", "kayınpeder; üvey baba", "m"], ["belle-mère", "kayınvalide; üvey anne", "f"]
+  ]},
+  "corps": { "fr": "Le corps", "tr": "Vücut", "words": [
+    ["corps", "vücut, beden", "m"], ["tête", "baş, kafa", "f"], ["visage", "yüz", "m"], ["cheveux", "saç", "mpl"], ["œil", "göz", "m", "Çoğulu düzensiz: les yeux"],
+    ["oreille", "kulak", "f"], ["nez", "burun", "m"], ["bouche", "ağız", "f"], ["dent", "diş", "f"], ["langue", "dil", "f"], ["cou", "boyun", "m"],
+    ["épaule", "omuz", "f"], ["bras", "kol", "m"], ["main", "el", "f"], ["doigt", "parmak", "m"], ["dos", "sırt", "m"], ["ventre", "karın", "m"],
+    ["jambe", "bacak", "f"], ["genou", "diz", "m", "Çoğulu: genoux (x ile)"], ["pied", "ayak", "m"], ["cœur", "kalp", "m"], ["peau", "deri, cilt", "f"],
+    ["sang", "kan", "m"], ["os", "kemik", "m"]
+  ]},
+  "nourriture": { "fr": "La nourriture", "tr": "Yiyecekler", "words": [
+    ["pain", "ekmek", "m"], ["fromage", "peynir", "m"], ["viande", "et", "f"], ["poulet", "tavuk (yemek)", "m"], ["poisson", "balık", "m"],
+    ["œuf", "yumurta", "m", "Çoğulu des œufs [dezø]: f ve s okunmaz"], ["riz", "pirinç, pilav", "m"], ["pâtes", "makarna", "fpl"], ["soupe", "çorba", "f"],
+    ["salade", "salata", "f"], ["légume", "sebze", "m"], ["tomate", "domates", "f"], ["pomme de terre", "patates", "f"], ["oignon", "soğan", "m"],
+    ["carotte", "havuç", "f"], ["fruit", "meyve", "m"], ["pomme", "elma", "f"], ["orange", "portakal", "f"], ["banane", "muz", "f"], ["citron", "limon", "m"],
+    ["fraise", "çilek", "f"], ["sucre", "şeker", "m"], ["sel", "tuz", "m"], ["poivre", "karabiber", "m"], ["beurre", "tereyağı", "m"], ["huile", "yağ (sıvı)", "f"],
+    ["gâteau", "pasta, kek", "m"], ["chocolat", "çikolata", "m"], ["confiture", "reçel", "f"], ["yaourt", "yoğurt", "m"],
+    ["petit-déjeuner", "kahvaltı", "m"], ["déjeuner", "öğle yemeği", "m"], ["dîner", "akşam yemeği", "m"], ["repas", "yemek, öğün", "m"]
+  ]},
+  "cuisine": { "fr": "Cuisine et boissons", "tr": "Mutfak ve içecekler", "words": [
+    ["eau", "su", "f"], ["lait", "süt", "m"], ["café", "kahve; kafe", "m"], ["thé", "çay", "m"], ["jus", "meyve suyu", "m"], ["vin", "şarap", "m"], ["bière", "bira", "f"],
+    ["cuisine", "mutfak; yemek pişirme", "f"], ["verre", "bardak; cam", "m"], ["tasse", "fincan", "f"], ["assiette", "tabak", "f"], ["bol", "kâse", "m"],
+    ["fourchette", "çatal", "f"], ["couteau", "bıçak", "m"], ["cuillère", "kaşık", "f"], ["casserole", "tencere", "f"], ["poêle", "tava", "f"],
+    ["four", "fırın", "m"], ["frigo", "buzdolabı", "m"], ["bouteille", "şişe", "f"], ["boîte", "kutu", "f"], ["recette", "yemek tarifi", "f"]
+  ]},
+  "maison": { "fr": "La maison", "tr": "Ev", "words": [
+    ["maison", "ev", "f"], ["appartement", "daire", "m", "⚠ Türkçedeki «apartman» değil: bina = immeuble"], ["immeuble", "apartman, bina", "m"],
+    ["chambre", "yatak odası, oda", "f"], ["salon", "salon, oturma odası", "m"], ["salle de bains", "banyo", "f"], ["toilettes", "tuvalet", "fpl"],
+    ["porte", "kapı", "f"], ["fenêtre", "pencere", "f"], ["mur", "duvar", "m"], ["toit", "çatı", "m"], ["escalier", "merdiven", "m"], ["ascenseur", "asansör", "m"],
+    ["clé", "anahtar", "f"], ["lit", "yatak", "m"], ["table", "masa", "f"], ["chaise", "sandalye", "f"], ["canapé", "kanepe", "m"], ["armoire", "dolap, gardırop", "f"],
+    ["lampe", "lamba", "f"], ["jardin", "bahçe", "m"], ["balcon", "balkon", "m"], ["loyer", "kira", "m"], ["voisin", "komşu (erkek)", "m"], ["voisine", "komşu (kadın)", "f"]
+  ]},
+  "vetements": { "fr": "Les vêtements", "tr": "Giysiler", "words": [
+    ["vêtement", "giysi", "m"], ["pantalon", "pantolon", "m"], ["chemise", "gömlek", "f"], ["tee-shirt", "tişört", "m"], ["robe", "elbise", "f"], ["jupe", "etek", "f"],
+    ["pull", "kazak", "m"], ["veste", "ceket", "f"], ["manteau", "palto, manto", "m"], ["chaussure", "ayakkabı", "f"], ["chaussette", "çorap", "f"], ["chapeau", "şapka", "m"],
+    ["écharpe", "atkı", "f"], ["gant", "eldiven", "m"], ["ceinture", "kemer", "f"], ["sac", "çanta", "m"], ["lunettes", "gözlük", "fpl"], ["montre", "kol saati", "f"],
+    ["bague", "yüzük", "f"], ["costume", "takım elbise", "m"], ["taille", "beden; boy", "f"], ["poche", "cep", "f"]
+  ]},
+  "transports": { "fr": "Les transports", "tr": "Ulaşım", "words": [
+    ["voiture", "araba", "f"], ["bus", "otobüs", "m"], ["métro", "metro", "m"], ["train", "tren", "m"], ["tramway", "tramvay", "m"], ["avion", "uçak", "m"],
+    ["vélo", "bisiklet", "m"], ["moto", "motosiklet", "f"], ["bateau", "gemi, tekne", "m"], ["taxi", "taksi", "m"], ["gare", "tren garı", "f"], ["aéroport", "havalimanı", "m"],
+    ["arrêt", "durak", "m"], ["billet", "bilet", "m"], ["ticket", "bilet (otobüs, metro)", "m"], ["route", "yol", "f"], ["rue", "sokak, cadde", "f"],
+    ["permis", "ehliyet; izin belgesi", "m"], ["feu", "trafik ışığı; ateş", "m"], ["parking", "otopark", "m"], ["voyage", "yolculuk, seyahat", "m"], ["valise", "valiz, bavul", "f"]
+  ]},
+  "temps": { "fr": "Le temps qui passe", "tr": "Zaman", "words": [
+    ["jour", "gün", "m"], ["semaine", "hafta", "f"], ["mois", "ay", "m"], ["an", "yıl", "m"], ["année", "yıl, sene", "f"], ["heure", "saat", "f"], ["minute", "dakika", "f"],
+    ["matin", "sabah", "m"], ["midi", "öğle", "m"], ["après-midi", "öğleden sonra", "m"], ["soir", "akşam", "m"], ["nuit", "gece", "f"], ["week-end", "hafta sonu", "m"],
+    ["printemps", "ilkbahar", "m"], ["été", "yaz", "m"], ["automne", "sonbahar", "m"], ["hiver", "kış", "m"],
+    ["aujourd'hui", "bugün", "adv"], ["hier", "dün", "adv"], ["demain", "yarın", "adv"], ["maintenant", "şimdi", "adv"], ["bientôt", "yakında", "adv"], ["tard", "geç", "adv"], ["tôt", "erken", "adv"]
+  ]},
+  "calendrier": { "fr": "Jours et mois", "tr": "Günler ve aylar", "words": [
+    ["lundi", "pazartesi", "m"], ["mardi", "salı", "m"], ["mercredi", "çarşamba", "m"], ["jeudi", "perşembe", "m"], ["vendredi", "cuma", "m"], ["samedi", "cumartesi", "m"], ["dimanche", "pazar", "m"],
+    ["janvier", "ocak", "m"], ["février", "şubat", "m"], ["mars", "mart", "m"], ["avril", "nisan", "m"], ["mai", "mayıs", "m"], ["juin", "haziran", "m"],
+    ["juillet", "temmuz", "m"], ["août", "ağustos", "m"], ["septembre", "eylül", "m"], ["octobre", "ekim", "m"], ["novembre", "kasım", "m"], ["décembre", "aralık", "m"]
+  ]},
+  "meteo": { "fr": "La météo", "tr": "Hava durumu", "words": [
+    ["temps", "hava; zaman", "m"], ["soleil", "güneş", "m"], ["pluie", "yağmur", "f"], ["neige", "kar", "f"], ["vent", "rüzgâr", "m"], ["nuage", "bulut", "m"],
+    ["orage", "gök gürültülü fırtına", "m"], ["brouillard", "sis", "m"], ["chaleur", "sıcaklık", "f"], ["froid", "soğuk", "m"], ["ciel", "gökyüzü", "m"], ["température", "sıcaklık derecesi", "f"],
+    ["il fait beau", "hava güzel", "expr"], ["il fait chaud", "hava sıcak", "expr"], ["il fait froid", "hava soğuk", "expr"], ["il pleut", "yağmur yağıyor", "expr"], ["il neige", "kar yağıyor", "expr"], ["il y a du vent", "rüzgâr var", "expr"]
+  ]},
+  "nature": { "fr": "La nature", "tr": "Doğa", "words": [
+    ["mer", "deniz", "f"], ["montagne", "dağ", "f"], ["plage", "plaj, sahil", "f"], ["forêt", "orman", "f"], ["arbre", "ağaç", "m"], ["fleur", "çiçek", "f"], ["herbe", "çimen, ot", "f"],
+    ["rivière", "nehir, dere", "f"], ["fleuve", "büyük nehir", "m"], ["lac", "göl", "m"], ["île", "ada", "f"], ["campagne", "kırsal bölge, köy yeri", "f"], ["champ", "tarla", "m"],
+    ["terre", "toprak; dünya", "f"], ["monde", "dünya", "m"], ["pierre", "taş", "f"], ["sable", "kum", "m"], ["lune", "ay (gökyüzünde)", "f"], ["étoile", "yıldız", "f"], ["paysage", "manzara", "m"]
+  ]},
+  "animaux": { "fr": "Les animaux", "tr": "Hayvanlar", "words": [
+    ["animal", "hayvan", "m", "Çoğulu: animaux"], ["chien", "köpek", "m"], ["chat", "kedi", "m"], ["oiseau", "kuş", "m"], ["cheval", "at", "m", "Çoğulu: chevaux"], ["vache", "inek", "f"],
+    ["mouton", "koyun", "m"], ["cochon", "domuz", "m"], ["poule", "tavuk (hayvan)", "f"], ["souris", "fare", "f"], ["lapin", "tavşan", "m"], ["ours", "ayı", "m"], ["lion", "aslan", "m"],
+    ["loup", "kurt", "m"], ["singe", "maymun", "m"], ["serpent", "yılan", "m"], ["insecte", "böcek", "m"], ["mouche", "sinek", "f"], ["abeille", "arı", "f"], ["papillon", "kelebek", "m"],
+    ["canard", "ördek", "m"], ["chèvre", "keçi", "f"], ["renard", "tilki", "m"], ["éléphant", "fil", "m"]
+  ]},
+  "metiers": { "fr": "Les métiers", "tr": "Meslekler", "words": [
+    ["métier", "meslek", "m"], ["travail", "iş", "m", "Çoğulu: travaux"], ["médecin", "doktor, hekim", "m"], ["infirmière", "hemşire (kadın)", "f"], ["infirmier", "hemşire (erkek)", "m"],
+    ["professeur", "öğretmen", "m"], ["avocat", "avukat", "m"], ["vendeur", "satıcı (erkek)", "m"], ["vendeuse", "satıcı (kadın)", "f"], ["serveur", "garson", "m"], ["serveuse", "garson (kadın)", "f"],
+    ["cuisinier", "aşçı", "m"], ["boulanger", "fırıncı", "m"], ["coiffeur", "kuaför", "m"], ["policier", "polis", "m"], ["pompier", "itfaiyeci", "m"], ["ingénieur", "mühendis", "m"],
+    ["chauffeur", "şoför", "m"], ["agriculteur", "çiftçi", "m"], ["pharmacien", "eczacı", "m"], ["dentiste", "diş hekimi", "mf"], ["secrétaire", "sekreter", "mf"], ["collègue", "iş arkadaşı", "mf"],
+    ["patron", "patron", "m"], ["salaire", "maaş", "m"], ["chômage", "işsizlik", "m"]
+  ]},
+  "relations": { "fr": "Les gens", "tr": "İnsanlar ve ilişkiler", "words": [
+    ["ami", "arkadaş (erkek)", "m"], ["amie", "arkadaş (kadın)", "f"], ["copain", "arkadaş; erkek arkadaş", "m"], ["copine", "arkadaş; kız arkadaş", "f"], ["amour", "aşk, sevgi", "m"],
+    ["couple", "çift", "m"], ["mariage", "evlilik; düğün", "m"], ["gens", "insanlar", "mpl"], ["personne", "kişi", "f"], ["homme", "adam; insan", "m"], ["garçon", "oğlan, erkek çocuk", "m"],
+    ["monsieur", "bey, beyefendi", "m"], ["dame", "hanım, hanımefendi", "f"], ["invité", "misafir", "m"], ["fête", "parti, kutlama; bayram", "f"], ["anniversaire", "doğum günü", "m"],
+    ["cadeau", "hediye", "m"], ["rendez-vous", "randevu; buluşma", "m"], ["voisinage", "komşuluk, çevre", "m"]
+  ]},
+  "couleurs": { "fr": "Les couleurs", "tr": "Renkler", "words": [
+    ["rouge", "kırmızı", "adj"], ["bleu", "mavi", "adj"], ["vert", "yeşil", "adj"], ["jaune", "sarı", "adj"], ["noir", "siyah", "adj"], ["blanc", "beyaz", "adj", "Dişili düzensiz: blanche"],
+    ["gris", "gri", "adj"], ["marron", "kahverengi", "adj", "Değişmez: des yeux marron"], ["rose", "pembe", "adj"], ["orange", "turuncu", "adj", "Değişmez: des fleurs orange"], ["violet", "mor", "adj"],
+    ["beige", "bej", "adj"], ["clair", "açık (renk)", "adj"], ["foncé", "koyu (renk)", "adj"]
+  ]},
+  "contraires": { "fr": "Les contraires", "tr": "Zıt anlamlılar", "words": [
+    ["grand", "büyük; uzun boylu", "adj"], ["petit", "küçük", "adj"], ["long", "uzun", "adj"], ["court", "kısa", "adj"], ["gros", "şişman, iri", "adj"], ["mince", "ince, zayıf", "adj"],
+    ["jeune", "genç", "adj"], ["vieux", "yaşlı; eski", "adj", "Dişili: vieille"], ["nouveau", "yeni", "adj", "Dişili: nouvelle"], ["ancien", "eski", "adj"], ["beau", "güzel, yakışıklı", "adj", "Dişili: belle"],
+    ["laid", "çirkin", "adj"], ["bon", "iyi; lezzetli", "adj"], ["mauvais", "kötü", "adj"], ["facile", "kolay", "adj"], ["difficile", "zor", "adj"], ["chaud", "sıcak", "adj"], ["froid", "soğuk", "adj"],
+    ["rapide", "hızlı", "adj"], ["lent", "yavaş", "adj"], ["plein", "dolu", "adj"], ["vide", "boş", "adj"], ["riche", "zengin", "adj"], ["pauvre", "fakir", "adj"], ["propre", "temiz", "adj"], ["sale", "kirli", "adj"],
+    ["ouvert", "açık", "adj"], ["fermé", "kapalı", "adj"], ["lourd", "ağır", "adj"], ["léger", "hafif", "adj"], ["cher", "pahalı; sevgili", "adj"], ["gratuit", "ücretsiz, bedava", "adj"]
+  ]},
+  "emotions": { "fr": "Les émotions", "tr": "Duygular", "words": [
+    ["heureux", "mutlu", "adj", "Dişili: heureuse"], ["triste", "üzgün", "adj"], ["content", "memnun", "adj"], ["fatigué", "yorgun", "adj"], ["malade", "hasta", "adj"], ["fâché", "kızgın, dargın", "adj"],
+    ["inquiet", "endişeli", "adj", "Dişili: inquiète"], ["calme", "sakin", "adj"], ["stressé", "stresli", "adj"], ["surpris", "şaşırmış", "adj"], ["fier", "gururlu", "adj"], ["timide", "utangaç", "adj"],
+    ["joie", "sevinç", "f"], ["peur", "korku", "f"], ["colère", "öfke", "f"], ["tristesse", "üzüntü", "f"], ["bonheur", "mutluluk", "m"], ["honte", "utanç", "f"]
+  ]},
+  "avoir": { "fr": "Avoir + nom", "tr": "«Avoir» ile ifadeler", "words": [
+    ["avoir faim", "acıkmak, aç olmak", "expr", "Türkçede fiil, Fransızcada avoir + isim: j'ai faim = acıktım"], ["avoir soif", "susamak", "expr"], ["avoir chaud", "sıcaklamak", "expr"],
+    ["avoir froid", "üşümek", "expr"], ["avoir peur", "korkmak", "expr"], ["avoir sommeil", "uykusu gelmek", "expr"], ["avoir mal", "ağrımak (j'ai mal à la tête: başım ağrıyor)", "expr"],
+    ["avoir besoin de", "-e ihtiyacı olmak", "expr"], ["avoir envie de", "canı istemek", "expr"], ["avoir raison", "haklı olmak", "expr"], ["avoir tort", "haksız olmak", "expr"],
+    ["avoir de la chance", "şanslı olmak", "expr"], ["avoir l'air", "gibi görünmek", "expr"], ["avoir vingt ans", "yirmi yaşında olmak", "expr", "Yaş avoir ile söylenir: j'ai trente ans = otuz yaşındayım"]
+  ]},
+  "ville": { "fr": "La ville", "tr": "Şehir", "words": [
+    ["ville", "şehir", "f"], ["village", "köy", "m"], ["quartier", "mahalle, semt", "m"], ["place", "meydan; yer", "f"], ["centre", "merkez", "m"], ["mairie", "belediye", "f"], ["poste", "postane", "f"],
+    ["banque", "banka", "f"], ["supermarché", "süpermarket", "m"], ["marché", "pazar", "m"], ["boulangerie", "fırın (ekmekçi)", "f"], ["pharmacie", "eczane", "f"], ["hôpital", "hastane", "m"],
+    ["école", "okul", "f"], ["église", "kilise", "f"], ["mosquée", "cami", "f"], ["musée", "müze", "m"], ["parc", "park", "m"], ["restaurant", "restoran", "m"], ["cinéma", "sinema", "m"],
+    ["hôtel", "otel", "m"], ["bibliothèque", "kütüphane", "f"], ["magasin", "dükkân, mağaza", "m"], ["pont", "köprü", "m"]
+  ]},
+  "sante": { "fr": "La santé", "tr": "Sağlık", "words": [
+    ["santé", "sağlık", "f"], ["docteur", "doktor", "m"], ["maladie", "hastalık", "f"], ["douleur", "ağrı", "f"], ["fièvre", "ateş (hastalık)", "f"], ["rhume", "nezle, soğuk algınlığı", "m"],
+    ["toux", "öksürük", "f"], ["médicament", "ilaç", "m"], ["ordonnance", "reçete", "f"], ["urgences", "acil servis", "fpl"], ["ambulance", "ambulans", "f"], ["blessure", "yara", "f"],
+    ["mutuelle", "tamamlayıcı sağlık sigortası", "f"], ["enceinte", "hamile", "adj"], ["opération", "ameliyat; işlem", "f"], ["analyse", "tahlil", "f"]
+  ]},
+  "achats": { "fr": "Achats et argent", "tr": "Alışveriş ve para", "words": [
+    ["argent", "para; gümüş", "m"], ["euro", "avro", "m"], ["prix", "fiyat", "m"], ["monnaie", "bozuk para; para üstü", "f"], ["carte", "kart; harita", "f"], ["compte", "hesap", "m"],
+    ["caisse", "kasa", "f"], ["réduction", "indirim", "f"], ["client", "müşteri (erkek)", "m"], ["cliente", "müşteri (kadın)", "f"], ["facture", "fatura", "f"], ["paiement", "ödeme", "m"],
+    ["panier", "sepet", "m"], ["reçu", "makbuz, fiş", "m"], ["courses", "alışveriş (faire les courses)", "fpl"], ["chèque", "çek", "m"]
+  ]},
+  "ecole": { "fr": "École et travail", "tr": "Okul ve iş", "words": [
+    ["classe", "sınıf", "f"], ["cours", "ders", "m"], ["leçon", "ders (konu)", "f"], ["livre", "kitap", "m"], ["cahier", "defter", "m"], ["stylo", "tükenmez kalem", "m"], ["crayon", "kurşun kalem", "m"],
+    ["feuille", "kâğıt; yaprak", "f"], ["mot", "kelime", "m"], ["phrase", "cümle", "f"], ["question", "soru", "f"], ["réponse", "cevap", "f"], ["exercice", "alıştırma", "m"], ["examen", "sınav", "m"],
+    ["diplôme", "diploma", "m"], ["ordinateur", "bilgisayar", "m"], ["téléphone", "telefon", "m"], ["bureau", "büro, ofis; çalışma masası", "m"], ["réunion", "toplantı", "f"], ["entreprise", "şirket", "f"],
+    ["contrat", "sözleşme", "m"], ["élève", "öğrenci (okul)", "mf"], ["étudiant", "öğrenci (üniversite)", "m"], ["étudiante", "öğrenci (üniversite, kız)", "f"]
+  ]},
+  "administration": { "fr": "Les démarches", "tr": "Resmî işler", "words": [
+    ["préfecture", "valilik", "f"], ["titre de séjour", "oturma izni", "m"], ["passeport", "pasaport", "m"], ["carte d'identité", "kimlik kartı", "f"], ["dossier", "dosya, başvuru dosyası", "m"],
+    ["formulaire", "form", "m"], ["demande", "başvuru; istek", "f"], ["justificatif", "belge, kanıt", "m"], ["acte de naissance", "doğum belgesi", "m"], ["signature", "imza", "f"], ["adresse", "adres", "f"],
+    ["nom", "soyadı; isim", "m"], ["prénom", "ad", "m"], ["nationalité", "vatandaşlık, uyruk", "f"], ["timbre", "pul", "m"], ["courrier", "mektup, posta", "m"], ["impôt", "vergi", "m"],
+    ["naturalisation", "vatandaşlığa geçiş", "f"], ["récépissé", "alındı belgesi", "m"], ["assurance", "sigorta", "f"], ["guichet", "gişe", "m"], ["attestation", "belge, onay yazısı", "f"]
+  ]},
+  "loisirs": { "fr": "Loisirs et sport", "tr": "Boş zaman ve spor", "words": [
+    ["sport", "spor", "m"], ["football", "futbol", "m"], ["natation", "yüzme", "f"], ["course", "koşu; yarış", "f"], ["jeu", "oyun", "m", "Çoğulu: jeux"], ["film", "film", "m"], ["musique", "müzik", "f"],
+    ["chanson", "şarkı", "f"], ["photo", "fotoğraf", "f"], ["danse", "dans", "f"], ["dessin", "resim (çizim)", "m"], ["promenade", "yürüyüş, gezinti", "f"], ["vacances", "tatil", "fpl"],
+    ["match", "maç", "m"], ["équipe", "takım", "f"], ["ballon", "top", "m"], ["piscine", "yüzme havuzu", "f"], ["salle de sport", "spor salonu", "f"]
+  ]},
+  "pays": { "fr": "Pays et nationalités", "tr": "Ülkeler ve milliyetler", "words": [
+    ["pays", "ülke", "m"], ["France", "Fransa", "f", "en France: Fransa'da / Fransa'ya"], ["Turquie", "Türkiye", "f", "en Turquie: Türkiye'de / Türkiye'ye"], ["Allemagne", "Almanya", "f"], ["Angleterre", "İngiltere", "f"],
+    ["Espagne", "İspanya", "f"], ["Italie", "İtalya", "f"], ["Maroc", "Fas", "m", "Eril ülke: au Maroc"], ["Portugal", "Portekiz", "m", "au Portugal"], ["États-Unis", "Amerika Birleşik Devletleri", "mpl", "aux États-Unis"],
+    ["français", "Fransız; Fransızca", "adj"], ["turc", "Türk; Türkçe", "adj", "Dişili: turque"], ["allemand", "Alman; Almanca", "adj"], ["anglais", "İngiliz; İngilizce", "adj"], ["espagnol", "İspanyol; İspanyolca", "adj"],
+    ["italien", "İtalyan; İtalyanca", "adj"], ["américain", "Amerikalı", "adj"], ["étranger", "yabancı; yurt dışı", "m"]
+  ]},
+  "petits_mots": { "fr": "Petits mots utiles", "tr": "Küçük ama önemli kelimeler", "words": [
+    ["et", "ve", "con"], ["ou", "veya, ya da", "con"], ["mais", "ama, fakat", "con"], ["donc", "bu yüzden, yani", "con"], ["parce que", "çünkü", "con"], ["si", "eğer; öyle, o kadar", "con"], ["quand", "-diğinde; ne zaman", "con"],
+    ["avec", "ile", "pre"], ["sans", "-sız, olmadan", "pre"], ["pour", "için", "pre"], ["dans", "içinde, -de", "pre"], ["sur", "üstünde", "pre"], ["sous", "altında", "pre"], ["chez", "-in evinde, -de (kişi)", "pre", "chez moi: evimde; chez le médecin: doktorda"],
+    ["entre", "arasında", "pre"], ["devant", "önünde", "pre"], ["derrière", "arkasında", "pre"], ["avant", "önce", "pre"], ["après", "sonra", "pre"], ["pendant", "sırasında, boyunca", "pre"], ["depuis", "-den beri", "pre"],
+    ["très", "çok", "adv"], ["trop", "fazla, çok fazla", "adv"], ["beaucoup", "çok", "adv"], ["peu", "az", "adv"], ["assez", "yeterince", "adv"], ["bien", "iyi", "adv"], ["mal", "kötü", "adv"], ["vite", "hızlı", "adv"],
+    ["toujours", "her zaman; hâlâ", "adv"], ["souvent", "sık sık", "adv"], ["parfois", "bazen", "adv"], ["jamais", "asla, hiç", "adv", "ne … jamais: je ne fume jamais"], ["déjà", "zaten, çoktan", "adv"], ["encore", "hâlâ; yine", "adv"],
+    ["ici", "burada", "adv"], ["là", "orada, şurada", "adv"], ["aussi", "de, da; ayrıca", "adv"], ["ensemble", "birlikte", "adv"], ["peut-être", "belki", "adv"], ["oui", "evet", "adv"], ["non", "hayır", "adv"],
+    ["comment", "nasıl", "int"], ["pourquoi", "neden", "int"], ["combien", "kaç, ne kadar", "int"], ["où", "nerede, nereye", "int"], ["qui", "kim", "int"], ["quoi", "ne", "int"]
+  ]}
+}
