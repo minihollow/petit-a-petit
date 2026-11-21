@@ -10,6 +10,12 @@ celle de Tailscale (`https://<pi>.<tailnet>.ts.net`), qui ne se résout que sur 
 
 ## 1. Installation (Raspberry Pi OS)
 
+Le plus simple : copier `sync-server.mjs`, `pair-link.mjs`, `petit-a-petit-sync.service` et `install.sh` dans un
+dossier de la Pi, puis lancer `sudo bash install.sh`. Le script installe Node.js si besoin, crée le service et les
+jetons, publie le service avec `tailscale serve` et écrit le lien d'association dans
+`~/petit-a-petit-sync/lien-synchro.txt` (lisible par cet utilisateur seulement). Le relancer met à jour les fichiers
+sans toucher aux jetons ni aux données. Les étapes ci-dessous font la même chose à la main.
+
 ```sh
 node -v                      # 18 ou plus ; sinon : sudo apt install nodejs
 sudo useradd --system --home /var/lib/petit-a-petit-sync --shell /usr/sbin/nologin petitapetit
